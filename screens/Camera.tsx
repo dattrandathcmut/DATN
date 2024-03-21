@@ -1,13 +1,19 @@
 import * as React from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
 import { Button } from "react-native-paper";
 import { RNCamera } from 'react-native-camera';
 import { Color, FontFamily, Border, FontSize } from "../GlobalStyles";
+import { ScrollView } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Pressable } from "react-native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { useNavigation, ParamListBase } from "@react-navigation/native";
+
 
 const Camera = () => {
   const cameraRef = React.useRef<RNCamera | null>(null);
-
+  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
   const takePicture = async () => {
     if (cameraRef.current) {
       const options = { quality: 0.5, base64: true };
@@ -18,39 +24,48 @@ const Camera = () => {
   };
 
   return (
-    <View style={styles.camera}>
-      <Text style={[styles.farm1, styles.farm1FlexBox]}>Farm 1</Text>
-      <Text style={[styles.smf, styles.smfTypo]}>SMF</Text>
-      <Image
-        style={styles.iconLeaf}
-        contentFit="cover"
-        source={require("../assets/-icon-leaf1.png")}
-      />
-      <RNCamera
-        ref={cameraRef}
-        style={styles.cameraPreview}
-        type={RNCamera.Constants.Type.back}
-        autoFocus={RNCamera.Constants.AutoFocus.on}
-      />
-      <Button
-        style={styles.cameraChild}
-        mode="contained"
-        labelStyle={styles.frameButtonBtn}
-        onPress={takePicture}
-        contentStyle={styles.frameButtonBtn1}
-      >
-        Start record
-      </Button>
-      <Text style={[styles.back, styles.smfTypo]}>BACK</Text>
-      <Image
-        style={styles.avatarIcon}
-        contentFit="cover"
-        source={require("../assets/avatar.png")}
-      />
-      <View style={[styles.cameraItem, styles.frameChildPosition]} />
-      <View style={[styles.cameraInner, styles.aboutPosition]} />
-      <Text style={[styles.about, styles.aboutPosition]}>{`About `}</Text>
-    </View>
+    <ScrollView>
+      <SafeAreaView>
+        <View style={styles.camera}>
+          <Text style={[styles.farm1, styles.farm1FlexBox]}>Farm 1</Text>
+          <Text style={[styles.smf, styles.smfTypo1]}>SMF</Text>
+          <Image
+            style={styles.iconLeaf}
+            resizeMode="stretch"
+            source={require("../assets/-icon-leaf.png")}
+          />
+          <RNCamera
+            ref={cameraRef}
+            style={styles.cameraPreview}
+            type={RNCamera.Constants.Type.back}
+            autoFocus={RNCamera.Constants.AutoFocus.on}
+          />
+          <Button
+            style={styles.cameraChild}
+            mode="contained"
+            labelStyle={styles.frameButtonBtn}
+            onPress={takePicture}
+            contentStyle={styles.frameButtonBtn1}
+          >
+            Start record
+          </Button>
+          <TouchableOpacity
+            style={[styles.back, styles.smfTypo]}
+            onPress={() => navigation.navigate("Farm")} // Navigate to "Farm" screen on press
+          >
+            <Text>BACK</Text>
+          </TouchableOpacity>
+          <Image
+            style={styles.avatarIcon}
+            contentFit="cover"
+            source={require("../assets/avatar.png")}
+          />
+          <View style={[styles.cameraItem, styles.frameChildPosition]} />
+          <View style={[styles.cameraInner, styles.aboutPosition]} />
+          <Text style={[styles.about, styles.aboutPosition]}>{`About `}</Text>
+        </View>
+      </SafeAreaView>
+    </ScrollView>
   );
 };
 
@@ -75,6 +90,11 @@ const styles = StyleSheet.create({
     textAlign: "left",
     position: "absolute",
   },
+  smfTypo1: {
+    textAlign: "left",
+    fontSize: FontSize.size_5xl,
+    position: "absolute",
+  },
   frameChildPosition: {
     borderRadius: Border.br_14xl,
     left: "50%",
@@ -95,14 +115,14 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   smf: {
-    marginLeft: -38,
-    top: 46,
+    alignItems: 'center',
+    justifyContent: 'center',
+    top: 70,
+    left: "50%",
+    fontFamily: FontFamily.michroma,
     color: Color.colorGray_500,
     width: 91,
     height: 37,
-    left: "50%",
-    fontFamily: FontFamily.michroma,
-    fontSize: FontSize.size_5xl,
   },
   iconLeaf: {
     height: "4.5%",
@@ -110,7 +130,7 @@ const styles = StyleSheet.create({
     top: "1.75%",
     right: "46.22%",
     bottom: "93.75%",
-    left: "46.39%",
+    left: "52.39%",
     maxWidth: "100%",
     maxHeight: "100%",
     position: "absolute",
@@ -157,16 +177,16 @@ const styles = StyleSheet.create({
     letterSpacing: 4.1,
     width: 68,
     height: 16,
-    fontFamily: FontFamily.michroma,
     color: Color.colorBlack,
+    fontFamily: FontFamily.michroma,
   },
   avatarIcon: {
-    top: 12,
-    left: 302,
     borderRadius: Border.br_781xl,
     width: 40,
     height: 40,
-    position: "absolute",
+    position: 'absolute',
+    top: 12, // Điều chỉnh giá trị của top tùy theo vị trí bạn muốn đặt avatarIcon
+    right: 10, // Điều chỉnh giá trị của right tùy theo vị trí bạn muốn đặt avatarIcon
   },
   cameraItem: {
     marginLeft: -164,
