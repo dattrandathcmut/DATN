@@ -6,6 +6,10 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation, ParamListBase } from "@react-navigation/native";
 import { FontFamily, Color, FontSize, Border, Padding } from "../GlobalStyles";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { Dimensions } from 'react-native';
+
+const screenWidth = Dimensions.get('window').width;
+const buttonWidth = 344;
 
 const Farm = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
@@ -15,10 +19,10 @@ const Farm = () => {
       <SafeAreaView>
         <View style={styles.farm1}>
           <Text style={styles.farm11}>Farm 1</Text>
-          <Text style={[styles.smf, styles.smfTypo]}>SMF</Text>
+          <Text style={[styles.smf, styles.smfTypo1]}>SMF</Text>
           <Image
             style={styles.iconLeaf}
-            contentFit="cover"
+            resizeMode="stretch"
             source={require("../assets/-icon-leaf.png")}
           />
           <View style={styles.unionParent}>
@@ -214,11 +218,16 @@ const Farm = () => {
           >
             <Text style={[styles.back, styles.smfTypo]}>BACK</Text>
           </Pressable>
-          <Image
-            style={styles.avatarIcon}
-            contentFit="cover"
-            source={require("../assets/avatar.png")}
-          />
+          <Pressable
+            onPress={
+              () => navigation.navigate("Account")
+            }>
+            <Image
+              style={[styles.avatarIcon, styles.iconPosition]}
+              contentFit="cover"
+              source={require("../assets/avatar.png")}
+            />
+          </Pressable>
         </View>
       </SafeAreaView>
     </ScrollView>
@@ -226,6 +235,10 @@ const Farm = () => {
 };
 
 const styles = StyleSheet.create({
+  iconPosition: {
+    top: 12,
+    position: "absolute",
+  },
   button20Btn: {
     color: "#081c15",
     fontSize: 18,
@@ -240,6 +253,11 @@ const styles = StyleSheet.create({
   smfTypo: {
     fontFamily: FontFamily.michroma,
     textAlign: "left",
+    position: "absolute",
+  },
+  smfTypo1: {
+    textAlign: "left",
+    fontSize: FontSize.size_5xl,
     position: "absolute",
   },
   rectangleLayout: {
@@ -266,7 +284,7 @@ const styles = StyleSheet.create({
     width: 22,
   },
   waterPumpTypo: {
-    height: 11,
+    height: 20,
     display: "flex",
     color: Color.colorGray_400,
     fontFamily: FontFamily.montserrat,
@@ -274,9 +292,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     textAlign: "left",
   },
+
+
   buttonFlexBox: {
     justifyContent: "center",
-    left: 10,
+    left: screenWidth / 2 - buttonWidth / 2,
     alignItems: "center",
     flexDirection: "row",
     position: "absolute",
@@ -292,13 +312,14 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   smf: {
-    marginLeft: -38,
-    top: 46,
+    alignItems: 'center',
+    justifyContent: 'center',
+    top: 70,
+    left: "50%",
+    fontFamily: FontFamily.michroma,
     color: Color.colorGray_500,
     width: 91,
     height: 37,
-    left: "50%",
-    fontSize: FontSize.size_5xl,
   },
   iconLeaf: {
     height: "4.5%",
@@ -306,7 +327,7 @@ const styles = StyleSheet.create({
     top: "1.75%",
     right: "46.22%",
     bottom: "93.75%",
-    left: "46.39%",
+    left: "52.39%",
     maxWidth: "100%",
     maxHeight: "100%",
     position: "absolute",
@@ -408,7 +429,7 @@ const styles = StyleSheet.create({
   },
   unionParent: {
     top: 185,
-    left: -9,
+    left: 9,
     height: 307,
     width: 390,
     position: "absolute",
@@ -430,7 +451,7 @@ const styles = StyleSheet.create({
     height: 25,
   },
   pestAndDisease: {
-    width: 280,
+    justifyContent: "center",
     marginLeft: 19,
   },
   button19: {
@@ -456,12 +477,12 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.michroma,
   },
   avatarIcon: {
-    top: 12,
-    left: 302,
     borderRadius: Border.br_781xl,
     width: 40,
     height: 40,
-    position: "absolute",
+    position: 'absolute',
+    top: 12, // Điều chỉnh giá trị của top tùy theo vị trí bạn muốn đặt avatarIcon
+    right: 10, // Điều chỉnh giá trị của right tùy theo vị trí bạn muốn đặt avatarIcon
   },
   farm1: {
     backgroundColor: Color.colorWhite,
