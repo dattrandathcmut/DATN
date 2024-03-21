@@ -4,210 +4,218 @@ import { Image } from "expo-image";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation, ParamListBase } from "@react-navigation/native";
 import { FontSize, Color, Border, FontFamily } from "../GlobalStyles";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { ScrollView } from "react-native";
+import { TouchableOpacity } from 'react-native';
 
 const General = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
   return (
-    <View style={styles.general}>
-      <Text style={[styles.general1, styles.smfTypo]}>General</Text>
-      <Text style={[styles.smf, styles.smfTypo]}>SMF</Text>
-      <Image
-        style={styles.iconLeaf}
-        contentFit="cover"
-        source={require("../assets/-icon-leaf.png")}
-      />
-      <View style={[styles.rectangleParent, styles.rectangleLayout]}>
-        <View style={[styles.frameChild, styles.frameLayout]} />
-        <View style={[styles.frameItem, styles.frameLayout]} />
-        <View style={[styles.frameInner, styles.frameLayout]} />
-        <View style={[styles.rectangleView, styles.frameLayout]} />
-        <Text style={[styles.farm1, styles.mintTypo]}>Farm 1</Text>
-        <Text style={[styles.onion, styles.mintTypo]}>Onion</Text>
-        <Text style={[styles.mint, styles.mintTypo]}>Mint</Text>
-        <Text style={[styles.ginger, styles.mintTypo]}>Ginger</Text>
-        <Pressable
-          style={styles.redOrganicTomatoPlantOd4xe}
-          onPress={() => navigation.navigate("Farm")}
-        >
+    <SafeAreaView>
+      <ScrollView>
+        <View style={styles.general}>
+          <Text style={[styles.general1, styles.smfTypo]}>General</Text>
+          <Text style={[styles.smf, styles.smfTypo]}>SMF</Text>
           <Image
-            style={styles.icon}
-            contentFit="cover"
-            source={require("../assets/redorganictomatoplantod4xey9600removebgpreview-1.png")}
+            style={styles.iconLeaf}
+            resizeMode="stretch"
+            source={require("../assets/-icon-leaf.png")}
           />
-        </Pressable>
-        <Image
-          style={[styles.pngwing4Icon, styles.iconPosition]}
-          contentFit="cover"
-          source={require("../assets/pngwing-4.png")}
-        />
-        <Image
-          style={styles.pngwing3Icon}
-          contentFit="cover"
-          source={require("../assets/pngwing-3.png")}
-        />
-        <Image
-          style={[styles.pngwing2Icon, styles.iconPosition]}
-          contentFit="cover"
-          source={require("../assets/pngwing-2.png")}
-        />
-      </View>
-      <View style={[styles.rectangleGroup, styles.rectangleLayout]}>
-        <View style={[styles.frameChild, styles.frameLayout]} />
-        <View style={[styles.frameItem, styles.frameLayout]} />
-        <View style={[styles.frameInner, styles.frameLayout]} />
-        <View style={[styles.rectangleView, styles.frameLayout]} />
-        <Text style={[styles.farm1, styles.mintTypo]}>Farm 2</Text>
-        <Text style={[styles.onion, styles.mintTypo]}>Onion</Text>
-        <Text style={[styles.mint, styles.mintTypo]}>Mint</Text>
-        <Text style={[styles.ginger, styles.mintTypo]}>Ginger</Text>
-        <Image
-          style={styles.redOrganicTomatoPlantOd4xe}
-          contentFit="cover"
-          source={require("../assets/redorganictomatoplantod4xey9600removebgpreview-1.png")}
-        />
-        <Image
-          style={[styles.pngwing4Icon, styles.iconPosition]}
-          contentFit="cover"
-          source={require("../assets/pngwing-4.png")}
-        />
-        <Image
-          style={styles.pngwing3Icon}
-          contentFit="cover"
-          source={require("../assets/pngwing-3.png")}
-        />
-        <Image
-          style={[styles.pngwing2Icon, styles.iconPosition]}
-          contentFit="cover"
-          source={require("../assets/pngwing-2.png")}
-        />
-      </View>
-      <View style={[styles.rectangleContainer, styles.rectanglePosition]}>
-        <View style={[styles.frameChild, styles.frameLayout]} />
-        <View style={[styles.frameItem, styles.frameLayout]} />
-        <View style={[styles.frameInner, styles.frameLayout]} />
-        <View style={[styles.rectangleView, styles.frameLayout]} />
-        <Text style={[styles.farm1, styles.mintTypo]}>Farm 3</Text>
-        <Text style={[styles.onion, styles.mintTypo]}>Onion</Text>
-        <Text style={[styles.mint, styles.mintTypo]}>Mint</Text>
-        <Text style={[styles.ginger, styles.mintTypo]}>Ginger</Text>
-        <Image
-          style={styles.redOrganicTomatoPlantOd4xe}
-          contentFit="cover"
-          source={require("../assets/redorganictomatoplantod4xey9600removebgpreview-1.png")}
-        />
-        <Image
-          style={[styles.pngwing4Icon, styles.iconPosition]}
-          contentFit="cover"
-          source={require("../assets/pngwing-4.png")}
-        />
-        <Image
-          style={styles.pngwing3Icon}
-          contentFit="cover"
-          source={require("../assets/pngwing-3.png")}
-        />
-        <Image
-          style={[styles.pngwing2Icon, styles.iconPosition]}
-          contentFit="cover"
-          source={require("../assets/pngwing-2.png")}
-        />
-      </View>
-      <View style={[styles.frameView, styles.frameViewPosition]}>
-        <View style={[styles.frameChild, styles.frameLayout]} />
-        <View style={[styles.frameItem, styles.frameLayout]} />
-        <View style={[styles.frameInner, styles.frameLayout]} />
-        <View style={[styles.rectangleView, styles.frameLayout]} />
-        <Text style={[styles.farm1, styles.mintTypo]}>Farm 5</Text>
-        <Text style={[styles.onion, styles.mintTypo]}>Onion</Text>
-        <Text style={[styles.mint, styles.mintTypo]}>Mint</Text>
-        <Text style={[styles.ginger, styles.mintTypo]}>Ginger</Text>
-        <Image
-          style={styles.redOrganicTomatoPlantOd4xe}
-          contentFit="cover"
-          source={require("../assets/redorganictomatoplantod4xey9600removebgpreview-1.png")}
-        />
-        <Image
-          style={[styles.pngwing4Icon, styles.iconPosition]}
-          contentFit="cover"
-          source={require("../assets/pngwing-4.png")}
-        />
-        <Image
-          style={styles.pngwing3Icon}
-          contentFit="cover"
-          source={require("../assets/pngwing-3.png")}
-        />
-        <Image
-          style={[styles.pngwing2Icon, styles.iconPosition]}
-          contentFit="cover"
-          source={require("../assets/pngwing-2.png")}
-        />
-      </View>
-      <View style={[styles.rectangleParent1, styles.frameViewPosition]}>
-        <View style={[styles.frameChild, styles.frameLayout]} />
-        <View style={[styles.frameItem, styles.frameLayout]} />
-        <View style={[styles.frameInner, styles.frameLayout]} />
-        <View style={[styles.rectangleView, styles.frameLayout]} />
-        <Text style={[styles.farm1, styles.mintTypo]}>Farm 6</Text>
-        <Text style={[styles.onion, styles.mintTypo]}>Onion</Text>
-        <Text style={[styles.mint, styles.mintTypo]}>Mint</Text>
-        <Text style={[styles.ginger, styles.mintTypo]}>Ginger</Text>
-        <Image
-          style={styles.redOrganicTomatoPlantOd4xe}
-          contentFit="cover"
-          source={require("../assets/redorganictomatoplantod4xey9600removebgpreview-1.png")}
-        />
-        <Image
-          style={[styles.pngwing4Icon, styles.iconPosition]}
-          contentFit="cover"
-          source={require("../assets/pngwing-4.png")}
-        />
-        <Image
-          style={styles.pngwing3Icon}
-          contentFit="cover"
-          source={require("../assets/pngwing-3.png")}
-        />
-        <Image
-          style={[styles.pngwing2Icon, styles.iconPosition]}
-          contentFit="cover"
-          source={require("../assets/pngwing-2.png")}
-        />
-      </View>
-      <View style={[styles.rectangleParent2, styles.rectanglePosition]}>
-        <View style={[styles.frameChild, styles.frameLayout]} />
-        <View style={[styles.frameItem, styles.frameLayout]} />
-        <View style={[styles.frameInner, styles.frameLayout]} />
-        <View style={[styles.rectangleView, styles.frameLayout]} />
-        <Text style={[styles.farm1, styles.mintTypo]}>Farm 4</Text>
-        <Text style={[styles.onion, styles.mintTypo]}>Onion</Text>
-        <Text style={[styles.mint, styles.mintTypo]}>Mint</Text>
-        <Text style={[styles.ginger, styles.mintTypo]}>Ginger</Text>
-        <Image
-          style={styles.redOrganicTomatoPlantOd4xe}
-          contentFit="cover"
-          source={require("../assets/redorganictomatoplantod4xey9600removebgpreview-1.png")}
-        />
-        <Image
-          style={[styles.pngwing4Icon, styles.iconPosition]}
-          contentFit="cover"
-          source={require("../assets/pngwing-4.png")}
-        />
-        <Image
-          style={styles.pngwing3Icon}
-          contentFit="cover"
-          source={require("../assets/pngwing-3.png")}
-        />
-        <Image
-          style={[styles.pngwing2Icon, styles.iconPosition]}
-          contentFit="cover"
-          source={require("../assets/pngwing-2.png")}
-        />
-      </View>
-      <Image
-        style={[styles.avatarIcon, styles.iconPosition]}
-        contentFit="cover"
-        source={require("../assets/avatar.png")}
-      />
-    </View>
+          <View style={[styles.rectangleParent, styles.rectangleLayout]}>
+            <View style={[styles.frameChild, styles.frameLayout]} />
+            <View style={[styles.frameItem, styles.frameLayout]} />
+            <View style={[styles.frameInner, styles.frameLayout]} />
+            <View style={[styles.rectangleView, styles.frameLayout]} />
+            <Text style={[styles.farm1, styles.mintTypo]}>Farm 1</Text>
+            <TouchableOpacity onPress={() => navigation.navigate("Farm")}>
+              <Image
+                style={styles.icon}
+                contentFit="cover"
+                source={require("../assets/redorganictomatoplantod4xey9600removebgpreview-1.png")}
+              />
+            </TouchableOpacity>
+            <Image
+              style={[styles.pngwing4Icon, styles.iconPosition]}
+              contentFit="cover"
+              source={require("../assets/pngwing-4.png")}
+            />
+            <Image
+              style={styles.pngwing3Icon}
+              contentFit="cover"
+              source={require("../assets/pngwing-3.png")}
+            />
+            <Image
+              style={[styles.pngwing2Icon, styles.iconPosition]}
+              contentFit="cover"
+              source={require("../assets/pngwing-2.png")}
+            />
+          </View>
+          <View style={[styles.rectangleGroup, styles.rectangleLayout]}>
+            <View style={[styles.frameChild, styles.frameLayout]} />
+            <View style={[styles.frameItem, styles.frameLayout]} />
+            <View style={[styles.frameInner, styles.frameLayout]} />
+            <View style={[styles.rectangleView, styles.frameLayout]} />
+            <Text style={[styles.farm1, styles.mintTypo]}>Farm 2</Text>
+            <Text style={[styles.onion, styles.mintTypo]}>Onion</Text>
+            <Text style={[styles.mint, styles.mintTypo]}>Mint</Text>
+            <Text style={[styles.ginger, styles.mintTypo]}>Ginger</Text>
+            <Image
+              style={styles.redOrganicTomatoPlantOd4xe}
+              contentFit="cover"
+              source={require("../assets/redorganictomatoplantod4xey9600removebgpreview-1.png")}
+            />
+            <Image
+              style={[styles.pngwing4Icon, styles.iconPosition]}
+              contentFit="cover"
+              source={require("../assets/pngwing-4.png")}
+            />
+            <Image
+              style={styles.pngwing3Icon}
+              contentFit="cover"
+              source={require("../assets/pngwing-3.png")}
+            />
+            <Image
+              style={[styles.pngwing2Icon, styles.iconPosition]}
+              contentFit="cover"
+              source={require("../assets/pngwing-2.png")}
+            />
+          </View>
+          <View style={[styles.rectangleContainer, styles.rectanglePosition]}>
+            <View style={[styles.frameChild, styles.frameLayout]} />
+            <View style={[styles.frameItem, styles.frameLayout]} />
+            <View style={[styles.frameInner, styles.frameLayout]} />
+            <View style={[styles.rectangleView, styles.frameLayout]} />
+            <Text style={[styles.farm1, styles.mintTypo]}>Farm 3</Text>
+            <Text style={[styles.onion, styles.mintTypo]}>Onion</Text>
+            <Text style={[styles.mint, styles.mintTypo]}>Mint</Text>
+            <Text style={[styles.ginger, styles.mintTypo]}>Ginger</Text>
+            <Image
+              style={styles.redOrganicTomatoPlantOd4xe}
+              contentFit="cover"
+              source={require("../assets/redorganictomatoplantod4xey9600removebgpreview-1.png")}
+            />
+            <Image
+              style={[styles.pngwing4Icon, styles.iconPosition]}
+              contentFit="cover"
+              source={require("../assets/pngwing-4.png")}
+            />
+            <Image
+              style={styles.pngwing3Icon}
+              contentFit="cover"
+              source={require("../assets/pngwing-3.png")}
+            />
+            <Image
+              style={[styles.pngwing2Icon, styles.iconPosition]}
+              contentFit="cover"
+              source={require("../assets/pngwing-2.png")}
+            />
+          </View>
+          <View style={[styles.frameView, styles.frameViewPosition]}>
+            <View style={[styles.frameChild, styles.frameLayout]} />
+            <View style={[styles.frameItem, styles.frameLayout]} />
+            <View style={[styles.frameInner, styles.frameLayout]} />
+            <View style={[styles.rectangleView, styles.frameLayout]} />
+            <Text style={[styles.farm1, styles.mintTypo]}>Farm 5</Text>
+            <Text style={[styles.onion, styles.mintTypo]}>Onion</Text>
+            <Text style={[styles.mint, styles.mintTypo]}>Mint</Text>
+            <Text style={[styles.ginger, styles.mintTypo]}>Ginger</Text>
+            <Image
+              style={styles.redOrganicTomatoPlantOd4xe}
+              contentFit="cover"
+              source={require("../assets/redorganictomatoplantod4xey9600removebgpreview-1.png")}
+            />
+            <Image
+              style={[styles.pngwing4Icon, styles.iconPosition]}
+              contentFit="cover"
+              source={require("../assets/pngwing-4.png")}
+            />
+            <Image
+              style={styles.pngwing3Icon}
+              contentFit="cover"
+              source={require("../assets/pngwing-3.png")}
+            />
+            <Image
+              style={[styles.pngwing2Icon, styles.iconPosition]}
+              contentFit="cover"
+              source={require("../assets/pngwing-2.png")}
+            />
+          </View>
+          <View style={[styles.rectangleParent1, styles.frameViewPosition]}>
+            <View style={[styles.frameChild, styles.frameLayout]} />
+            <View style={[styles.frameItem, styles.frameLayout]} />
+            <View style={[styles.frameInner, styles.frameLayout]} />
+            <View style={[styles.rectangleView, styles.frameLayout]} />
+            <Text style={[styles.farm1, styles.mintTypo]}>Farm 6</Text>
+            <Text style={[styles.onion, styles.mintTypo]}>Onion</Text>
+            <Text style={[styles.mint, styles.mintTypo]}>Mint</Text>
+            <Text style={[styles.ginger, styles.mintTypo]}>Ginger</Text>
+            <Image
+              style={styles.redOrganicTomatoPlantOd4xe}
+              contentFit="cover"
+              source={require("../assets/redorganictomatoplantod4xey9600removebgpreview-1.png")}
+            />
+            <Image
+              style={[styles.pngwing4Icon, styles.iconPosition]}
+              contentFit="cover"
+              source={require("../assets/pngwing-4.png")}
+            />
+            <Image
+              style={styles.pngwing3Icon}
+              contentFit="cover"
+              source={require("../assets/pngwing-3.png")}
+            />
+            <Image
+              style={[styles.pngwing2Icon, styles.iconPosition]}
+              contentFit="cover"
+              source={require("../assets/pngwing-2.png")}
+            />
+          </View>
+          <View style={[styles.rectangleParent2, styles.rectanglePosition]}>
+            <View style={[styles.frameChild, styles.frameLayout]} />
+            <View style={[styles.frameItem, styles.frameLayout]} />
+            <View style={[styles.frameInner, styles.frameLayout]} />
+            <View style={[styles.rectangleView, styles.frameLayout]} />
+            <Text style={[styles.farm1, styles.mintTypo]}>Farm 4</Text>
+            <Text style={[styles.onion, styles.mintTypo]}>Onion</Text>
+            <Text style={[styles.mint, styles.mintTypo]}>Mint</Text>
+            <Text style={[styles.ginger, styles.mintTypo]}>Ginger</Text>
+            <Image
+              style={styles.redOrganicTomatoPlantOd4xe}
+              contentFit="cover"
+              source={require("../assets/redorganictomatoplantod4xey9600removebgpreview-1.png")}
+            />
+            <Image
+              style={[styles.pngwing4Icon, styles.iconPosition]}
+              contentFit="cover"
+              source={require("../assets/pngwing-4.png")}
+            />
+            <Image
+              style={styles.pngwing3Icon}
+              contentFit="cover"
+              source={require("../assets/pngwing-3.png")}
+            />
+            <Image
+              style={[styles.pngwing2Icon, styles.iconPosition]}
+              contentFit="cover"
+              source={require("../assets/pngwing-2.png")}
+            />
+          </View>
+
+          <Pressable
+            onPress={
+              () => navigation.navigate("Account")
+            }>
+            <Image
+              style={[styles.avatarIcon, styles.iconPosition]}
+              contentFit="cover"
+              source={require("../assets/avatar.png")}
+            />
+          </Pressable>
+
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -263,8 +271,9 @@ const styles = StyleSheet.create({
     width: 171,
   },
   smf: {
-    marginLeft: -38,
-    top: 46,
+    alignItems: 'center',
+    justifyContent: 'center',
+    top: 70,
     left: "50%",
     fontFamily: FontFamily.michroma,
     color: Color.colorGray_500,
@@ -277,7 +286,7 @@ const styles = StyleSheet.create({
     top: "1.75%",
     right: "46.22%",
     bottom: "93.75%",
-    left: "46.39%",
+    left: "52.39%",
     maxWidth: "100%",
     maxHeight: "100%",
     position: "absolute",
@@ -287,13 +296,13 @@ const styles = StyleSheet.create({
     left: 25,
   },
   frameItem: {
-    left: 397,
+    left: 200,
   },
   frameInner: {
-    left: 521,
+    left: 200,
   },
   rectangleView: {
-    left: 645,
+    left: 200,
   },
   farm1: {
     left: 48,
@@ -359,12 +368,27 @@ const styles = StyleSheet.create({
   rectangleParent2: {
     left: 180,
   },
+  // avatarIcon: {
+  //   // left: 400,
+  //   justifyContent: 'flex-end',
+  //   borderRadius: Border.br_781xl,
+  //   width: 40,
+  //   height: 40,
+  // },
+  container: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+  },
   avatarIcon: {
-    left: 302,
     borderRadius: Border.br_781xl,
     width: 40,
     height: 40,
+    position: 'absolute',
+    top: 12, // Điều chỉnh giá trị của top tùy theo vị trí bạn muốn đặt avatarIcon
+    right: 10, // Điều chỉnh giá trị của right tùy theo vị trí bạn muốn đặt avatarIcon
   },
+
   general: {
     backgroundColor: Color.colorWhite,
     flex: 1,

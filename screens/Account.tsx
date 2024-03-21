@@ -11,13 +11,16 @@ import {
   Border,
   Color,
 } from "../GlobalStyles";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { ScrollView } from "react-native";
 
 const Account = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
   return (
-    <View style={styles.account}>
-      <Text style={styles.smf}>SMF</Text>
+    <SafeAreaView style={styles.account}>
+    <ScrollView>
+    <Text style={styles.smf}>SMF</Text>
       <Image
         style={styles.iconLeaf}
         contentFit="cover"
@@ -676,7 +679,8 @@ better as two lines of text.`}</Text>
           </View>
         </View>
       </View>
-    </View>
+    </ScrollView>
+    </SafeAreaView>
   );
 };
 

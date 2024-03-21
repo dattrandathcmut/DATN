@@ -5,179 +5,181 @@ import { Button } from "react-native-paper";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation, ParamListBase } from "@react-navigation/native";
 import { FontFamily, Color, FontSize, Border, Padding } from "../GlobalStyles";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const Farm = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
   return (
-    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-      <View style={styles.farm1}>
-        <Text style={styles.farm11}>Farm 1</Text>
-        <Text style={[styles.smf, styles.smfTypo]}>SMF</Text>
-        <Image
-          style={styles.iconLeaf}
-          contentFit="cover"
-          source={require("../assets/-icon-leaf.png")}
-        />
-        <View style={styles.unionParent}>
+    <ScrollView>
+      <SafeAreaView>
+        <View style={styles.farm1}>
+          <Text style={styles.farm11}>Farm 1</Text>
+          <Text style={[styles.smf, styles.smfTypo]}>SMF</Text>
           <Image
-            style={styles.unionIcon}
+            style={styles.iconLeaf}
             contentFit="cover"
-            source={require("../assets/union1.png")}
+            source={require("../assets/-icon-leaf.png")}
           />
-          <View style={styles.frameParent}>
-            <View style={styles.rectangleLayout}>
-              <View style={[styles.frameChild, styles.rectangleLayout]} />
-              <View style={[styles.frameGroup, styles.frameFlexBox]}>
-                <View style={styles.frameContainer}>
-                  <View style={styles.rightParent}>
-                    <Image
-                      style={styles.rightIconLayout}
-                      contentFit="cover"
-                      source={require("../assets/right.png")}
-                    />
-                    <Text style={[styles.soilMoisture, styles.textTypo]}>
-                      Soil moisture
-                    </Text>
+          <View style={styles.unionParent}>
+            <Image
+              style={styles.unionIcon}
+              contentFit="cover"
+              source={require("../assets/union1.png")}
+            />
+            <View style={styles.frameParent}>
+              <View style={styles.rectangleLayout}>
+                <View style={[styles.frameChild, styles.rectangleLayout]} />
+                <View style={[styles.frameGroup, styles.frameFlexBox]}>
+                  <View style={styles.frameContainer}>
+                    <View style={styles.rightParent}>
+                      <Image
+                        style={styles.rightIconLayout}
+                        contentFit="cover"
+                        source={require("../assets/right.png")}
+                      />
+                      <Text style={[styles.soilMoisture, styles.textTypo]}>
+                        Soil moisture
+                      </Text>
+                    </View>
+                    <Text style={[styles.text, styles.textTypo]}>0</Text>
                   </View>
-                  <Text style={[styles.text, styles.textTypo]}>0</Text>
-                </View>
-                <View style={styles.frameItem} />
-                <View style={styles.frameContainer}>
-                  <View style={styles.rightParent}>
-                    <Image
-                      style={[
-                        styles.humbleiconswind,
-                        styles.humbleiconswindLayout,
-                      ]}
-                      contentFit="cover"
-                      source={require("../assets/humbleiconswind.png")}
-                    />
-                    <Text style={[styles.soilMoisture, styles.textTypo]}>
-                      Wind
-                    </Text>
+                  <View style={styles.frameItem} />
+                  <View style={styles.frameContainer}>
+                    <View style={styles.rightParent}>
+                      <Image
+                        style={[
+                          styles.humbleiconswind,
+                          styles.humbleiconswindLayout,
+                        ]}
+                        contentFit="cover"
+                        source={require("../assets/humbleiconswind.png")}
+                      />
+                      <Text style={[styles.soilMoisture, styles.textTypo]}>
+                        Wind
+                      </Text>
+                    </View>
+                    <Text style={[styles.text, styles.textTypo]}>12 m/s</Text>
                   </View>
-                  <Text style={[styles.text, styles.textTypo]}>12 m/s</Text>
-                </View>
-                <View style={styles.frameItem} />
-                <View style={styles.frameContainer}>
-                  <View style={styles.rightParent}>
-                    <Image
-                      style={[
-                        styles.humbleiconswind,
-                        styles.humbleiconswindLayout,
-                      ]}
-                      contentFit="cover"
-                      source={require("../assets/mdihumidity.png")}
-                    />
-                    <Text style={[styles.soilMoisture, styles.textTypo]}>
-                      Humidity
-                    </Text>
+                  <View style={styles.frameItem} />
+                  <View style={styles.frameContainer}>
+                    <View style={styles.rightParent}>
+                      <Image
+                        style={[
+                          styles.humbleiconswind,
+                          styles.humbleiconswindLayout,
+                        ]}
+                        contentFit="cover"
+                        source={require("../assets/mdihumidity.png")}
+                      />
+                      <Text style={[styles.soilMoisture, styles.textTypo]}>
+                        Humidity
+                      </Text>
+                    </View>
+                    <Text style={[styles.text, styles.textTypo]}>49%</Text>
                   </View>
-                  <Text style={[styles.text, styles.textTypo]}>49%</Text>
                 </View>
               </View>
-            </View>
-            <View style={[styles.rectangleGroup, styles.rectangleLayout]}>
-              <View style={[styles.frameChild, styles.rectangleLayout]} />
-              <View style={[styles.frameParent2, styles.frameFlexBox]}>
-                <View style={styles.frameContainer}>
-                  <Text style={[styles.now, styles.textTypo]}>Now</Text>
-                  <View style={styles.parent}>
-                    <Text style={[styles.text2, styles.textTypo]}>12</Text>
+              <View style={[styles.rectangleGroup, styles.rectangleLayout]}>
+                <View style={[styles.frameChild, styles.rectangleLayout]} />
+                <View style={[styles.frameParent2, styles.frameFlexBox]}>
+                  <View style={styles.frameContainer}>
+                    <Text style={[styles.now, styles.textTypo]}>Now</Text>
+                    <View style={styles.parent}>
+                      <Text style={[styles.text2, styles.textTypo]}>12</Text>
+                      <Image
+                        style={styles.frameIcon}
+                        contentFit="cover"
+                        source={require("../assets/frame-18.png")}
+                      />
+                    </View>
                     <Image
-                      style={styles.frameIcon}
+                      style={[styles.rightIcon1, styles.rightIconLayout]}
                       contentFit="cover"
-                      source={require("../assets/frame-18.png")}
+                      source={require("../assets/right1.png")}
                     />
                   </View>
-                  <Image
-                    style={[styles.rightIcon1, styles.rightIconLayout]}
-                    contentFit="cover"
-                    source={require("../assets/right1.png")}
-                  />
-                </View>
-                <View style={styles.frameContainer}>
-                  <Text style={[styles.now, styles.textTypo]}>12:00</Text>
-                  <View style={styles.parent}>
-                    <Text style={[styles.text2, styles.textTypo]}>14</Text>
+                  <View style={styles.frameContainer}>
+                    <Text style={[styles.now, styles.textTypo]}>12:00</Text>
+                    <View style={styles.parent}>
+                      <Text style={[styles.text2, styles.textTypo]}>14</Text>
+                      <Image
+                        style={styles.frameIcon}
+                        contentFit="cover"
+                        source={require("../assets/frame-181.png")}
+                      />
+                    </View>
                     <Image
-                      style={styles.frameIcon}
+                      style={[
+                        styles.carbonhumidityAltIcon,
+                        styles.humbleiconswindLayout,
+                      ]}
                       contentFit="cover"
-                      source={require("../assets/frame-181.png")}
+                      source={require("../assets/carbonhumidityalt.png")}
                     />
                   </View>
-                  <Image
-                    style={[
-                      styles.carbonhumidityAltIcon,
-                      styles.humbleiconswindLayout,
-                    ]}
-                    contentFit="cover"
-                    source={require("../assets/carbonhumidityalt.png")}
-                  />
-                </View>
-                <View style={styles.frameContainer}>
-                  <Text style={[styles.now, styles.textTypo]}>14:00</Text>
-                  <View style={styles.parent}>
-                    <Text style={[styles.text2, styles.textTypo]}>19</Text>
+                  <View style={styles.frameContainer}>
+                    <Text style={[styles.now, styles.textTypo]}>14:00</Text>
+                    <View style={styles.parent}>
+                      <Text style={[styles.text2, styles.textTypo]}>19</Text>
+                      <Image
+                        style={styles.frameIcon}
+                        contentFit="cover"
+                        source={require("../assets/frame-182.png")}
+                      />
+                    </View>
                     <Image
-                      style={styles.frameIcon}
+                      style={styles.carbonhumidityAltIcon1}
                       contentFit="cover"
-                      source={require("../assets/frame-182.png")}
+                      source={require("../assets/carbonhumidityalt1.png")}
                     />
                   </View>
-                  <Image
-                    style={styles.carbonhumidityAltIcon1}
-                    contentFit="cover"
-                    source={require("../assets/carbonhumidityalt1.png")}
-                  />
-                </View>
-                <View style={styles.frameContainer}>
-                  <Text style={[styles.now, styles.textTypo]}>16:00</Text>
-                  <View style={styles.parent}>
-                    <Text style={[styles.text2, styles.textTypo]}>13</Text>
+                  <View style={styles.frameContainer}>
+                    <Text style={[styles.now, styles.textTypo]}>16:00</Text>
+                    <View style={styles.parent}>
+                      <Text style={[styles.text2, styles.textTypo]}>13</Text>
+                      <Image
+                        style={styles.frameIcon}
+                        contentFit="cover"
+                        source={require("../assets/frame-183.png")}
+                      />
+                    </View>
                     <Image
-                      style={styles.frameIcon}
+                      style={[styles.rightIcon1, styles.rightIconLayout]}
                       contentFit="cover"
-                      source={require("../assets/frame-183.png")}
+                      source={require("../assets/right2.png")}
                     />
                   </View>
-                  <Image
-                    style={[styles.rightIcon1, styles.rightIconLayout]}
-                    contentFit="cover"
-                    source={require("../assets/right2.png")}
-                  />
-                </View>
-                <View style={styles.frameContainer}>
-                  <Text style={[styles.now, styles.textTypo]}>18:00</Text>
-                  <View style={styles.parent}>
-                    <Text style={[styles.text2, styles.textTypo]}>09</Text>
+                  <View style={styles.frameContainer}>
+                    <Text style={[styles.now, styles.textTypo]}>18:00</Text>
+                    <View style={styles.parent}>
+                      <Text style={[styles.text2, styles.textTypo]}>09</Text>
+                      <Image
+                        style={styles.frameIcon}
+                        contentFit="cover"
+                        source={require("../assets/frame-18.png")}
+                      />
+                    </View>
                     <Image
-                      style={styles.frameIcon}
+                      style={[styles.rightIcon1, styles.rightIconLayout]}
                       contentFit="cover"
-                      source={require("../assets/frame-18.png")}
+                      source={require("../assets/right1.png")}
                     />
                   </View>
-                  <Image
-                    style={[styles.rightIcon1, styles.rightIconLayout]}
-                    contentFit="cover"
-                    source={require("../assets/right1.png")}
-                  />
                 </View>
               </View>
             </View>
           </View>
-        </View>
-        <Button
-          style={[styles.button20, styles.buttonFlexBox]}
-          mode="contained"
-          labelStyle={styles.button20Btn}
-          onPress={() => navigation.navigate("WaterPump")}
-          contentStyle={styles.button20Btn1}
-        >
-          Water pump
-        </Button>
-        {/* 
+          <Button
+            style={[styles.button20, styles.buttonFlexBox]}
+            mode="contained"
+            labelStyle={styles.button20Btn}
+            onPress={() => navigation.navigate("WaterPump")}
+            contentStyle={styles.button20Btn1}
+          >
+            Water pump
+          </Button>
+          {/* 
         <Pressable
           style={styles.button18}
           onPress={() => navigation.navigate("WaterPump")}
@@ -185,35 +187,40 @@ const Farm = () => {
           <Text style={[styles.waterPump, styles.waterPumpTypo]}>Water pump</Text>
           <Image style={styles.button18Child} contentFit="cover" />
         </Pressable> */}
-        <Pressable
-          style={[styles.button19, styles.buttonFlexBox]}
-          onPress={() => navigation.navigate("WaterPump")}
-        >
+          <Pressable
+            style={[styles.button19, styles.buttonFlexBox]}
+            onPress={() => navigation.navigate("WaterPump")}
+          >
+            <Image
+              style={styles.vectorIcon}
+              contentFit="cover"
+              source={require("../assets/vector.png")}
+            />
+            <Text style={[styles.pestAndDisease, styles.waterPumpTypo]}>
+              Pest and disease inspection
+            </Text>
+          </Pressable>
+          <Button
+            style={[styles.button20, styles.buttonFlexBox]}
+            mode="contained"
+            labelStyle={styles.button20Btn}
+            onPress={() => navigation.navigate("Camera")}
+            contentStyle={styles.button20Btn1}
+          >
+            About this farm
+          </Button>
+          <Pressable
+            onPress={() => navigation.navigate("General")}
+          >
+            <Text style={[styles.back, styles.smfTypo]}>BACK</Text>
+          </Pressable>
           <Image
-            style={styles.vectorIcon}
+            style={styles.avatarIcon}
             contentFit="cover"
-            source={require("../assets/vector.png")}
+            source={require("../assets/avatar.png")}
           />
-          <Text style={[styles.pestAndDisease, styles.waterPumpTypo]}>
-            Pest and disease inspection
-          </Text>
-        </Pressable>
-        <Button
-          style={[styles.button20, styles.buttonFlexBox]}
-          mode="contained"
-          labelStyle={styles.button20Btn}
-          onPress={() => navigation.navigate("Camera")}
-          contentStyle={styles.button20Btn1}
-        >
-          About this farm
-        </Button>
-        <Text style={[styles.back, styles.smfTypo]}>BACK</Text>
-        <Image
-          style={styles.avatarIcon}
-          contentFit="cover"
-          source={require("../assets/avatar.png")}
-        />
-      </View>
+        </View>
+      </SafeAreaView>
     </ScrollView>
   );
 };

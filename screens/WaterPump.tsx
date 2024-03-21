@@ -1,16 +1,17 @@
 import * as React from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, Pressable } from "react-native";
 import { Image } from "expo-image";
 import { Button } from "react-native-paper";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation, ParamListBase } from "@react-navigation/native";
 import { FontFamily, Color, Border, FontSize } from "../GlobalStyles";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const WaterPump = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
   return (
-    <View style={styles.waterPump}>
+    <SafeAreaView style={styles.waterPump}>
       <Text style={[styles.farm1, styles.farm1FlexBox]}>
         Farm 1 - Water pump
       </Text>
@@ -20,7 +21,11 @@ const WaterPump = () => {
         contentFit="cover"
         source={require("../assets/-icon-leaf.png")}
       />
-      <Text style={[styles.back, styles.backPosition]}>BACK</Text>
+      <Pressable
+        onPress={() => navigation.navigate("General")}
+      >
+        <Text style={[styles.back, styles.smfTypo]}>BACK</Text>
+      </Pressable>
       <View style={[styles.waterPumpChild, styles.waterPosition]} />
       <View style={[styles.waterPumpItem, styles.waterPosition]} />
       <View style={[styles.dSwitch, styles.switchLayout]}>
@@ -90,7 +95,7 @@ const WaterPump = () => {
         contentFit="cover"
         source={require("../assets/avatar.png")}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
