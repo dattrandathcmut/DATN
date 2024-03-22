@@ -59,7 +59,7 @@ const Account = () => {
               <View style={styles.dividerLayout} />
             </View>
             <View style={[styles.frame4, styles.frameSpaceBlock]}>
-              <Pressable style={styles.tabFlexBox}
+              <Pressable style={[styles.tabFlexBox,{backgroundColor:Color.colorAliceblue}]}
                 onPress={() => navigation.navigate("Notification")}
               >
                 <View style={styles.frame5}>
@@ -72,21 +72,16 @@ const Account = () => {
                     Messages
                   </Text>
                 </View>
-                <Image
-                  style={[styles.icon1, styles.iconLayout]}
-                  contentFit="cover"
-                  source={require("../assets/icon1.png")}
-                />
-                <View style={styles.label3}>
-                  <View style={[styles.label4, styles.labelFlexBox]}>
-                    <Text style={[styles.label5, styles.labelTypo]}>Label</Text>
-                  </View>
-                </View>
                 <View style={styles.counterLayout}>
                   <View style={[styles.round, styles.textFlexBox]}>
                     <Text style={[styles.text, styles.textFlexBox]}>12</Text>
                   </View>
                 </View>
+                <Image
+                  style={[styles.icon1, styles.iconLayout]}
+                  contentFit="cover"
+                  source={require("../assets/icon1.png")}
+                />
               </Pressable>
             </View>
             <View style={[styles.tab1, styles.tabFlexBox]}>
