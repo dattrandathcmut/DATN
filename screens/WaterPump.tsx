@@ -1,105 +1,129 @@
 import * as React from "react";
-import { Text, StyleSheet, View, Pressable } from "react-native";
+import { Text, StyleSheet, View, Pressable, Dimensions } from "react-native";
 import { Image } from "expo-image";
 import { Button } from "react-native-paper";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation, ParamListBase } from "@react-navigation/native";
 import { FontFamily, Color, Border, FontSize } from "../GlobalStyles";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { ScrollView } from "react-native";
+import { useState } from "react";
+import { Switch } from "react-native";
 
 const WaterPump = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
-
+  const [isEnabled, setIsEnabled] = useState(false);
+  const [isEnabled1, setIsEnabled1] = useState(false);
+  const [isEnabled2, setIsEnabled2] = useState(false);
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  const toggleSwitch1 = () => setIsEnabled1(previousState => !previousState);
+  const toggleSwitch2 = () => setIsEnabled2(previousState => !previousState);
   return (
-    <SafeAreaView style={styles.waterPump}>
-      <Text style={[styles.farm1, styles.farm1FlexBox]}>
-        Farm 1 - Water pump
-      </Text>
-      <Text style={[styles.smf, styles.smfTypo]}>SMF</Text>
-      <Image
-        style={[styles.iconLeaf, styles.iconLayout]}
-        contentFit="cover"
-        source={require("../assets/-icon-leaf.png")}
-      />
-      <Pressable
-        onPress={() => navigation.navigate("General")}
-      >
-        <Text style={[styles.back, styles.smfTypo]}>BACK</Text>
-      </Pressable>
-      <View style={[styles.waterPumpChild, styles.waterPosition]} />
-      <View style={[styles.waterPumpItem, styles.waterPosition]} />
-      <View style={[styles.dSwitch, styles.switchLayout]}>
-        <View style={[styles.switchBody, styles.switchLayout]}>
+    <ScrollView >
+      <SafeAreaView style={styles.waterPump}>
+        <Text style={[styles.farm1, styles.farm1FlexBox]}>
+          Farm 1 - Water pump
+        </Text>
+        <Text style={[styles.smf, styles.smfTypo1]}>SMF</Text>
+        <Image
+          style={styles.iconLeaf}
+          resizeMode="stretch"
+          source={require("../assets/-icon-leaf.png")}
+        />
+        <Pressable
+          onPress={() => navigation.navigate("Farm")}
+        >
+          <Text style={[styles.back, styles.smfTypo]}>BACK</Text>
+        </Pressable>
+        <View style={[styles.waterPumpChild, styles.waterPosition]} />
+        <View style={[styles.waterPumpItem, styles.waterPosition]} />
+        {/* <View style={[styles.dSwitch, styles.switchLayout]}>
+          <View style={[styles.switchLayout]}>
+            <View style={styles.switchBody1}>
+              <View style={[styles.switchPosition]}>
+                <Switch
+                  style={[styles.switchBody2, styles.switchPosition, { backgroundColor: isEnabled ? Color.switchGreen : Color.colorWhitesmoke_200, borderRadius: 20 }, { transform: [{ scaleX: 2 }, { scaleY: 1.35 }] }]}
+                  onValueChange={toggleSwitch}
+                  value={isEnabled}
+                />
+              </View>
+            </View>
+          </View>
+        </View> */}
+        <View style={[styles.dSwitch, styles.switchLayout]}>
           <View style={styles.switchBody1}>
-            <View style={[styles.switchBody2, styles.switchPosition]} />
+            <View style={[styles.switchPosition1]}>
+              <Switch
+                style={[styles.switchBody2, styles.switchPosition, { backgroundColor: isEnabled ? Color.switchGreen : Color.colorWhitesmoke_200, borderRadius: 20 }, { transform: [{ scaleX: 1 }, { scaleY: 1 }] }]}
+                onValueChange={toggleSwitch}
+                value={isEnabled}
+              />
+            </View>
           </View>
         </View>
-        <Image
-          style={[styles.switchIcon, styles.switchIconLayout]}
-          contentFit="cover"
-          source={require("../assets/switch1.png")}
-        />
-      </View>
-      <Text style={[styles.p1, styles.p1Typo]}>P.1</Text>
-      <View style={[styles.waterPumpInner, styles.rectangleViewPosition]} />
-      <View style={[styles.rectangleView, styles.rectangleViewPosition]} />
-      <View style={[styles.dSwitch1, styles.switchLayout]}>
-        <View style={[styles.switchBody, styles.switchLayout]}>
+        <Text style={[styles.p1, styles.p1Typo]}>P.1</Text>
+        <View style={[styles.waterPumpInner, styles.rectangleViewPosition]} />
+        <View style={[styles.rectangleView, styles.rectangleViewPosition]} />
+        <View style={[styles.dSwitch1, styles.switchLayout]}>
           <View style={styles.switchBody1}>
-            <View style={[styles.switchBody2, styles.switchPosition]} />
+            <View style={[styles.switchPosition1]}>
+              <Switch
+                style={[styles.switchBody2, styles.switchPosition, { backgroundColor: isEnabled1 ? Color.switchGreen : Color.colorWhitesmoke_200, borderRadius: 20 }, { transform: [{ scaleX: 1 }, { scaleY: 1 }] }]}
+                onValueChange={toggleSwitch1}
+                value={isEnabled1}
+              />
+            </View>
           </View>
         </View>
-        <Image
-          style={[styles.switchIcon, styles.switchIconLayout]}
-          contentFit="cover"
-          source={require("../assets/switch1.png")}
-        />
-      </View>
-      <Text style={[styles.p2, styles.p1Typo]}>P.2</Text>
-      <View style={[styles.waterPumpChild1, styles.waterChildPosition]} />
-      <View style={[styles.waterPumpChild2, styles.waterChildPosition]} />
-      <Text style={[styles.p3, styles.p1Typo]}>P.3</Text>
-      <View style={[styles.dSwitch2, styles.switchLayout]}>
-        <View style={[styles.switchBody, styles.switchLayout]}>
+        <Text style={[styles.p2, styles.p1Typo]}>P.2</Text>
+        <View style={[styles.waterPumpChild1, styles.waterChildPosition]} />
+        <View style={[styles.waterPumpChild2, styles.waterChildPosition]} />
+        <Text style={[styles.p3, styles.p1Typo]}>P.3</Text>
+        <View style={[styles.dSwitch2, styles.switchLayout]}>
           <View style={styles.switchBody1}>
-            <View style={[styles.switchBody8, styles.switchPosition]} />
+            <View style={[styles.switchPosition1]}>
+              <Switch
+                style={[styles.switchBody2, styles.switchPosition, { backgroundColor: isEnabled2 ? Color.switchGreen : Color.colorWhitesmoke_200, borderRadius: 20 }, { transform: [{ scaleX: 1 }, { scaleY: 1 }] }]}
+                onValueChange={toggleSwitch2}
+                value={isEnabled2}
+              />
+            </View>
           </View>
         </View>
-        <Image
-          style={[styles.switchIcon2, styles.switchIconLayout]}
-          contentFit="cover"
-          source={require("../assets/switch2.png")}
-        />
-      </View>
-      <Image
-        style={[styles.button8Icon, styles.backPosition]}
-        contentFit="cover"
-        source={require("../assets/button-8.png")}
-      />
-      <Button
-        style={styles.rectangleButton}
-        mode="outlined"
-        onPress={() => navigation.navigate("AddnewWaterPum")}
-        contentStyle={styles.rectangleButtonContent}
-        icon={() => (
+        <Button
+          style={styles.rectangleButton}
+          mode="outlined"
+          onPress={() => navigation.navigate("AddnewWaterPum")}
+          contentStyle={styles.rectangleButtonContent}
+          icon={() => (
+            <Image
+              style={[styles.iconPlus, styles.iconLayout]}
+              source={require("../assets/-icon-plus.png")}
+            />
+          )}
+        >
+          Add New Water Pump
+        </Button>
+        <Pressable
+          onPress={
+            () => navigation.navigate("Account")
+          }>
           <Image
-            style={[styles.iconPlus, styles.iconLayout]}
-            source={require("../assets/-icon-plus.png")}
+            style={[styles.avatarIcon, styles.iconPosition]}
+            contentFit="cover"
+            source={require("../assets/avatar.png")}
           />
-        )}
-      >
-        Add New Water Pump
-      </Button>
-      <Image
-        style={styles.avatarIcon}
-        contentFit="cover"
-        source={require("../assets/avatar.png")}
-      />
-    </SafeAreaView>
+        </Pressable>
+      </SafeAreaView>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  iconPosition: {
+    top: -12,
+    position: "absolute",
+  },
   rectangleButtonBtn: {
     borderRadius: 20,
     height: 60,
@@ -138,14 +162,28 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   switchPosition: {
-    borderRadius: Border.br_31xl,
-    left: "0%",
+    borderRadius: 20, // Border radius
+    overflow: 'visible',
+    // borderRadius: Border.br_31xl,
+    left: "31%",
+    bottom: "0%",
+    right: "0%",
+    top: "-10%",
+    height: "120%",
+    // position: "absolute",
+    width: "100%",
+  },
+  switchPosition1: {
+    borderRadius: 20, // Border radius
+    overflow: 'hidden',
+    // borderRadius: Border.br_31xl,
+    left: "10%",
     bottom: "0%",
     right: "0%",
     top: "0%",
     height: "100%",
-    position: "absolute",
-    width: "100%",
+    // position: "absolute",
+    width: "122%",
   },
   switchIconLayout: {
     height: 19,
@@ -190,33 +228,41 @@ const styles = StyleSheet.create({
     textAlign: "left",
   },
   smf: {
-    marginLeft: -38,
-    top: 46,
+    alignItems: 'center',
+    justifyContent: 'center',
+    top: 85,
+    left: "50%",
+    fontFamily: FontFamily.michroma,
     color: Color.colorGray_500,
     width: 91,
     height: 37,
-    left: "50%",
-    fontFamily: FontFamily.michroma,
-    fontSize: FontSize.size_5xl,
-    position: "absolute",
   },
   iconLeaf: {
     height: "4.5%",
     width: "7.39%",
-    top: "1.75%",
+    top: "6%",
     right: "46.22%",
     bottom: "93.75%",
-    left: "46.39%",
+    left: "52.39%",
+    maxWidth: "100%",
+    maxHeight: "100%",
+    position: "absolute",
+    overflow: "hidden",
+  },
+  smfTypo1: {
+    textAlign: "left",
+    fontSize: FontSize.size_5xl,
+    position: "absolute",
   },
   back: {
     top: 14,
+    left: 17,
     fontSize: FontSize.size_xs,
     letterSpacing: 4.1,
     width: 68,
     height: 16,
-    fontFamily: FontFamily.michroma,
-    textAlign: "left",
     color: Color.colorBlack,
+    fontFamily: FontFamily.michroma,
   },
   waterPumpChild: {
     width: 306,
@@ -302,12 +348,15 @@ const styles = StyleSheet.create({
     left: "7.5%",
   },
   rectangleButton: {
-    top: 566,
-    left: 11,
-    borderStyle: "solid",
+    position: 'absolute',
+    bottom: 80, // Đặt nút ở phía dưới cùng màn hình, với khoảng cách 20px từ bottom
+    left: (Dimensions.get('window').width - 360) / 2, // Căn giữa nút
+    width: 360, // Độ rộng của nút
+    height: 60, // Độ cao của nút
+    borderStyle: 'solid',
     borderColor: Color.colorLimegreen_100,
     borderWidth: 3,
-    position: "absolute",
+    justifyContent: 'center',
   },
   addNewWater: {
     top: 585,
@@ -321,12 +370,12 @@ const styles = StyleSheet.create({
     height: 24,
   },
   avatarIcon: {
-    top: 12,
-    left: 302,
     borderRadius: Border.br_781xl,
     width: 40,
     height: 40,
-    position: "absolute",
+    position: 'absolute',
+    top: 0, // Điều chỉnh giá trị của top tùy theo vị trí bạn muốn đặt avatarIcon
+    right: 10, // Điều chỉnh giá trị của right tùy theo vị trí bạn muốn đặt avatarIcon
   },
   waterPump: {
     backgroundColor: Color.colorWhite,
