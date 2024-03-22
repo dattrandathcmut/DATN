@@ -59,7 +59,9 @@ const Account = () => {
               <View style={styles.dividerLayout} />
             </View>
             <View style={[styles.frame4, styles.frameSpaceBlock]}>
-              <View style={styles.tabFlexBox}>
+              <Pressable style={styles.tabFlexBox}
+                onPress={() => navigation.navigate("Notification")}
+              >
                 <View style={styles.frame5}>
                   <Image
                     style={styles.iconLayout}
@@ -85,301 +87,7 @@ const Account = () => {
                     <Text style={[styles.text, styles.textFlexBox]}>12</Text>
                   </View>
                 </View>
-              </View>
-            </View>
-            <View style={styles.alertNotificationToastParent}>
-              <View
-                style={[styles.alertNotificationToast, styles.alertSpaceBlock]}
-              >
-                <View
-                  style={[
-                    styles.alertNotificationToastInner,
-                    styles.frame1FlexBox,
-                  ]}
-                >
-                  <View style={styles.avatar}>
-                    <View style={styles.avatar}>
-                      <Image
-                        style={styles.frameChildLayout}
-                        contentFit="cover"
-                        source={require("../assets/frame-8.png")}
-                      />
-                      <View style={styles.frameGroup}>
-                        <View style={styles.insertYourAlertTitleHereParent}>
-                          <Text
-                            style={[styles.insertYourAlert, styles.upgradeTypo]}
-                          >
-                            Insert your alert title here!
-                          </Text>
-                          <Text
-                            style={[styles.insertTheAlert, styles.insertTypo]}
-                          >{`Insert the alert description here. it would look
-better as two lines of text.`}</Text>
-                        </View>
-                        <View style={styles.frameContainer}>
-                          <View style={styles.avatar}>
-                            <Text style={[styles.upgrade, styles.upgradeTypo]}>
-                              Farm 1-
-                            </Text>
-                          </View>
-                          <View style={styles.upgradeContainer}>
-                            <Text style={[styles.upgrade, styles.upgradeTypo]}>
-                              Pump 1 is on
-                            </Text>
-                          </View>
-                        </View>
-                      </View>
-                      <View style={styles.label3}>
-                        <Text style={[styles.upgrade2, styles.upgradeTypo]}>
-                          Upgrade
-                        </Text>
-                        <Image
-                          style={[styles.directionsIcon, styles.frameChildLayout]}
-                          contentFit="cover"
-                          source={require("../assets/directions.png")}
-                        />
-                        <Image
-                          style={[styles.directionsIcon, styles.frameChildLayout]}
-                          contentFit="cover"
-                          source={require("../assets/close.png")}
-                        />
-                      </View>
-                    </View>
-                  </View>
-                </View>
-              </View>
-              <View style={[styles.alertNotificationToast1, styles.alertLayout]}>
-                <View
-                  style={[
-                    styles.alertNotificationToastInner,
-                    styles.frame1FlexBox,
-                  ]}
-                >
-                  <View style={styles.avatar}>
-                    <View style={styles.avatar}>
-                      <Image
-                        style={styles.frameChildLayout}
-                        contentFit="cover"
-                        source={require("../assets/frame-8.png")}
-                      />
-                      <View style={styles.frameGroup}>
-                        <View style={styles.insertYourAlertTitleHereParent}>
-                          <Text
-                            style={[styles.insertYourAlert, styles.upgradeTypo]}
-                          >
-                            Insert your alert title here!
-                          </Text>
-                          <Text
-                            style={[styles.insertTheAlert, styles.insertTypo]}
-                          >{`Insert the alert description here. it would look
-better as two lines of text.`}</Text>
-                        </View>
-                        <View style={styles.frameContainer}>
-                          <View style={styles.avatar}>
-                            <Text style={[styles.upgrade, styles.upgradeTypo]}>
-                              Farm 1-
-                            </Text>
-                          </View>
-                          <View style={styles.upgradeContainer}>
-                            <Text style={[styles.upgrade, styles.upgradeTypo]}>
-                              Pump 1 is on
-                            </Text>
-                          </View>
-                        </View>
-                      </View>
-                      <View style={styles.label3}>
-                        <Text style={[styles.upgrade2, styles.upgradeTypo]}>
-                          Upgrade
-                        </Text>
-                        <Image
-                          style={[styles.directionsIcon, styles.frameChildLayout]}
-                          contentFit="cover"
-                          source={require("../assets/directions.png")}
-                        />
-                        <Image
-                          style={[styles.directionsIcon, styles.frameChildLayout]}
-                          contentFit="cover"
-                          source={require("../assets/close.png")}
-                        />
-                      </View>
-                    </View>
-                  </View>
-                </View>
-              </View>
-              <View style={[styles.alertNotificationToast2, styles.alertLayout]}>
-                <View
-                  style={[
-                    styles.alertNotificationToastInner,
-                    styles.frame1FlexBox,
-                  ]}
-                >
-                  <View style={styles.avatar}>
-                    <View style={styles.avatar}>
-                      <Image
-                        style={styles.frameChildLayout}
-                        contentFit="cover"
-                        source={require("../assets/frame-8.png")}
-                      />
-                      <View style={styles.frameGroup}>
-                        <View style={styles.insertYourAlertTitleHereParent}>
-                          <Text
-                            style={[styles.insertYourAlert, styles.upgradeTypo]}
-                          >
-                            Insert your alert title here!
-                          </Text>
-                          <Text
-                            style={[styles.insertTheAlert, styles.insertTypo]}
-                          >{`Insert the alert description here. it would look
-better as two lines of text.`}</Text>
-                        </View>
-                        <View style={styles.frameContainer}>
-                          <View style={styles.avatar}>
-                            <Text style={[styles.upgrade, styles.upgradeTypo]}>
-                              Farm 1-
-                            </Text>
-                          </View>
-                          <View style={styles.upgradeContainer}>
-                            <Text style={[styles.upgrade, styles.upgradeTypo]}>
-                              Pump 1 is on
-                            </Text>
-                          </View>
-                        </View>
-                      </View>
-                      <View style={styles.label3}>
-                        <Text style={[styles.upgrade2, styles.upgradeTypo]}>
-                          Upgrade
-                        </Text>
-                        <Image
-                          style={[styles.directionsIcon, styles.frameChildLayout]}
-                          contentFit="cover"
-                          source={require("../assets/directions.png")}
-                        />
-                        <Image
-                          style={[styles.directionsIcon, styles.frameChildLayout]}
-                          contentFit="cover"
-                          source={require("../assets/close.png")}
-                        />
-                      </View>
-                    </View>
-                  </View>
-                </View>
-              </View>
-              <View style={[styles.alertNotificationToast3, styles.alertLayout]}>
-                <View
-                  style={[
-                    styles.alertNotificationToastInner,
-                    styles.frame1FlexBox,
-                  ]}
-                >
-                  <View style={styles.avatar}>
-                    <View style={styles.avatar}>
-                      <Image
-                        style={styles.frameChildLayout}
-                        contentFit="cover"
-                        source={require("../assets/frame-8.png")}
-                      />
-                      <View style={styles.frameGroup}>
-                        <View style={styles.insertYourAlertTitleHereParent}>
-                          <Text
-                            style={[styles.insertYourAlert, styles.upgradeTypo]}
-                          >
-                            Insert your alert title here!
-                          </Text>
-                          <Text
-                            style={[styles.insertTheAlert, styles.insertTypo]}
-                          >{`Insert the alert description here. it would look
-better as two lines of text.`}</Text>
-                        </View>
-                        <View style={styles.frameContainer}>
-                          <View style={styles.avatar}>
-                            <Text style={[styles.upgrade, styles.upgradeTypo]}>
-                              Farm 1-
-                            </Text>
-                          </View>
-                          <View style={styles.upgradeContainer}>
-                            <Text style={[styles.upgrade, styles.upgradeTypo]}>
-                              Pump 1 is on
-                            </Text>
-                          </View>
-                        </View>
-                      </View>
-                      <View style={styles.label3}>
-                        <Text style={[styles.upgrade2, styles.upgradeTypo]}>
-                          Upgrade
-                        </Text>
-                        <Image
-                          style={[styles.directionsIcon, styles.frameChildLayout]}
-                          contentFit="cover"
-                          source={require("../assets/directions.png")}
-                        />
-                        <Image
-                          style={[styles.directionsIcon, styles.frameChildLayout]}
-                          contentFit="cover"
-                          source={require("../assets/close.png")}
-                        />
-                      </View>
-                    </View>
-                  </View>
-                </View>
-              </View>
-              <View style={[styles.alertNotificationToast4, styles.alertLayout]}>
-                <View
-                  style={[
-                    styles.alertNotificationToastInner,
-                    styles.frame1FlexBox,
-                  ]}
-                >
-                  <View style={styles.avatar}>
-                    <View style={styles.avatar}>
-                      <Image
-                        style={styles.frameChildLayout}
-                        contentFit="cover"
-                        source={require("../assets/frame-8.png")}
-                      />
-                      <View style={styles.frameGroup}>
-                        <View style={styles.insertYourAlertTitleHereParent}>
-                          <Text
-                            style={[styles.insertYourAlert, styles.upgradeTypo]}
-                          >
-                            Insert your alert title here!
-                          </Text>
-                          <Text
-                            style={[styles.insertTheAlert, styles.insertTypo]}
-                          >{`Insert the alert description here. it would look
-better as two lines of text.`}</Text>
-                        </View>
-                        <View style={styles.frameContainer}>
-                          <View style={styles.avatar}>
-                            <Text style={[styles.upgrade, styles.upgradeTypo]}>
-                              Farm 1-
-                            </Text>
-                          </View>
-                          <View style={styles.upgradeContainer}>
-                            <Text style={[styles.upgrade, styles.upgradeTypo]}>
-                              Pump 1 is on
-                            </Text>
-                          </View>
-                        </View>
-                      </View>
-                      <View style={styles.label3}>
-                        <Text style={[styles.upgrade2, styles.upgradeTypo]}>
-                          Upgrade
-                        </Text>
-                        <Image
-                          style={[styles.directionsIcon, styles.frameChildLayout]}
-                          contentFit="cover"
-                          source={require("../assets/directions.png")}
-                        />
-                        <Image
-                          style={[styles.directionsIcon, styles.frameChildLayout]}
-                          contentFit="cover"
-                          source={require("../assets/close.png")}
-                        />
-                      </View>
-                    </View>
-                  </View>
-                </View>
-              </View>
+              </Pressable>
             </View>
             <View style={[styles.tab1, styles.tabFlexBox]}>
               <View style={styles.frame5}>
@@ -439,216 +147,6 @@ better as two lines of text.`}</Text>
             <View style={[styles.sendWrapper, styles.wrapperLayout]}>
               <Text style={[styles.send, styles.sendTypo]}>Send</Text>
             </View>
-            <View
-              style={[styles.alertNotificationToast5, styles.alertSpaceBlock]}
-            >
-              <View
-                style={[styles.alertNotificationToastInner, styles.frame1FlexBox]}
-              >
-                <View style={styles.frameWrapper4}>
-                  <View style={styles.avatar}>
-                    <Image
-                      style={styles.frameChildLayout}
-                      contentFit="cover"
-                      source={require("../assets/frame-81.png")}
-                    />
-                    <View style={styles.frameGroup}>
-                      <View>
-                        <Text
-                          style={[styles.insertYourAlert, styles.upgradeTypo]}
-                        >
-                          Insert your alert title here!
-                        </Text>
-                        <Text
-                          style={styles.insertTypo}
-                        >{`Insert the alert description here. it would look
-better as two lines of text.`}</Text>
-                      </View>
-                      <View style={styles.frameContainer}>
-                        <View style={styles.avatar}>
-                          <Text style={[styles.upgrade, styles.upgradeTypo]}>
-                            Upgrade
-                          </Text>
-                        </View>
-                        <View style={styles.upgradeContainer}>
-                          <Text style={[styles.upgrade, styles.upgradeTypo]}>
-                            Upgrade
-                          </Text>
-                        </View>
-                      </View>
-                    </View>
-                    <View style={styles.upgradeParent4}>
-                      <Text style={[styles.upgrade2, styles.upgradeTypo]}>
-                        Upgrade
-                      </Text>
-                      <Image
-                        style={[styles.directionsIcon, styles.frameChildLayout]}
-                        contentFit="cover"
-                        source={require("../assets/directions.png")}
-                      />
-                      <Image
-                        style={[styles.directionsIcon, styles.frameChildLayout]}
-                        contentFit="cover"
-                        source={require("../assets/close.png")}
-                      />
-                    </View>
-                  </View>
-                </View>
-              </View>
-            </View>
-            <View style={styles.frame7} />
-            <View style={styles.frame8} />
-            <View style={[styles.divider, styles.dividerSpaceBlock]}>
-              <View style={styles.dividerLayout} />
-            </View>
-          </View>
-          <View style={styles.frame9}>
-            <View style={styles.dividerSpaceBlock}>
-              <View style={[styles.divider5, styles.dividerLayout]} />
-            </View>
-            <View style={[styles.frame10, styles.roundFlexBox]}>
-              <View style={styles.tabFlexBox}>
-                <View style={styles.frame11}>
-                  <Image
-                    style={[styles.icon4, styles.iconLayout]}
-                    contentFit="cover"
-                    source={require("../assets/icon3.png")}
-                  />
-                  <Text style={[styles.tabItem2, styles.tabItemTypo]}>
-                    Analytics
-                  </Text>
-                </View>
-                <Image
-                  style={[styles.icon1, styles.iconLayout]}
-                  contentFit="cover"
-                  source={require("../assets/icon1.png")}
-                />
-                <View style={styles.label3}>
-                  <View style={[styles.label4, styles.labelFlexBox]}>
-                    <Text style={[styles.label5, styles.labelTypo]}>Label</Text>
-                  </View>
-                </View>
-                <View style={[styles.counter1, styles.counterLayout]}>
-                  <View style={[styles.round, styles.textFlexBox]}>
-                    <Text style={[styles.text, styles.textFlexBox]}>12</Text>
-                  </View>
-                </View>
-              </View>
-              <View style={styles.tab3}>
-                <View style={styles.frame5}>
-                  <Image
-                    style={[styles.icon4, styles.iconLayout]}
-                    contentFit="cover"
-                    source={require("../assets/icon4.png")}
-                  />
-                  <Text style={[styles.tabItem2, styles.tabItemTypo]}>
-                    Reports
-                  </Text>
-                </View>
-                <Image
-                  style={[styles.icon1, styles.iconLayout]}
-                  contentFit="cover"
-                  source={require("../assets/icon1.png")}
-                />
-                <View style={styles.label3}>
-                  <View style={[styles.label4, styles.labelFlexBox]}>
-                    <Text style={[styles.label5, styles.labelTypo]}>Label</Text>
-                  </View>
-                </View>
-                <View style={[styles.counter1, styles.counterLayout]}>
-                  <View style={[styles.round, styles.textFlexBox]}>
-                    <Text style={[styles.text, styles.textFlexBox]}>12</Text>
-                  </View>
-                </View>
-              </View>
-              <View style={styles.tab3}>
-                <View style={styles.frame5}>
-                  <Image
-                    style={[styles.icon4, styles.iconLayout]}
-                    contentFit="cover"
-                    source={require("../assets/icon5.png")}
-                  />
-                  <Text style={[styles.tabItem2, styles.tabItemTypo]}>
-                    Databases
-                  </Text>
-                </View>
-                <Image
-                  style={[styles.icon1, styles.iconLayout]}
-                  contentFit="cover"
-                  source={require("../assets/icon1.png")}
-                />
-                <View style={styles.label3}>
-                  <View style={[styles.label4, styles.labelFlexBox]}>
-                    <Text style={[styles.label5, styles.labelTypo]}>Label</Text>
-                  </View>
-                </View>
-                <View style={[styles.counter1, styles.counterLayout]}>
-                  <View style={[styles.round, styles.textFlexBox]}>
-                    <Text style={[styles.text, styles.textFlexBox]}>12</Text>
-                  </View>
-                </View>
-              </View>
-              <View style={styles.tab3}>
-                <View style={styles.frame5}>
-                  <Image
-                    style={[styles.icon4, styles.iconLayout]}
-                    contentFit="cover"
-                    source={require("../assets/icon6.png")}
-                  />
-                  <Text style={[styles.tabItem2, styles.tabItemTypo]}>
-                    Protection
-                  </Text>
-                </View>
-                <Image
-                  style={[styles.icon1, styles.iconLayout]}
-                  contentFit="cover"
-                  source={require("../assets/icon1.png")}
-                />
-                <View style={styles.label3}>
-                  <View style={[styles.label19, styles.labelFlexBox]}>
-                    <Text style={[styles.label20, styles.labelTypo]}>Active</Text>
-                  </View>
-                </View>
-                <View style={[styles.counter1, styles.counterLayout]}>
-                  <View style={[styles.round, styles.textFlexBox]}>
-                    <Text style={[styles.text, styles.textFlexBox]}>12</Text>
-                  </View>
-                </View>
-              </View>
-              <View style={styles.tab3}>
-                <View style={styles.frame5}>
-                  <Image
-                    style={styles.iconLayout}
-                    contentFit="cover"
-                    source={require("../assets/icon7.png")}
-                  />
-                  <Text style={[styles.tabItem2, styles.tabItemTypo]}>
-                    Intergrations
-                  </Text>
-                </View>
-                <Image
-                  style={[styles.icon1, styles.iconLayout]}
-                  contentFit="cover"
-                  source={require("../assets/icon8.png")}
-                />
-                <View style={styles.label3}>
-                  <View style={[styles.label19, styles.labelFlexBox]}>
-                    <Text style={[styles.label20, styles.labelTypo]}>Active</Text>
-                  </View>
-                </View>
-                <View style={[styles.counter1, styles.counterLayout]}>
-                  <View style={[styles.round, styles.textFlexBox]}>
-                    <Text style={[styles.text, styles.textFlexBox]}>12</Text>
-                  </View>
-                </View>
-              </View>
-            </View>
-            <View style={[styles.divider6, styles.dividerSpaceBlock]}>
-              <View style={styles.dividerLayout} />
-            </View>
-            <View style={[styles.divider6, styles.dividerSpaceBlock]}>
-              <View style={styles.dividerLayout} />
-            </View>
             <View style={[styles.frame16, styles.frameSpaceBlock]}>
               <View style={styles.tabFlexBox}>
                 <View style={styles.frame5}>
@@ -666,16 +164,6 @@ better as two lines of text.`}</Text>
                   contentFit="cover"
                   source={require("../assets/icon1.png")}
                 />
-                <View style={styles.label3}>
-                  <View style={[styles.label4, styles.labelFlexBox]}>
-                    <Text style={[styles.label5, styles.labelTypo]}>Label</Text>
-                  </View>
-                </View>
-                <View style={[styles.counter1, styles.counterLayout]}>
-                  <View style={[styles.round, styles.textFlexBox]}>
-                    <Text style={[styles.text, styles.textFlexBox]}>12</Text>
-                  </View>
-                </View>
               </View>
             </View>
           </View>
@@ -687,7 +175,7 @@ better as two lines of text.`}</Text>
 
 const styles = StyleSheet.create({
   frameSpaceBlock: {
-    paddingVertical: 0,
+    paddingVertical: 10,
     alignSelf: "stretch",
   },
   labelFlexBox: {
@@ -1004,9 +492,11 @@ const styles = StyleSheet.create({
     top: 278,
   },
   alertNotificationToastParent: {
-    height: 149,
+    backgroundColor: Color.colorAliceblue,
+    overflow: "scroll",
+    height: 160,
     marginTop: 16,
-    width: 360,
+    width: 380,
   },
   counter1: {
     display: "none",
@@ -1141,8 +631,9 @@ const styles = StyleSheet.create({
     color: "#d31510",
   },
   frame16: {
-    marginTop: 8,
+    marginTop: 50,
     paddingHorizontal: StyleVariable.numbersSpacingS,
+    paddingLeft: 290,
   },
   frame9: {
     marginTop: 8,
@@ -1151,15 +642,15 @@ const styles = StyleSheet.create({
   },
   userProfile: {
     top: 79,
-    left: 0,
+    left: 8,
     borderRadius: StyleVariable.radiusRadiusM,
-    height: 704,
+    height: 720,
     paddingTop: StyleVariable.numbersSpacingS,
     paddingBottom: StyleVariable.numbersSpacingXs,
     borderWidth: 1,
     borderColor: Color.colorGray_800,
     borderStyle: "solid",
-    width: 360,
+    width: 400,
     position: "absolute",
     backgroundColor: Color.colorWhite,
   },
