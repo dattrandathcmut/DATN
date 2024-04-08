@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Text, StyleSheet, Pressable, View } from "react-native";
+import { Text, StyleSheet, Pressable, View, Alert, Button } from "react-native";
 import { Image } from "expo-image";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation, ParamListBase } from "@react-navigation/native";
@@ -14,10 +14,44 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView } from "react-native";
 import { TouchableOpacity } from 'react-native';
+import { TextInput } from "react-native";
+import { useEffect, useState } from "react";
 
 const Account = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [buttonColor, setButtonColor] = useState('#939896');
+  useEffect(() => {
+    setIsButtonDisabled(!password || !confirmPassword);
+    if (password && confirmPassword) {
+      setButtonColor('#2ecc71'); // Màu xanh khi cả hai ô password được điền
+    } else {
+      setButtonColor('#939896'); // Trở lại màu mặc định nếu một trong hai ô password còn trống
+    }
+  }, [password, confirmPassword]);
 
+  const handlePasswordChange = (text: string) => {
+    setPassword(text);
+    setIsButtonDisabled(!text || !confirmPassword);
+  };
+
+  const handleConfirmPasswordChange = (text: string) => {
+    setConfirmPassword(text);
+    setIsButtonDisabled(!password || !text);
+  };
+
+  const handleSubmit = () => {
+    if (password !== confirmPassword) {
+      Alert.alert('Passwords do not match', 'Please make sure passwords match.');
+      return;
+    }
+
+    // Passwords match, you can proceed with further actions
+    console.log('Password:', password);
+    console.log('Confirm Password:', confirmPassword);
+  };
   return (
     <SafeAreaView style={styles.account}>
       <ScrollView>
@@ -59,7 +93,7 @@ const Account = () => {
               <View style={styles.dividerLayout} />
             </View>
             <View style={[styles.frame4, styles.frameSpaceBlock]}>
-              <Pressable style={[styles.tabFlexBox,{backgroundColor:Color.colorAliceblue}]}
+              <Pressable style={[styles.tabFlexBox, { backgroundColor: Color.colorAliceblue }]}
                 onPress={() => navigation.navigate("Notification")}
               >
                 <View style={styles.frame5}>
@@ -118,13 +152,14 @@ const Account = () => {
                     Enter new password
                   </Text>
                 </View>
-                <View
-                  style={[styles.atLeast8CharacterWrapper, styles.wrapperLayout]}
-                >
-                  <Text style={[styles.atLeast8, styles.text2Position]}>
-                    At least 8 character
-                  </Text>
-                </View>
+                <TextInput
+                  style={[styles.atLeast8CharacterWrapper, styles.wrapperLayout, styles.atLeast8, styles.text3Position]}
+                  placeholder="     At least 8 characters"
+                  onChangeText={handlePasswordChange}
+                  value={password}
+                  secureTextEntry={true}
+                />
+
               </View>
             </View>
             <View style={[styles.frameParent14, styles.frameParentLayout]}>
@@ -133,15 +168,22 @@ const Account = () => {
                   Confirm Password
                 </Text>
               </View>
-              <View
-                style={[styles.atLeast8CharacterWrapper, styles.wrapperLayout]}
-              >
-                <Text style={[styles.text2, styles.sendTypo]}>********</Text>
-              </View>
+              <TextInput
+                style={[styles.atLeast8CharacterWrapper, styles.wrapperLayout, styles.atLeast8, styles.text3Position]}
+                placeholder="    Confirm your password"
+                onChangeText={handleConfirmPasswordChange}
+                value={confirmPassword}
+                secureTextEntry={true}
+              />
+
             </View>
-            <View style={[styles.sendWrapper, styles.wrapperLayout]}>
-              <Text style={[styles.send, styles.sendTypo]}>Send</Text>
-            </View>
+            <TouchableOpacity
+              style={[styles.sendWrapper, styles.wrapperLayout, { backgroundColor: buttonColor }]}
+              onPress={handleSubmit}
+              disabled={isButtonDisabled}>
+              <Text style={styles.buttonText}>Submit</Text>
+            </TouchableOpacity>
+
             <View style={[styles.frame16, styles.frameSpaceBlock]}>
               <View style={styles.tabFlexBox}>
                 <View style={styles.frame5}>
@@ -265,7 +307,12 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   text2Position: {
-    left: 24,
+    left: 12,
+    top: 10,
+    color: Color.colorGray_200,
+  },
+  text3Position: {
+    left: 0,
     top: 10,
     color: Color.colorGray_200,
   },
@@ -515,6 +562,7 @@ const styles = StyleSheet.create({
     fontSize: FontSize.size_xs,
     top: 10,
     position: "absolute",
+    left: 10,
   },
   atLeast8CharacterWrapper: {
     borderColor: Color.colorDarkslategray_100,
@@ -655,6 +703,13 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     flex: 1,
     backgroundColor: Color.colorWhite,
+  },
+  buttonText: {
+    color: '#ffffff',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    top: 20,
   },
 });
 
