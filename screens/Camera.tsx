@@ -9,17 +9,52 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Pressable } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation, ParamListBase } from "@react-navigation/native";
+import { useState } from "react";
+import 'react-native-reanimated';
 
 
 const Camera = () => {
   const cameraRef = React.useRef<RNCamera | null>(null);
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
-  const takePicture = async () => {
+  const [isRecording, setIsRecording] = useState(false);
+
+  const handleCapture = async () => {
     if (cameraRef.current) {
-      const options = { quality: 0.5, base64: true };
-      const data = await cameraRef.current.takePictureAsync(options);
-      console.log(data.uri);
-      // Handle captured image data here
+      if (isRecording) {
+        stopRecording();
+      } else {
+        startRecording();
+      }
+    }
+  };
+
+  const startRecording = async () => {
+    try {
+      console.log('VideoQuality constants are not defined', RNCamera);
+      if (!RNCamera.Constants.VideoQuality) {
+
+        console.error('VideoQuality constants are not defined');
+        return;
+      }
+
+      const options = {
+        quality: RNCamera.Constants.VideoQuality['480p'], // Set video quality
+      };
+      const data = await cameraRef.current?.recordAsync(options);
+      console.log('Recording started:', data?.uri); // Add nullish coalescing operator to provide a default value for 'data' if it is undefined
+      setIsRecording(true);
+    } catch (error) {
+      console.error('Failed to start recording: ', error);
+    }
+  };
+
+
+  const stopRecording = async () => {
+    if (cameraRef.current) {
+      const data: any = await cameraRef.current.stopRecording(); // Update the type of 'data' to 'any'
+      console.log('Recording stopped:', data.uri);
+      setIsRecording(false);
+      // Handle recorded video data here
     }
   };
 
@@ -44,7 +79,7 @@ const Camera = () => {
             style={styles.cameraChild}
             mode="contained"
             labelStyle={styles.frameButtonBtn}
-            onPress={takePicture}
+            onPress={handleCapture}
             contentStyle={styles.frameButtonBtn1}
           >
             Start record
