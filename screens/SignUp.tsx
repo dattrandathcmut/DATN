@@ -10,60 +10,67 @@ import { Image } from "expo-image";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation, ParamListBase } from "@react-navigation/native";
 import { Color, Border, FontFamily, FontSize } from "../GlobalStyles";
+import { ScrollView } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+
 
 const SignUp = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
   return (
-    <ImageBackground
-      style={styles.signUpIcon}
-      resizeMode="cover"
-      source={require("../assets/signup.png")}
-    >
-      <View style={styles.signUpChild} />
-      <Text style={styles.signUp}>Sign Up</Text>
-      <Image
-        style={styles.iconLeaf}
-        contentFit="cover"
-        source={require("../assets/-icon-leaf2.png")}
-      />
-      <View style={[styles.signUpItem, styles.signLayout]} />
-      <View style={[styles.signUpInner, styles.signLayout]} />
-      <View style={[styles.rectangleView, styles.signLayout]} />
-      <View style={[styles.signUpChild1, styles.signLayout]} />
-      <Text style={[styles.username, styles.passwordTypo]}>Username</Text>
-      <Text style={[styles.gmail, styles.passwordTypo]}>Gmail</Text>
-      <Text style={[styles.password, styles.passwordTypo]}>Password</Text>
-      <Text style={[styles.confirmPassword, styles.passwordTypo]}>
-        Confirm Password
-      </Text>
-      <Text style={[styles.signUp1, styles.back1Typo]}>SIGN UP</Text>
-      <Image
-        style={[styles.visibleEyeEyeballOpenViewIcon, styles.visibleViewLayout]}
-        contentFit="cover"
-        source={require("../assets/visibleeyeeyeballopenview.png")}
-      />
-      <Image
-        style={[
-          styles.visibleEyeEyeballOpenViewIcon1,
-          styles.visibleViewLayout,
-        ]}
-        contentFit="cover"
-        source={require("../assets/visibleeyeeyeballopenview.png")}
-      />
-      <Pressable
-        style={styles.back}
-        onPress={() => navigation.navigate("SignIn")}
+    <ScrollView>
+      <ImageBackground
+        style={styles.signUpIcon}
+        resizeMode="cover"
+        source={require("../assets/signup.png")}
       >
-        <Text style={[styles.back1, styles.back1Typo]}>BACK</Text>
-      </Pressable>
-      <Pressable
-        style={[styles.rectanglePressable, styles.signUp1Position]}
-        onPress={() => navigation.navigate("SignIn")}
-      />
-      <Text style={styles.smf}>{`SMF
+        <View style={styles.signUpChild} />
+        <Text style={styles.signUp}>Sign Up</Text>
+        <Image
+          style={styles.iconLeaf}
+          contentFit="cover"
+          source={require("../assets/-icon-leaf2.png")}
+        />
+        <View style={[styles.signUpItem, styles.signLayout]} />
+        <View style={[styles.signUpInner, styles.signLayout]} />
+        <View style={[styles.rectangleView, styles.signLayout]} />
+        <View style={[styles.signUpChild1, styles.signLayout]} />
+        <Text style={[styles.username, styles.passwordTypo]}>Username</Text>
+        <Text style={[styles.gmail, styles.passwordTypo]}>Gmail</Text>
+        <Text style={[styles.password, styles.passwordTypo]}>Password</Text>
+        <Text style={[styles.confirmPassword, styles.passwordTypo]}>
+          Confirm Password
+        </Text>
+        <Text style={[styles.signUp1, styles.back1Typo]}>SIGN UP</Text>
+        <Image
+          style={[styles.visibleEyeEyeballOpenViewIcon, styles.visibleViewLayout]}
+          contentFit="cover"
+          source={require("../assets/visibleeyeeyeballopenview.png")}
+        />
+        <Image
+          style={[
+            styles.visibleEyeEyeballOpenViewIcon1,
+            styles.visibleViewLayout,
+          ]}
+          contentFit="cover"
+          source={require("../assets/visibleeyeeyeballopenview.png")}
+        />
+        <SafeAreaView>
+          <Pressable
+            style={styles.back}
+            onPress={() => navigation.navigate("SignIn")}
+          >
+            <Text style={[styles.back1, styles.back1Typo]}>BACK</Text>
+          </Pressable>
+        </SafeAreaView>
+        <Pressable
+          style={[styles.rectanglePressable, styles.signUp1Position]}
+          onPress={() => navigation.navigate("SignIn")}
+        />
+        <Text style={styles.smf}>{`SMF
 `}</Text>
-    </ImageBackground>
+      </ImageBackground>
+    </ScrollView>
   );
 };
 
@@ -113,9 +120,9 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     backgroundColor: "rgba(0, 0, 0, 0.76)",
-    width: 360,
+    width: "100%",
     position: "absolute",
-    height: 800,
+    height: 1000,
   },
   signUp: {
     top: 239,

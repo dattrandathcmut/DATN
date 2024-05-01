@@ -26,8 +26,8 @@ const App = () => {
         {hideSplashScreen ? (
           <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen
-              name="General"
-              component={General}
+              name="SMF"
+              component={SMF}
               options={{ headerShown: false }}
             />
             <Stack.Screen
@@ -66,20 +66,20 @@ const App = () => {
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="SignIn"
-              component={SignIn}
+              name="general"
+              component={General}
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="SMF"
-              component={SMF}
+              name="SignIn"
+              component={SignIn}
               options={{ headerShown: false }}
             />
             <Stack.Screen
               name="Notification"
               component={Notification}
               options={{ headerShown: false }}
-              />
+            />
           </Stack.Navigator>
         ) : null}
       </NavigationContainer>

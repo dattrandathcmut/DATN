@@ -10,72 +10,80 @@ import {
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation, ParamListBase } from "@react-navigation/native";
 import { Color, Border, FontFamily, FontSize } from "../GlobalStyles";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { ScrollView } from "react-native";
 
 const SignIn = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
   return (
-    <ImageBackground
-      style={styles.signInIcon}
-      resizeMode="cover"
-      source={require("../assets/forgotpassword.png")}
-    >
-      <Image
-        style={styles.signInChild}
-        contentFit="cover"
-        source={require("../assets/rectangle-3.png")}
-      />
-      <Image
-        style={styles.signInChild}
-        contentFit="cover"
-        source={require("../assets/rectangle-3.png")}
-      />
-      <Pressable style={styles.back} onPress={() => navigation.navigate("SMF")}>
-        <Text style={styles.back1}>BACK</Text>
-      </Pressable>
-      <Text style={styles.signIn}>Sign In</Text>
-      <Image
-        style={styles.iconLeaf}
-        contentFit="cover"
-        source={require("../assets/-icon-leaf2.png")}
-      />
-      <View style={[styles.signInInner, styles.signInInnerLayout]} />
-      <View style={[styles.rectangleView, styles.signInInnerLayout]} />
-      <Text style={[styles.username, styles.usernameTypo]}>Username</Text>
-      <Text style={[styles.password, styles.usernameTypo]}>{`Password
-`}</Text>
-      <Text style={[styles.logIn, styles.logInTypo]}>LOG IN</Text>
-      <Text style={[styles.signUp, styles.logInTypo]}>SIGN UP</Text>
-      <Pressable
-        style={[styles.wrapper, styles.wrapperLayout]}
-        onPress={() => navigation.navigate("SignUp")}
+    <ScrollView>
+      <ImageBackground
+        style={styles.signInIcon}
+        resizeMode="cover"
+        source={require("../assets/forgotpassword.png")}
       >
         <Image
-          style={styles.icon}
+          style={styles.signInChild}
           contentFit="cover"
-          source={require("../assets/rectangle-12.png")}
+          source={require("../assets/rectangle-3.png")}
         />
-      </Pressable>
-      <Pressable
-        style={[styles.rectanglePressable, styles.wrapperLayout]}
-        onPress={() => navigation.navigate("General")}
-      />
-      <Text style={styles.smf}>{`SMF
-`}</Text>
-      <Pressable
-        style={[styles.container, styles.wrapperLayout]}
-        onPress={() => navigation.navigate("ForgotPassword")}
-      >
         <Image
-          style={styles.icon}
+          style={styles.signInChild}
           contentFit="cover"
-          source={require("../assets/rectangle-12.png")}
+          source={require("../assets/rectangle-3.png")}
         />
-      </Pressable>
-      <Text style={[styles.forgotPassword, styles.logInTypo]}>
-        FORGOT PASSWORD
-      </Text>
-    </ImageBackground>
+        <SafeAreaView>
+          <Pressable style={styles.back2} onPress={() => navigation.navigate("SMF")}>
+            <Text style={styles.back1}>BACK</Text>
+          </Pressable>
+        </SafeAreaView>
+        <Text style={styles.signIn}>Sign In</Text>
+        <Image
+          style={styles.iconLeaf}
+          contentFit="cover"
+          source={require("../assets/-icon-leaf2.png")}
+        />
+        <View style={[styles.signInInner, styles.signInInnerLayout]} />
+        <View style={[styles.rectangleView, styles.signInInnerLayout]} />
+        <Text style={[styles.username, styles.usernameTypo]}>Username</Text>
+        <Text style={[styles.password, styles.usernameTypo]}>{`Password
+`}</Text>
+        <Text style={[styles.logIn, styles.logInTypo]}>LOG IN</Text>
+        <Text style={[styles.signUp, styles.logInTypo]}>SIGN UP</Text>
+        <Pressable
+          style={[styles.wrapper, styles.wrapperLayout]}
+          onPress={() => navigation.navigate("SignUp")}
+        >
+          <Image
+            style={styles.icon}
+            contentFit="cover"
+            source={require("../assets/rectangle-12.png")}
+          />
+        </Pressable>
+        <Pressable
+          style={[styles.rectanglePressable, styles.wrapperLayout]}
+          onPress={() => navigation.navigate("General")}
+        />
+        <Text style={styles.smf}>{`SMF
+`}</Text>
+        <Pressable
+          style={[styles.container, styles.wrapperLayout]}
+          onPress={() => navigation.navigate("ForgotPassword")}
+        >
+          <Image
+            style={styles.icon}
+            contentFit="cover"
+            source={require("../assets/rectangle-12.png")}
+          />
+        </Pressable>
+        <Text style={[styles.forgotPassword, styles.logInTypo]}>
+          FORGOT PASSWORD
+        </Text>
+      </ImageBackground>
+
+    </ScrollView>
+
   );
 };
 
@@ -100,7 +108,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   logInTypo: {
-    height: 16,
+    height: 20,
     left: "50%",
     color: Color.colorWhite,
     textAlign: "left",
@@ -113,13 +121,16 @@ const styles = StyleSheet.create({
     height: 30,
     width: 287,
     position: "absolute",
+    flexDirection: "row",
+    justifyContent: "center",
+    left: '16%',
   },
   signInChild: {
     top: 0,
     left: 0,
-    width: 360,
+    width: 600,
     position: "absolute",
-    height: 800,
+    height: 1000,
   },
   back1: {
     color: Color.colorMintcream_100,
@@ -132,6 +143,11 @@ const styles = StyleSheet.create({
   },
   back: {
     top: 33,
+    left: 16,
+    position: "absolute",
+  },
+  back2: {
+    top: 40,
     left: 16,
     position: "absolute",
   },
@@ -156,7 +172,7 @@ const styles = StyleSheet.create({
     maxWidth: "100%",
     maxHeight: "100%",
     position: "absolute",
-    overflow: "hidden",
+    overflow: "",
   },
   signInInner: {
     top: 312,
@@ -171,12 +187,12 @@ const styles = StyleSheet.create({
     top: 379,
   },
   logIn: {
-    marginLeft: -49,
+    marginLeft: -33,
     top: 453,
     width: 141,
   },
   signUp: {
-    marginLeft: -62,
+    marginLeft: -36,
     top: 495,
     width: 125,
   },
@@ -201,7 +217,7 @@ const styles = StyleSheet.create({
     width: 287,
   },
   smf: {
-    marginLeft: -70,
+    marginLeft: -40,
     top: 146,
     fontSize: FontSize.size_21xl,
     color: Color.colorGray_100,
@@ -211,20 +227,21 @@ const styles = StyleSheet.create({
     textAlign: "left",
     fontFamily: FontFamily.michroma,
     position: "absolute",
+    paddingTop: 15,
   },
   container: {
     left: 36,
     top: 537,
   },
   forgotPassword: {
-    marginLeft: -124,
+    marginLeft: -80,
     top: 544,
     width: 250,
   },
   signInIcon: {
     flex: 1,
     overflow: "hidden",
-    height: 800,
+    height: 1000,
     width: "100%",
   },
 });
