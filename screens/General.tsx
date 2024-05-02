@@ -302,7 +302,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   redOrganicTomatoPlantOd4xe: {
-    left: 10,
+    left: 5,
     top: 20,
     width: 154,
     height: 184,
@@ -327,23 +327,23 @@ const styles = StyleSheet.create({
   },
   rectangleParent: {
     top: 159,
-    left: 8,
+    left: 45,
   },
   rectangleGroup: {
     top: 157,
-    left: 180,
+    left: 215,
   },
   rectangleContainer: {
-    left: 18,
+    left: 40,
   },
   frameView: {
-    left: 18,
+    left: 40,
   },
   rectangleParent1: {
-    left: 180,
+    left: 210,
   },
   rectangleParent2: {
-    left: 180,
+    left: 210,
   },
   // avatarIcon: {
   //   // left: 400,
