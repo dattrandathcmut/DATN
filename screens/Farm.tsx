@@ -193,7 +193,7 @@ const Farm = () => {
         </Pressable> */}
           <Pressable
             style={[styles.button19, styles.buttonFlexBox]}
-            onPress={() => navigation.navigate("WaterPump")}
+            onPress={() => navigation.navigate("Camera")}
           >
             <Image
               style={styles.vectorIcon}
@@ -208,10 +208,10 @@ const Farm = () => {
             style={[styles.button20, styles.buttonFlexBox]}
             mode="contained"
             labelStyle={styles.button20Btn}
-            onPress={() => navigation.navigate("Camera")}
+            onPress={() => navigation.navigate("WaterPump")}
             contentStyle={styles.button20Btn1}
           >
-            About this farm
+            Pump
           </Button>
           <Pressable
             onPress={() => navigation.navigate("General")}
