@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
     maxHeight: "100%",
     maxWidth: "100%",
     position: "absolute",
-    overflow: "hidden",
+    overflow: "",
   },
   signUpItem: {
     top: 314,
@@ -179,11 +179,11 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   visibleEyeEyeballOpenViewIcon: {
-    top: "57.13%",
+    top: "50.5%",
     bottom: "40.95%",
   },
   visibleEyeEyeballOpenViewIcon1: {
-    top: "65.13%",
+    top: "57.5%",
     bottom: "32.95%",
   },
   back1: {
@@ -220,8 +220,8 @@ const styles = StyleSheet.create({
   signUpIcon: {
     flex: 1,
     width: "100%",
-    overflow: "hidden",
-    height: 800,
+    overflow: "",
+    height: 900,
   },
 });
 

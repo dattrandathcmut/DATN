@@ -192,9 +192,13 @@ const Account = () => {
                     contentFit="cover"
                     source={require("../assets/icon9.png")}
                   />
-                  <Text style={[styles.tabItem7, styles.tabItemTypo]}>
-                    Log out
-                  </Text>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("SignIn")}>
+
+                    <Text style={[styles.tabItem7, styles.tabItemTypo]}>
+                      Log out
+                    </Text>
+                  </TouchableOpacity>
                 </View>
                 <Image
                   style={[styles.icon1, styles.iconLayout]}

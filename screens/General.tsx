@@ -52,14 +52,7 @@ const General = () => {
             />
           </View>
           <View style={[styles.rectangleGroup, styles.rectangleLayout]}>
-            <View style={[styles.frameChild, styles.frameLayout]} />
-            <View style={[styles.frameItem, styles.frameLayout]} />
-            <View style={[styles.frameInner, styles.frameLayout]} />
-            <View style={[styles.rectangleView, styles.frameLayout]} />
             <Text style={[styles.farm1, styles.mintTypo]}>Farm 2</Text>
-            <Text style={[styles.onion, styles.mintTypo]}>Onion</Text>
-            <Text style={[styles.mint, styles.mintTypo]}>Mint</Text>
-            <Text style={[styles.ginger, styles.mintTypo]}>Ginger</Text>
             <Image
               style={styles.redOrganicTomatoPlantOd4xe}
               contentFit="cover"
@@ -87,9 +80,7 @@ const General = () => {
             <View style={[styles.frameInner, styles.frameLayout]} />
             <View style={[styles.rectangleView, styles.frameLayout]} />
             <Text style={[styles.farm1, styles.mintTypo]}>Farm 3</Text>
-            <Text style={[styles.onion, styles.mintTypo]}>Onion</Text>
-            <Text style={[styles.mint, styles.mintTypo]}>Mint</Text>
-            <Text style={[styles.ginger, styles.mintTypo]}>Ginger</Text>
+
             <Image
               style={styles.redOrganicTomatoPlantOd4xe}
               contentFit="cover"
@@ -142,14 +133,7 @@ const General = () => {
             />
           </View>
           <View style={[styles.rectangleParent1, styles.frameViewPosition]}>
-            <View style={[styles.frameChild, styles.frameLayout]} />
-            <View style={[styles.frameItem, styles.frameLayout]} />
-            <View style={[styles.frameInner, styles.frameLayout]} />
-            <View style={[styles.rectangleView, styles.frameLayout]} />
             <Text style={[styles.farm1, styles.mintTypo]}>Farm 6</Text>
-            <Text style={[styles.onion, styles.mintTypo]}>Onion</Text>
-            <Text style={[styles.mint, styles.mintTypo]}>Mint</Text>
-            <Text style={[styles.ginger, styles.mintTypo]}>Ginger</Text>
             <Image
               style={styles.redOrganicTomatoPlantOd4xe}
               contentFit="cover"
@@ -172,14 +156,7 @@ const General = () => {
             />
           </View>
           <View style={[styles.rectangleParent2, styles.rectanglePosition]}>
-            <View style={[styles.frameChild, styles.frameLayout]} />
-            <View style={[styles.frameItem, styles.frameLayout]} />
-            <View style={[styles.frameInner, styles.frameLayout]} />
-            <View style={[styles.rectangleView, styles.frameLayout]} />
             <Text style={[styles.farm1, styles.mintTypo]}>Farm 4</Text>
-            <Text style={[styles.onion, styles.mintTypo]}>Onion</Text>
-            <Text style={[styles.mint, styles.mintTypo]}>Mint</Text>
-            <Text style={[styles.ginger, styles.mintTypo]}>Ginger</Text>
             <Image
               style={styles.redOrganicTomatoPlantOd4xe}
               contentFit="cover"
@@ -325,8 +302,8 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   redOrganicTomatoPlantOd4xe: {
-    left: 0,
-    top: 0,
+    left: 10,
+    top: 20,
     width: 154,
     height: 184,
     position: "absolute",

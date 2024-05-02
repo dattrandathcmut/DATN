@@ -66,7 +66,7 @@ const App = () => {
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="general"
+              name="General"
               component={General}
               options={{ headerShown: false }}
             />
