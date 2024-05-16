@@ -12,6 +12,7 @@ import SignUp from "./screens/SignUp";
 import ForgotPassword from "./screens/ForgotPassword";
 import SignIn from "./screens/SignIn";
 import SMF from "./screens/SMF";
+import ForgotPassword1 from "./screens/ForgotPassword1";
 import Notification from "./screens/Notification";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -78,6 +79,11 @@ const App = () => {
             <Stack.Screen
               name="Notification"
               component={Notification}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="ForgotPassword1"
+              component={ForgotPassword1}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>

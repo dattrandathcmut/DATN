@@ -54,7 +54,7 @@ const WaterPump = () => {
           <View style={styles.switchBody1}>
             <View style={[styles.switchPosition1]}>
               <Switch
-                style={[styles.switchBody2, styles.switchPosition, { backgroundColor: isEnabled ? Color.switchGreen : Color.colorWhitesmoke_200, borderRadius: 20 }, { transform: [{ scaleX: 1 }, { scaleY: 1 }] }]}
+                style={[styles.switchBody2, styles.switchPosition, { backgroundColor: isEnabled ? Color.s : Color.s, borderRadius: 50 }, { transform: [{ scaleX: 1 }, { scaleY: 1 }] }]}
                 onValueChange={toggleSwitch}
                 value={isEnabled}
               />
@@ -68,7 +68,7 @@ const WaterPump = () => {
           <View style={styles.switchBody1}>
             <View style={[styles.switchPosition1]}>
               <Switch
-                style={[styles.switchBody2, styles.switchPosition, { backgroundColor: isEnabled1 ? Color.switchGreen : Color.colorWhitesmoke_200, borderRadius: 20 }, { transform: [{ scaleX: 1 }, { scaleY: 1 }] }]}
+                style={[styles.switchBody2, styles.switchPosition, { backgroundColor: isEnabled1 ? Color.s : Color.s, borderRadius: 20 }, { transform: [{ scaleX: 1 }, { scaleY: 1 }] }]}
                 onValueChange={toggleSwitch1}
                 value={isEnabled1}
               />
@@ -83,7 +83,7 @@ const WaterPump = () => {
           <View style={styles.switchBody1}>
             <View style={[styles.switchPosition1]}>
               <Switch
-                style={[styles.switchBody2, styles.switchPosition, { backgroundColor: isEnabled2 ? Color.switchGreen : Color.colorWhitesmoke_200, borderRadius: 20 }, { transform: [{ scaleX: 1 }, { scaleY: 1 }] }]}
+                style={[styles.switchBody2, styles.switchPosition, { backgroundColor: isEnabled2 ? Color.s : Color.s, borderRadius: 20 }, { transform: [{ scaleX: 1 }, { scaleY: 1 }] }]}
                 onValueChange={toggleSwitch2}
                 value={isEnabled2}
               />
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
   },
   switchPosition1: {
     borderRadius: 20, // Border radius
-    overflow: 'hidden',
+    overflow: 'visible',
     // borderRadius: Border.br_31xl,
     left: "10%",
     bottom: "0%",

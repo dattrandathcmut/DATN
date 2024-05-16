@@ -46,9 +46,8 @@ const SignIn = () => {
         />
         <View style={[styles.signInInner, styles.signInInnerLayout]} />
         <View style={[styles.rectangleView, styles.signInInnerLayout]} />
-        <Text style={[styles.username, styles.usernameTypo]}>Username</Text>
-        <Text style={[styles.password, styles.usernameTypo]}>{`Password
-`}</Text>
+        <Text style={[styles.US, styles.logInTypo]}>User name</Text>
+        <Text style={[styles.PS, styles.logInTypo]}>Password</Text>
         <Text style={[styles.logIn, styles.logInTypo]}>LOG IN</Text>
         <Text style={[styles.signUp, styles.logInTypo]}>SIGN UP</Text>
         <Pressable
@@ -98,7 +97,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   usernameTypo: {
-    height: 2,
+    height: 3,
     width: 157,
     fontFamily: FontFamily.dhurjati,
     fontSize: FontSize.size_xl,
@@ -190,6 +189,16 @@ const styles = StyleSheet.create({
     marginLeft: -33,
     top: 453,
     width: 141,
+  },
+  US: {
+    marginLeft: -140,
+    top: 295,
+    width: 125,
+  },
+  PS: {
+    marginLeft: -140,
+    top: 358,
+    width: 125,
   },
   signUp: {
     marginLeft: -36,

@@ -35,12 +35,10 @@ const SignUp = () => {
         <View style={[styles.signUpInner, styles.signLayout]} />
         <View style={[styles.rectangleView, styles.signLayout]} />
         <View style={[styles.signUpChild1, styles.signLayout]} />
-        <Text style={[styles.username, styles.passwordTypo]}>Username</Text>
-        <Text style={[styles.gmail, styles.passwordTypo]}>Gmail</Text>
-        <Text style={[styles.password, styles.passwordTypo]}>Password</Text>
-        <Text style={[styles.confirmPassword, styles.passwordTypo]}>
-          Confirm Password
-        </Text>
+        <Text style={[styles.US, styles.back1Typo]}>User Name</Text>
+        <Text style={[styles.GM, styles.back1Typo]}>Gmail</Text>
+        <Text style={[styles.PS, styles.back1Typo]}>Password</Text>
+        <Text style={[styles.CPS, styles.back1Typo]}>Confirm Password</Text>
         <Text style={[styles.signUp1, styles.back1Typo]}>SIGN UP</Text>
         <Image
           style={[styles.visibleEyeEyeballOpenViewIcon, styles.visibleViewLayout]}
@@ -175,6 +173,34 @@ const styles = StyleSheet.create({
     marginLeft: -51,
     top: 590,
     width: 153,
+    left: "50%",
+    position: "absolute",
+  },
+  US: {
+    marginLeft: -140,
+    top: 295,
+    width: 153,
+    left: "50%",
+    position: "absolute",
+  },
+  GM: {
+    marginLeft: -140,
+    top: 360,
+    width: 153,
+    left: "50%",
+    position: "absolute",
+  },
+  PS: {
+    marginLeft: -140,
+    top: 426,
+    width: 153,
+    left: "50%",
+    position: "absolute",
+  },
+  CPS: {
+    marginLeft: -140,
+    top: 491,
+    width: 200,
     left: "50%",
     position: "absolute",
   },

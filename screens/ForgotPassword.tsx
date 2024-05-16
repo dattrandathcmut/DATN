@@ -45,11 +45,13 @@ const ForgotPassword = () => {
         />
         <View style={[styles.forgotPasswordInner, styles.rectangleViewLayout]} />
         <View style={[styles.rectangleView, styles.rectangleViewLayout]} />
-        <Text style={[styles.username, styles.passwordTypo]}>Username</Text>
-        <Text style={[styles.otp, styles.passwordTypo]}>OTP</Text>
-        <Text style={[styles.logIn, styles.logInTypo]}>LOG IN</Text>
-        <Text style={[styles.signUp, styles.logInTypo]}>SIGN UP</Text>
-        <Pressable
+        <Text style={[styles.US, styles.logInTypo]}>User Name</Text>
+       
+        {/* <Text style={[styles.NPS, styles.logInTypo]}>New Password</Text>
+        <Text style={[styles.CPS, styles.logInTypo]}>ConfirmPassword</Text>
+       
+        {/* <Text style={[styles.signUp, styles.logInTypo]}>LOGIN</Text> */}
+        {/* <Pressable
           style={[styles.wrapper, styles.wrapperLayout]}
           onPress={() => navigation.navigate("SignUp")}
         >
@@ -58,15 +60,17 @@ const ForgotPassword = () => {
             contentFit="cover"
             source={require("../assets/rectangle-12.png")}
           />
-        </Pressable>
+        </Pressable> */}
+         <Text style={[styles.logIn, styles.logInTypo]}>Send OTP</Text>
+          <Text style={[styles.OTP, styles.logInTypo]}>Email</Text> 
         <Pressable
           style={[styles.rectanglePressable, styles.wrapperLayout]}
-          onPress={() => navigation.navigate("General")}
+          onPress={() => navigation.navigate("ForgotPassword1")}
         />
         <Text style={styles.smf}>{`SMF
 `}</Text>
         <Text style={styles.forgotPassword}>FORGOT PASSWORD</Text>
-        <View style={[styles.forgotPasswordChild1, styles.forgotChildLayout]} />
+        {/* <View style={[styles.forgotPasswordChild1, styles.forgotChildLayout]} />
         <Text style={[styles.password, styles.passwordTypo]}>Password</Text>
         <View style={[styles.forgotPasswordChild2, styles.passwordPosition]} />
         <Text style={[styles.confirmPassword, styles.passwordPosition]}>
@@ -84,7 +88,7 @@ const ForgotPassword = () => {
           ]}
           contentFit="cover"
           source={require("../assets/visibleeyeeyeballopenview1.png")}
-        />
+        /> */}
       </ImageBackground>
     </ScrollView>
   );
@@ -204,9 +208,29 @@ const styles = StyleSheet.create({
     top: 379,
   },
   logIn: {
-    marginLeft: -20,
+    marginLeft: -40,
     top: 685,
-    width: 79,
+    width: 200,
+  },
+  US: {
+    marginLeft: -140,
+    top: 295,
+    width: 200,
+  },
+  OTP: {
+    marginLeft: -140,
+    top: 360,
+    width: 200,
+  },
+  NPS: {
+    marginLeft: -140,
+    top: 435,
+    width: 200,
+  },
+  CPS: {
+    marginLeft: -140,
+    top: 500,
+    width: 200,
   },
   signUp: {
     marginLeft: -23,
