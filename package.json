@@ -41,6 +41,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "@types/expo": "^33.0.1",
     "typescript": "~5.3.3"
   },
   "private": true

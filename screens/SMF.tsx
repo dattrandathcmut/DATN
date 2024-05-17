@@ -24,7 +24,7 @@ const SMF = () => {
           style={styles.smfItem}
           onPress={() => navigation.navigate("SignIn")}
         />
-        <Text style={[styles.logIn, styles.smf1Typo]}>LOG IN</Text>
+        <Text style={[styles.logIn, styles.smf1Typo]}>START</Text>
         <Image
           style={styles.iconLeaf}
           contentFit="cover"
