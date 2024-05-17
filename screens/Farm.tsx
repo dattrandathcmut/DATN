@@ -51,16 +51,8 @@ const Farm = () => {
                   <View style={styles.frameItem} />
                   <View style={styles.frameContainer}>
                     <View style={styles.rightParent}>
-                      <Image
-                        style={[
-                          styles.humbleiconswind,
-                          styles.humbleiconswindLayout,
-                        ]}
-                        contentFit="cover"
-                        source={require("../assets/humbleiconswind.png")}
-                      />
                       <Text style={[styles.soilMoisture, styles.textTypo]}>
-                        Wind
+                      Temperature
                       </Text>
                     </View>
                     <Text style={[styles.text, styles.textTypo]}>12 m/s</Text>

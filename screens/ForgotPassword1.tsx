@@ -6,16 +6,39 @@ import {
     Pressable,
     View,
     ImageBackground,
+    Alert,
 } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation, ParamListBase } from "@react-navigation/native";
 import { Color, Border, FontFamily, FontSize } from "../GlobalStyles";
 import { ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useState } from "react";
+import { TextInput } from "react-native";
 
 const ForgotPassword1 = () => {
     const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
 
+    const handlePasswordChange = (text: string) => {
+        setPassword(text);
+    };
+    const handleConfirmPasswordChange = (text: string) => {
+        setConfirmPassword(text);
+    };
+    const handleSubmit = () => {
+        if (password !== confirmPassword) {
+            Alert.alert('Passwords do not match', 'Please make sure passwords match.');
+            return;
+
+        }
+
+        // Passwords match, you can proceed with further actions
+        console.log('Password:', password);
+        console.log('Confirm Password:', confirmPassword);
+        navigation.navigate("General");
+    };
     return (
         <ScrollView>
             <ImageBackground
@@ -53,14 +76,31 @@ const ForgotPassword1 = () => {
                 {/* <Text style={[styles.signUp, styles.logInTypo]}>LOGIN</Text> */}
                 <Pressable
                     style={[styles.rectanglePressable, styles.wrapperLayout]}
-                    onPress={() => navigation.navigate("General")}
+                    onPress={handleSubmit}
                 />
                 <Text style={styles.smf}>{`SMF
 `}</Text>
                 <Text style={styles.forgotPassword}>FORGOT PASSWORD</Text>
-                <View style={[styles.forgotPasswordChild1, styles.forgotChildLayout]} />
+                <TextInput style={[styles.forgotPasswordChild1, styles.forgotChildLayout]}
+                    placeholder="     At least 8 characters"
+                    onChangeText={handlePasswordChange}
+                    value={password}
+                    secureTextEntry={true}
+                    cursorColor={Color.colorWhite}
+                    placeholderTextColor={Color.colorGray_200}
+                    color={Color.colorWhite}
+                />
                 <Text style={[styles.password, styles.passwordTypo]}>Password</Text>
-                <View style={[styles.forgotPasswordChild2, styles.passwordPosition]} />
+                <TextInput style={[styles.forgotPasswordChild2, styles.passwordPosition]}
+                    placeholder="    Confirm your password"
+                    onChangeText={handleConfirmPasswordChange}
+                    value={confirmPassword}
+                    secureTextEntry={true}
+                    cursorColor={Color.colorWhite}
+                    placeholderTextColor={Color.colorGray_200}
+                    color={Color.colorWhite}
+
+                />
                 <Text style={[styles.confirmPassword, styles.passwordPosition]}>
                     Confirm Password
                 </Text>
