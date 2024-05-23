@@ -13,7 +13,7 @@ import { Table, Row, Rows } from 'react-native-table-component';
 const spect = () => {
     const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
     const [showMore, setShowMore] = React.useState(false);
-    
+
     const tableHead = ['#', 'Disease Name', 'Time'];
     const tableData = [
         ['1', 'Disease A', '10:00 AM'],
@@ -30,6 +30,8 @@ const spect = () => {
             <SafeAreaView>
                 <View style={styles.camera}>
                     <Text style={[styles.farm1, styles.farm1FlexBox]}>Farm 1</Text>
+                    <Text style={[styles.his, styles.farm2FlexBox]}>
+                        PEST HISTORY</Text>
                     <Text style={[styles.smf, styles.smfTypo1]}>SMF</Text>
                     <Image
                         style={styles.iconLeaf}
@@ -89,6 +91,10 @@ const styles = StyleSheet.create({
         textAlign: "left",
         color: Color.colorBlack,
     },
+    farm2FlexBox: {
+        textAlign: "left",
+        color: Color.colorSeagreen
+    },
     smfTypo: {
         fontFamily: FontFamily.michroma,
         textAlign: "left",
@@ -108,11 +114,21 @@ const styles = StyleSheet.create({
         textAlign: "left",
         position: "absolute",
     },
+    his: {
+        top: 175,
+        left: '30%',
+        fontFamily: FontFamily.kronaOne,
+        width: 171,
+        fontSize: FontSize.size_5xl,
+        textAlign: "left",
+        position: "absolute",
+        textDecorationColor: Color.colorLimegreen_100,
+    },
     smf: {
         alignItems: 'center',
         justifyContent: 'center',
         top: 70,
-        left: "50%",
+        left: "46%",
         fontFamily: FontFamily.michroma,
         color: Color.colorGray_500,
         width: 91,
@@ -124,7 +140,7 @@ const styles = StyleSheet.create({
         top: "1.75%",
         right: "46.22%",
         bottom: "93.75%",
-        left: "52.39%",
+        left: "48%",
         maxWidth: "100%",
         maxHeight: "100%",
         position: "absolute",
