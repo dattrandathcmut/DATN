@@ -50,7 +50,7 @@ const Farm = () => {
                   </View>
                   <View style={styles.frameItem} />
                   <View style={styles.frameContainer}>
-                    <View style={styles.rightParent}>
+                    <View style={styles.rightParent}> 
                       <Text style={[styles.soilMoisture, styles.textTypo]}>
                       Temperature
                       </Text>
@@ -185,7 +185,7 @@ const Farm = () => {
         </Pressable> */}
           <Pressable
             style={[styles.button19, styles.buttonFlexBox]}
-            onPress={() => navigation.navigate("Camera")}
+            onPress={() => navigation.navigate("spect")}
           >
             <Image
               style={styles.vectorIcon}

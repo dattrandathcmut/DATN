@@ -14,6 +14,7 @@ import SignIn from "./screens/SignIn";
 import SMF from "./screens/SMF";
 import ForgotPassword1 from "./screens/ForgotPassword1";
 import Notification from "./screens/Notification";
+import spect from "./screens/spect";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { View, Text, Pressable, TouchableOpacity } from "react-native";
@@ -84,6 +85,11 @@ const App = () => {
             <Stack.Screen
               name="ForgotPassword1"
               component={ForgotPassword1}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="spect"
+              component={spect}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>
