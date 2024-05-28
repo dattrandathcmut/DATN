@@ -15,10 +15,14 @@ import SMF from "./screens/SMF";
 import ForgotPassword1 from "./screens/ForgotPassword1";
 import Notification from "./screens/Notification";
 import spect from "./screens/spect";
+import { LogBox } from 'react-native';
+
+
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { View, Text, Pressable, TouchableOpacity } from "react-native";
 
+LogBox.ignoreAllLogs(true);
 const App = () => {
   const [hideSplashScreen, setHideSplashScreen] = React.useState(true);
 
