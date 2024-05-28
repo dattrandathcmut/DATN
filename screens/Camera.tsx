@@ -5,24 +5,23 @@ import {
   StyleSheet,
   View,
   TouchableOpacity,
-  // PermissionsAndroid,
   Image,
 } from 'react-native';
-// import { RNCamera } from 'react-native-camera';
-// import { Button } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { ParamListBase } from '@react-navigation/native';
 // Add new library
 
-// import { Camera as ExpoCamera } from 'expo-camera'; //added
-import { CameraView, useCameraPermissions } from 'expo-camera'; //added
+import { CameraView, useCameraPermissions } from 'expo-camera';
 
-import * as MediaLibrary from 'expo-media-library'; //added
-import Button1 from '../components/Button1'; //added
+import * as MediaLibrary from 'expo-media-library'; 
+import Button1 from '../components/Button1'; 
+import {config} from '../components/config'; 
+
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Color, FontFamily, FontSize } from '../GlobalStyles';
 // import { CameraType, FlashMode } from 'expo-camera/build/legacy/Camera.types';
+
 
 const Camera = () => {
   // const cameraRef = useRef<RNCamera | null>(null);
@@ -156,7 +155,7 @@ const Camera = () => {
           name: 'photo.jpg',
         });
         // Send image to prediction endpoint
-        const response = await fetch('http://192.168.1.11:5001/predict', {
+        const response = await fetch(`${config.baseURL}/predict`, {
           method: 'POST',
           body: formData,
           headers: {
@@ -179,18 +178,18 @@ const Camera = () => {
     }
   };
 
-  const testApi = async () => {
-    try {
-      const response = await fetch('http://192.168.1.11:5001/');
-      if (!response.ok) {
-        throw new Error('HTTP status ' + response.status);
-      }
-      const data = await response.json();
-      console.log(data); // {"message": "Hello"}
-    } catch (error) {
-      console.error('Failed to fetch from this API:', error);
-    }
-  };
+  // const testApi = async () => {
+  //   try {
+  //     const response = await fetch('http://192.168.1.11:5001/');
+  //     if (!response.ok) {
+  //       throw new Error('HTTP status ' + response.status);
+  //     }
+  //     const data = await response.json();
+  //     console.log(data); // {"message": "Hello"}
+  //   } catch (error) {
+  //     console.error('Failed to fetch from this API:', error);
+  //   }
+  // };
 
   function toggleCameraFacing() {
     setFacing((current) => (current === 'back' ? 'front' : 'back'));
@@ -199,9 +198,9 @@ const Camera = () => {
     setFlashMode((current) => (current === 'off' ? 'on' : 'off'));
   }
 
-  useEffect(() => {
-    testApi();
-  }, []);
+  // useEffect(() => {
+  //   testApi();
+  // }, []);
 
   if (!permission) {
     // Camera permissions are still loading.
