@@ -16,6 +16,7 @@ import ForgotPassword1 from "./screens/ForgotPassword1";
 import Notification from "./screens/Notification";
 import spect from "./screens/spect";
 import { LogBox } from 'react-native';
+import history from "./screens/historyHud";
 
 
 
@@ -100,6 +101,11 @@ const App = () => {
               name="spect"
               component={spect}
               options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="history"
+              component={history}
+              options={{ headerShown: false }} 
             />
           </Stack.Navigator>
         ) : null}

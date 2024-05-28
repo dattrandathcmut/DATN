@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, StyleSheet, View, Pressable, ScrollView } from 'react-native';
+import { Text, StyleSheet, View, Pressable, ScrollView,TouchableOpacity } from 'react-native';
 import { Image } from 'expo-image';
 import { Button } from 'react-native-paper';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -82,7 +82,9 @@ const Farm = () => {
 							source={require('../assets/union1.png')}
 						/>
 						<View style={styles.frameParent}>
-							<View style={styles.rectangleLayout}>
+							<TouchableOpacity style={styles.rectangleLayout}
+								onPress={() => navigation.navigate('history')}
+							>
 								<View style={[styles.frameChild, styles.rectangleLayout]} />
 								<View style={[styles.frameGroup, styles.frameFlexBox]}>
 									<View style={styles.frameContainer}>
@@ -136,7 +138,7 @@ const Farm = () => {
 										</Text>
 									</View>
 								</View>
-							</View>
+							</TouchableOpacity>
 							<View style={[styles.rectangleGroup, styles.rectangleLayout]}>
 								<View style={[styles.frameChild, styles.rectangleLayout]} />
 								<View style={[styles.frameParent2, styles.frameFlexBox]}>
