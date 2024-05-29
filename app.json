@@ -24,7 +24,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.ngonhatthienn.nChuynngnh"
     },
     "runtimeversion": {
       "policy": "sdkVersion"
@@ -34,6 +35,11 @@
     },
     "plugins": [
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "5f22943b-f383-4b73-a714-b8ae8dd8d6fb"
+      }
+    }
   }
 }

@@ -6,6 +6,7 @@ import {
   View,
   TouchableOpacity,
   Image,
+  Alert
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -16,25 +17,21 @@ import { CameraView, useCameraPermissions } from 'expo-camera';
 
 import * as MediaLibrary from 'expo-media-library'; 
 import Button1 from '../components/Button1'; 
+import CustomAlert from '../components/CustomAlert'; 
+
 import {config} from '../components/config'; 
 
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Color, FontFamily, FontSize } from '../GlobalStyles';
-// import { CameraType, FlashMode } from 'expo-camera/build/legacy/Camera.types';
 
 
 const Camera = () => {
-  // const cameraRef = useRef<RNCamera | null>(null);
   const [facing, setFacing] = useState('back');
   const [flashMode, setFlashMode] = useState('off');
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
-  // useEffect(() => { Comment out
-  // 	requestCameraPermission();
-  // }, []);
 
-  // const [hasCameraPermission, setHasCameraPermission] = useState(null);
+
   const [image, setImage] = useState(null);
-  // const [type, setType] = useState(CameraType.back); // Fix the usage of CameraType
   // const [flash, setFlash] = useState(FlashMode.off);
   const cameraRef1 = useRef(null);
 
@@ -43,90 +40,6 @@ const Camera = () => {
   >(null);
   const [permission, requestPermission] = useCameraPermissions();
 
-  //added
-
-  // useEffect(() => {
-  // 	//added
-  // 	(async () => {
-  // 		MediaLibrary.requestPermissionsAsync();
-  // 		const cameraStatus = await ExpoCamera.requestCameraPermissionsAsync();
-  // 		setHasCameraPermission(cameraStatus.status === 'granted');
-  // 	})();
-  // }, []);
-  // useEffect(() => {
-  //   (async () => {
-  //     const { status } = await ExpoCamera.requestCameraPermissionsAsync();
-  //     if (status !== 'granted') {
-  //       alert('Sorry, we need camera permissions to make this work!');
-  //     }
-  //   })();
-  // }, []);
-
-  // const requestCameraPermission = async () => {
-  // 	try {
-  // 		const granted = await PermissionsAndroid.request(
-  // 			PermissionsAndroid.PERMISSIONS.CAMERA,
-  // 			{
-  // 				title: 'Camera Permission',
-  // 				message: 'Your app needs access to your camera',
-  // 				buttonNeutral: 'Ask Me Later',
-  // 				buttonNegative: 'Cancel',
-  // 				buttonPositive: 'OK',
-  // 			}
-  // 		);
-  // 		if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-  // 			console.log('Camera permission granted');
-  // 		} else {
-  // 			console.log('Camera permission denied');
-  // 		}
-  // 	} catch (err) {
-  // 		console.warn(err);
-  // 	}
-  // };
-
-  // const handleCapture = async () => {
-  // 	if (cameraRef.current) {
-  // 		try {
-  // 			const options = { quality: 0.5, base64: true };
-  // 			const data = await cameraRef.current.takePictureAsync(options);
-  // 			console.log('Image captured:', data.uri);
-  // 			// Now you can send this image to your API
-  // 			await sendToApi(data.uri);
-  // 		} catch (error) {
-  // 			console.error('Failed to capture image: ', error);
-  // 		}
-  // 	} else {
-  // 		console.error('Camera reference is null');
-  // 	}
-  // };
-
-  // const sendToApi = async (imageUri: string) => {
-  // 	const formData = new FormData();
-  // 	formData.append('image', {
-  // 		uri: imageUri,
-  // 		type: 'image/jpeg',
-  // 		name: 'photo.jpg',
-  // 	});
-
-  // 	try {
-  // 		const response = await fetch('http://localhost:5000/predict', {
-  // 			method: 'POST',
-  // 			body: formData,
-  // 			headers: {
-  // 				'Content-Type': 'multipart/form-data',
-  // 			},
-  // 		});
-  // 		if (!response.ok) {
-  // 			throw new Error('Failed to send image to API');
-  // 		}
-  // 		const result = await response.json();
-  // 		console.log('Prediction result:', result);
-  // 		// Handle prediction result here
-  // 	} catch (error) {
-  // 		console.error('Error sending to API:', error);
-  // 		throw error; // re-throw the error to propagate it to the caller
-  // 	}
-  // };
 
   const takePicture = async () => {
     if (cameraRef1) {
@@ -167,9 +80,10 @@ const Camera = () => {
           throw new Error('Failed to send image to API');
         }
         const result = await response.json();
-        console.log('Prediction result:', result);
-        alert('Prediction result: ' + result.class);
+        // Show a more beautiful alert with the prediction result
+        Alert.alert('Prediction Result', `Class: ${result.class}, Confidence: ${result.confidence}`);
         // Handle prediction result here
+        // <CustomAlert visible={true} title="Prediction Result" message={`Class: ${result.class}, Confidence: ${result.confidence}`} />
       } catch (error) {
         console.error('Error saving image and/or sending to API:', error);
       }
