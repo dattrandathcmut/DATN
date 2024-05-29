@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   iconLeaf: {
     height: "8.74%",
     width: "12.64%",
-    top: "34.63%",
+    top: "29.63%",
     right: "43.75%",
     bottom: "56.64%",
     left: "43.61%",
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     backgroundColor: Color.colorGray_500,
     flex: 1,
     width: "100%",
-    height: 800,
+    height: 900,
   },
 });
 
