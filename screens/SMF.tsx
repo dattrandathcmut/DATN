@@ -6,6 +6,7 @@ import { useNavigation, ParamListBase } from "@react-navigation/native";
 import { FontFamily, Color, FontSize, Border } from "../GlobalStyles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView } from "react-native";
+import { Button } from "react-native-paper";
 
 const SMF = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
@@ -20,10 +21,11 @@ const SMF = () => {
           Bring farm to your phone
         </Text>
 
-        <Pressable
+        <Button
           style={styles.smfItem}
           onPress={() => navigation.navigate("SignIn")}
-        />
+        >
+        </Button>
         <Text style={[styles.logIn, styles.smf1Typo]}>START</Text>
         <Image
           style={styles.iconLeaf}
@@ -51,23 +53,23 @@ const styles = StyleSheet.create({
     height: 1000,
   },
   smf1: {
-    marginLeft: -48,
+    // marginLeft: -48,
     top: 359,
     fontSize: FontSize.size_21xl,
     color: Color.colorGray_100,
     width: 142,
     height: 55,
-    left: "50%",
+    left: "42%",
     fontFamily: FontFamily.michroma,
   },
   bringFarmTo: {
-    marginLeft: -89,
+    // marginLeft: -89,
     top: 414,
     fontSize: FontSize.headingHeading07_size,
     color: "#3fc74c",
     width: 242,
     height: 15,
-    left: "50%",
+    left: "34%",
     fontFamily: FontFamily.michroma,
 
   },
@@ -94,8 +96,8 @@ const styles = StyleSheet.create({
     color: Color.colorWhite,
     width: 119,
     height: 16,
-    marginLeft: -36, // Adjusted half of the width
-    left: "50%", // Add this line
+    // marginLeft: -36, // Adjusted half of the width
+    left: "45%", // Add this line
     position: "absolute", // Add this line
   },
 
