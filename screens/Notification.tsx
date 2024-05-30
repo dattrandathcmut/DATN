@@ -450,7 +450,7 @@ const styles = StyleSheet.create({
         left: 2,
         padding: Padding.p_xs,
         height: 50,
-        width: 356,
+        width: 380,
         backgroundColor: Color.colorPaleturquoise,
         borderRadius: Border.br_9xs,
         position: "absolute",
@@ -658,7 +658,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
     },
     frameContainer: {
-        marginTop: 12,
+        marginTop: 2,
         flexDirection: "row",
     },
     frameGroup: {

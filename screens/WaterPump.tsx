@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
 	p1Typo: {
 		height: 2,
 		width: 157,
-		color: Color.colorWhite,
+		color: 'red',
 		fontFamily: FontFamily.dhurjati,
 		fontSize: FontSize.size_xl,
 		textAlign: 'left',
@@ -355,7 +355,7 @@ const styles = StyleSheet.create({
 		width: 63,
 	},
 	p1: {
-		top: 206,
+		top: 500,
 		left: 31,
 	},
 	waterPumpInner: {
