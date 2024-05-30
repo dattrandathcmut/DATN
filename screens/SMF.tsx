@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
     height: 15,
     left: "50%",
     fontFamily: FontFamily.michroma,
+
   },
   smfItem: {
     top: 578,

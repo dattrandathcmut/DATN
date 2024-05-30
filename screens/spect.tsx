@@ -17,41 +17,29 @@ import { config } from '../components/config';
 
 const spect = () => {
 	const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
-	const [showMore, setShowMore] = React.useState(false);
+	// const [showMore, setShowMore] = React.useState(false);
+
+	// Add new state variables
+	const [currentPage, setCurrentPage] = React.useState(0);
+	const [maxPage, setMaxPage] = React.useState(0);
+
+	const itemsPerPage = 5; // Change this to the number of items you want per page
 
 	const tableHead = ['#', 'Disease Name', 'Time'];
-	// const tableData = [
-	// 	['1', 'Bacterial spot', '10:00 AM'],
-	// 	['2', 'Bacterial spot', '10:30 AM'],
-	// 	['3', 'Yellow Leaf Curl Virus', '11:00 AM'],
-	// 	...(showMore
-	// 		? [
-	// 				['4', 'Yellow Leaf Curl Virus', '11:30 AM'],
-	// 				['5', 'Bacterial spot', '12:00 PM'],
-	// 		  ]
-	// 		: []),
-	// ];
-	// const [tableData, setTableData] = React.useState([
-	//     ['1', 'Bacterial spot', '10:00:00'],
-	//     ['2', 'Bacterial spot', '10:30:00'],
-	//     ['3', 'Yellow Leaf Curl Virus', '11:00:00 AM'],
-	//     ...(showMore
-	//       ? [
-	//           ['4', 'Yellow Leaf Curl Virus', '11:30:00 AM'],
-	//           ['5', 'Bacterial spot', '12:00 PM'],
-	//         ]
-	//       : []),
-	//   ]);
+
 	const [tableData, setTableData] = React.useState([]);
 
 	useFocusEffect(
 		React.useCallback(() => {
+			// Modify the fetchData function
 			const fetchData = async () => {
+				console.log(currentPage);
 				try {
 					const response = await fetch(`${config.baseURL}/predict`);
 					const data = await response.json();
 
 					if (data.status === 'success') {
+						setMaxPage(Math.ceil(data.result / itemsPerPage) - 1);
 						const newData = data.data.map(
 							(item: {
 								id: number;
@@ -64,8 +52,11 @@ const spect = () => {
 							]
 						);
 
-						// If showMore is true, show all data, else show only the first 3 records
-						const dataToShow = showMore ? newData : newData.slice(0, 3);
+						// Slice the data for the current page
+						const dataToShow = newData.slice(
+							currentPage * itemsPerPage,
+							(currentPage + 1) * itemsPerPage
+						);
 
 						setTableData(dataToShow);
 					}
@@ -75,7 +66,7 @@ const spect = () => {
 			};
 
 			fetchData();
-		}, [showMore]) // Add showMore as a dependency
+		}, [currentPage]) // Add showMore as a dependency
 	);
 
 	return (
@@ -121,14 +112,40 @@ const spect = () => {
 							/>
 							<Rows data={tableData} textStyle={styles.text} />
 						</Table>
-						<TouchableOpacity
+						{/* <TouchableOpacity
 							style={styles.showMoreButton}
 							onPress={() => setShowMore(!showMore)}
 						>
 							<Text style={styles.showMoreText}>
 								{showMore ? 'Show Less' : 'Show More'}
 							</Text>
-						</TouchableOpacity>
+						</TouchableOpacity> */}
+						<View style={styles.paginationContainer}>
+							<TouchableOpacity
+								style={[
+									styles.paginationButton,
+									currentPage <= 0 ? styles.disabledText : {},
+								]}
+								onPress={() => setCurrentPage(Math.max(currentPage - 1, 0))}
+								disabled={currentPage <= 0}
+							>
+								<Text style={styles.paginationText}>Previous</Text>
+							</TouchableOpacity>
+							<TouchableOpacity
+								style={[
+									styles.paginationButton,
+									currentPage >= maxPage ? styles.disabledText : {},
+								]}
+								onPress={() => {
+									if (currentPage < maxPage) {
+										setCurrentPage(currentPage + 1);
+									}
+								}}
+								disabled={currentPage >= maxPage}
+							>
+								<Text style={styles.paginationText}>Next</Text>
+							</TouchableOpacity>
+						</View>
 					</View>
 				</View>
 			</SafeAreaView>
@@ -259,6 +276,28 @@ const styles = StyleSheet.create({
 		width: '100%',
 		height: 800,
 		overflow: 'hidden',
+	},
+	paginationContainer: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		marginTop: 10,
+	},
+	paginationButton: {
+		flex: 1,
+		marginHorizontal: 5,
+		paddingVertical: 10,
+		paddingHorizontal: 20,
+		backgroundColor: Color.colorMediumseagreen,
+		borderRadius: 5,
+		alignItems: 'center',
+	},
+	paginationText: {
+		color: Color.colorWhite,
+		fontFamily: FontFamily.michroma,
+		fontSize: FontSize.size_md,
+	},
+	disabledText: {
+		backgroundColor: 'gray',
 	},
 });
 

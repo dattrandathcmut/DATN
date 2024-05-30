@@ -179,7 +179,7 @@ const Farm = () => {
 										<Image
 											style={[styles.rightIcon1, styles.rightIconLayout]}
 											source={{
-												uri: `http://openweathermap.org/img/w/${
+												uri: `https://openweathermap.org/img/w/${
 													currentWeatherData &&
 													currentWeatherData.weather[0].icon
 												}.png`,
@@ -216,7 +216,7 @@ const Farm = () => {
 										<Image
 											style={[styles.rightIcon1, styles.rightIconLayout]}
 											source={{
-												uri: `http://openweathermap.org/img/w/${
+												uri: `https://openweathermap.org/img/w/${
 													weatherData && weatherData[0].weather[0].icon
 												}.png`,
 											}}
@@ -250,7 +250,7 @@ const Farm = () => {
 										<Image
 											style={styles.carbonhumidityAltIcon1}
 											source={{
-												uri: `http://openweathermap.org/img/w/${
+												uri: `https://openweathermap.org/img/w/${
 													weatherData && weatherData[1].weather[0].icon
 												}.png`,
 											}}
@@ -283,7 +283,7 @@ const Farm = () => {
 										<Image
 											style={[styles.rightIcon1, styles.rightIconLayout]}
 											source={{
-												uri: `http://openweathermap.org/img/w/${
+												uri: `https://openweathermap.org/img/w/${
 													weatherData && weatherData[2].weather[0].icon
 												}.png`,
 											}}
@@ -311,7 +311,7 @@ const Farm = () => {
 										<Image
 											style={[styles.rightIcon1, styles.rightIconLayout]}
 											source={{
-												uri: `http://openweathermap.org/img/w/${
+												uri: `https://openweathermap.org/img/w/${
 													weatherData && weatherData[3].weather[0].icon
 												}.png`,
 											}}

@@ -31,6 +31,9 @@ const Account = () => {
       setButtonColor('#939896'); // Trở lại màu mặc định nếu một trong hai ô password còn trống
     }
   }, [password, confirmPassword]);
+  useEffect(() => {
+    console.log("Hello");
+  }, []);
 
   const handlePasswordChange = (text: string) => {
     setPassword(text);
@@ -54,7 +57,7 @@ const Account = () => {
   };
   return (
     <SafeAreaView style={styles.account}>
-      <ScrollView>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <Text style={styles.smf}>SMF</Text>
         <Image
           style={styles.iconLeaf}

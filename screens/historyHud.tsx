@@ -16,38 +16,47 @@ import { Border, Color, FontFamily, FontSize } from '../GlobalStyles';
 
 const history = () => {
 	const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
-	const [showMore, setShowMore] = React.useState(false);
-
+	// const [showMore, setShowMore] = React.useState(false);
+	const widthArr = [40, 70, 100, 70, 90];
 	const tableHead = ['#', 'Moisture', 'Temperature', 'Humidity', 'Time'];
 	const [tableData, setTableData] = React.useState([]);
+
+	// Add new state variables
+	const [currentPage, setCurrentPage] = React.useState(0);
+	const [maxPage, setMaxPage] = React.useState(0);
+	const itemsPerPage = 8;
 
 	useFocusEffect(
 		React.useCallback(() => {
 			const fetchData = async () => {
 				try {
-					const response = await fetch(`${config.baseURL}/history`);
+					const response = await fetch(`${config.baseURL}/api/data`);
 					const data = await response.json();
 
 					if (data.status === 'success') {
+						setMaxPage(Math.ceil(data.result / itemsPerPage) - 1);
 						const newData = data.data.map(
 							(item: {
 								id: number;
-								soil_moisture: number;
+								soilMoisture: number;
 								temperature: number;
 								humidity: number;
-								capture_date: string;
+								ts: string;
 							}) => [
-									item.id.toString(),
-									item.soil_moisture.toString(),
-									item.temperature.toString(),
-									item.humidity.toString(),
-									new Date(item.capture_date).toLocaleTimeString(),
-								]
+								item.id.toString(),
+								item.soilMoisture.toString(),
+								item.temperature.toString(),
+								item.humidity.toString(),
+								new Date(item.ts).toLocaleTimeString(),
+							]
 						);
 
 						// If showMore is true, show all data, else show only the first 3 records
-						const dataToShow = showMore ? newData : newData.slice(0, 3);
-
+						// const dataToShow = showMore ? newData : newData.slice(0, 3);
+						const dataToShow = newData.slice(
+							currentPage * itemsPerPage,
+							(currentPage + 1) * itemsPerPage
+						);
 						setTableData(dataToShow);
 					}
 				} catch (error) {
@@ -56,7 +65,7 @@ const history = () => {
 			};
 
 			fetchData();
-		}, [showMore]) // Add showMore as a dependency
+		}, [currentPage]) // Add showMore as a dependency
 	);
 
 	return (
@@ -64,7 +73,9 @@ const history = () => {
 			<SafeAreaView>
 				<View style={styles.camera}>
 					<Text style={[styles.farm1, styles.farm1FlexBox]}>Farm 1</Text>
-					<Text style={[styles.his, styles.farm2FlexBox]}>MEASUREMENT HISTORY</Text>
+					<Text style={[styles.his, styles.farm2FlexBox]}>
+						MEASUREMENT HISTORY
+					</Text>
 					<Text style={[styles.smf, styles.smfTypo1]}>SMF</Text>
 					<Image
 						style={styles.iconLeaf}
@@ -89,17 +100,48 @@ const history = () => {
 								data={tableHead}
 								style={styles.head}
 								textStyle={styles.text}
+								widthArr={widthArr}
 							/>
-							<Rows data={tableData} textStyle={styles.text} />
+							<Rows
+								data={tableData}
+								textStyle={styles.text}
+								widthArr={widthArr}
+							/>
 						</Table>
-						<TouchableOpacity
+						{/* <TouchableOpacity
 							style={styles.showMoreButton}
 							onPress={() => setShowMore(!showMore)}
 						>
 							<Text style={styles.showMoreText}>
 								{showMore ? 'Show Less' : 'Show More'}
 							</Text>
-						</TouchableOpacity>
+						</TouchableOpacity> */}
+						<View style={styles.paginationContainer}>
+							<TouchableOpacity
+								style={[
+									styles.paginationButton,
+									currentPage <= 0 ? styles.disabledText : {},
+								]}
+								onPress={() => setCurrentPage(Math.max(currentPage - 1, 0))}
+								disabled={currentPage <= 0}
+							>
+								<Text style={styles.paginationText}>Previous</Text>
+							</TouchableOpacity>
+							<TouchableOpacity
+								style={[
+									styles.paginationButton,
+									currentPage >= maxPage ? styles.disabledText : {},
+								]}
+								onPress={() => {
+									if (currentPage < maxPage) {
+										setCurrentPage(currentPage + 1);
+									}
+								}}
+								disabled={currentPage >= maxPage}
+							>
+								<Text style={styles.paginationText}>Next</Text>
+							</TouchableOpacity>
+						</View>
 					</View>
 				</View>
 			</SafeAreaView>
@@ -230,6 +272,28 @@ const styles = StyleSheet.create({
 		width: '100%',
 		height: 800,
 		overflow: 'hidden',
+	},
+	paginationContainer: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		marginTop: 10,
+	},
+	paginationButton: {
+		flex: 1,
+		marginHorizontal: 5,
+		paddingVertical: 10,
+		paddingHorizontal: 20,
+		backgroundColor: Color.colorMediumseagreen,
+		borderRadius: 5,
+		alignItems: 'center',
+	},
+	paginationText: {
+		color: Color.colorWhite,
+		fontFamily: FontFamily.michroma,
+		fontSize: FontSize.size_md,
+	},
+	disabledText: {
+		backgroundColor: 'gray',
 	},
 });
 

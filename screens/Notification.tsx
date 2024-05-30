@@ -20,7 +20,7 @@ const Notification = () => {
 
     return (
         <SafeAreaView style={styles.account}>
-            <ScrollView>
+            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                 <Text style={styles.smf}>SMF</Text>
                 <Image
                     style={styles.iconLeaf}
