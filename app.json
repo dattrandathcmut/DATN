@@ -4,7 +4,7 @@
     "slug": "nChuynngnh",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/newleaf.png",
+    "icon": "./assets/smart-farm.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -22,7 +22,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/newleaf.png"
+        "foregroundImage": "./assets/smart-farm.png"
       },
       "package": "com.ngonhatthienn.nChuynngnh"
     },

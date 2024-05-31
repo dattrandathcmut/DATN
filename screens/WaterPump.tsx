@@ -9,7 +9,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView } from 'react-native';
 import { useState } from 'react';
 import { Switch } from 'react-native';
-
+import {config} from '../components/config';
 const WaterPump = () => {
 	const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 	const [isEnabled, setIsEnabled] = useState(false);
@@ -18,7 +18,22 @@ const WaterPump = () => {
 	const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 	const toggleSwitch1 = () => setIsEnabled1((previousState) => !previousState);
 	const toggleSwitch2 = () => setIsEnabled2((previousState) => !previousState);
-
+	
+	const postMessage = (isEnabled: boolean) => {
+		console.log("postMessage called pump")
+		fetch(`${config.baseURL}/nof`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				message: `Pump turned ${isEnabled ? 'on' : 'off'}`,
+			}),
+		})
+			.then((response) => response.json())
+			.then((data) => console.log(data))
+			.catch((error) => console.error('Error:', error));
+	};
 	React.useEffect(() => {
 		if (isEnabled) {
 			fetch(
@@ -38,6 +53,7 @@ const WaterPump = () => {
 				.catch((error) => {
 					console.error('Error:', error);
 				});
+				postMessage(isEnabled);
 		} else {
 			fetch(
 				'https://demo.thingsboard.io/api/plugins/telemetry/DEVICE/4c2fe410-cd78-11ed-9b15-dd2dac50548f/SHARED_SCOPE',
@@ -56,7 +72,10 @@ const WaterPump = () => {
 				.catch((error) => {
 					console.error('Error:', error);
 				});
+				postMessage(isEnabled);
+
 		}
+		
 	}, [isEnabled]);
 
 	return (
@@ -75,20 +94,9 @@ const WaterPump = () => {
 					<Text style={[styles.back, styles.smfTypo]}>BACK</Text>
 				</Pressable>
 				<View style={[styles.waterPumpChild, styles.waterPosition]} />
-				<View style={[styles.waterPumpItem, styles.waterPosition]} />
-				{/* <View style={[styles.dSwitch, styles.switchLayout]}>
-          <View style={[styles.switchLayout]}>
-            <View style={styles.switchBody1}>
-              <View style={[styles.switchPosition]}>
-                <Switch
-                  style={[styles.switchBody2, styles.switchPosition, { backgroundColor: isEnabled ? Color.switchGreen : Color.colorWhitesmoke_200, borderRadius: 20 }, { transform: [{ scaleX: 2 }, { scaleY: 1.35 }] }]}
-                  onValueChange={toggleSwitch}
-                  value={isEnabled}
-                />
-              </View>
-            </View>
-          </View>
-        </View> */}
+				<View style={[styles.waterPumpItem, styles.waterPosition]}>
+					<Text style={styles.p2}>P.1</Text>
+				</View>
 				<View style={[styles.dSwitch, styles.switchLayout]}>
 					<View style={styles.switchBody1}>
 						<View style={[styles.switchPosition1]}>
@@ -108,9 +116,11 @@ const WaterPump = () => {
 						</View>
 					</View>
 				</View>
-				<Text style={[styles.p1, styles.p1Typo]}>P.1</Text>
+				{/* <Text style={[styles.p1, styles.p1Typo]}>P.1</Text> */}
 				<View style={[styles.waterPumpInner, styles.rectangleViewPosition]} />
-				<View style={[styles.rectangleView, styles.rectangleViewPosition]} />
+				<View style={[styles.rectangleView, styles.rectangleViewPosition]}>
+					<Text style={styles.p2}>P.2</Text>
+				</View>
 				<View style={[styles.dSwitch1, styles.switchLayout]}>
 					<View style={styles.switchBody1}>
 						<View style={[styles.switchPosition1]}>
@@ -130,10 +140,11 @@ const WaterPump = () => {
 						</View>
 					</View>
 				</View>
-				<Text style={[styles.p2, styles.p1Typo]}>P.2</Text>
+
 				<View style={[styles.waterPumpChild1, styles.waterChildPosition]} />
-				<View style={[styles.waterPumpChild2, styles.waterChildPosition]} />
-				<Text style={[styles.p3, styles.p1Typo]}>P.3</Text>
+				<View style={[styles.waterPumpChild2, styles.waterChildPosition]}>
+					<Text style={styles.p2}>P.3</Text>
+				</View>
 				<View style={[styles.dSwitch2, styles.switchLayout]}>
 					<View style={styles.switchBody1}>
 						<View style={[styles.switchPosition1]}>
@@ -251,15 +262,15 @@ const styles = StyleSheet.create({
 		top: 3,
 		position: 'absolute',
 	},
-	p1Typo: {
-		height: 2,
-		width: 157,
-		color: 'red',
-		fontFamily: FontFamily.dhurjati,
-		fontSize: FontSize.size_xl,
-		textAlign: 'left',
-		position: 'absolute',
-	},
+	// p1Typo: {
+	// 	height: 2,
+	// 	width: 157,
+	// 	color: 'red',
+	// 	fontFamily: FontFamily.dhurjati,
+	// 	fontSize: FontSize.size_xl,
+	// 	textAlign: 'left',
+	// 	position: 'absolute',
+	// },
 	rectangleViewPosition: {
 		top: 259,
 		height: 41,
@@ -355,8 +366,9 @@ const styles = StyleSheet.create({
 		width: 63,
 	},
 	p1: {
-		top: 500,
-		left: 31,
+		color: 'white',
+		marginLeft: 20,
+		marginTop: 10,
 	},
 	waterPumpInner: {
 		width: 306,
@@ -370,8 +382,9 @@ const styles = StyleSheet.create({
 		width: 63,
 	},
 	p2: {
-		top: 260,
-		left: 32,
+		color: 'white',
+		marginLeft: 20,
+		marginTop: 10,
 	},
 	waterPumpChild1: {
 		width: 306,

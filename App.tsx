@@ -14,6 +14,7 @@ import SignIn from './screens/SignIn';
 import SMF from './screens/SMF';
 import ForgotPassword1 from './screens/ForgotPassword1';
 import Notification from './screens/Notification';
+import AddNewFarm from './screens/AddNewFarm';
 import spect from './screens/spect';
 import { LogBox } from 'react-native';
 import history from './screens/historyHud';
@@ -47,6 +48,11 @@ const App = () => {
 						<Stack.Screen
 							name='AddnewWaterPum'
 							component={AddnewWaterPum}
+							options={{ headerShown: false }}
+						/>
+						<Stack.Screen
+							name='AddNewFarm'
+							component={AddNewFarm}
 							options={{ headerShown: false }}
 						/>
 						<Stack.Screen
