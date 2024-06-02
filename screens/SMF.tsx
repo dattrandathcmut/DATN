@@ -12,7 +12,7 @@ const SMF = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
   return (
-    <ScrollView>
+    // <ScrollView>
       <View style={styles.smf}>
         <View style={styles.smfChild} />
         <Text style={[styles.smf1, styles.smf1Typo]}>{`SMF
@@ -26,6 +26,7 @@ const SMF = () => {
           onPress={() => navigation.navigate("SignIn")}
         >
         </Button>
+        
         <Text style={[styles.logIn, styles.smf1Typo]}>START</Text>
         <Image
           style={styles.iconLeaf}
@@ -33,7 +34,7 @@ const SMF = () => {
           source={require("../assets/-icon-leaf2.png")}
         />
       </View>
-    </ScrollView>
+    // </ScrollView>
 
   );
 };
@@ -76,19 +77,19 @@ const styles = StyleSheet.create({
   smfItem: {
     top: 578,
     borderRadius: Border.br_xl,
-    backgroundColor: "rgba(66, 211, 81, 0)",
+    // backgroundColor: "rgba(66, 211, 81, 0)",
     borderStyle: "solid",
     borderColor: Color.colorLimegreen_100,
     borderWidth: 1,
     width: 255,
-    height: 30,
+    height: 40,
     left: "50%", // Add this line
     marginLeft: -127.5, // Adjusted half of the width
     position: "absolute",
   },
 
   logIn: {
-    top: 582, // Adjust this value to center the text vertically
+    top: 590, // Adjust this value to center the text vertically
     justifyContent: "center", // Remove this line
     alignItems: "center", // Add this line
     fontSize: FontSize.size_xs,

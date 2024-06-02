@@ -2,7 +2,11 @@ import * as React from 'react';
 import { Text, StyleSheet, View, Pressable, FlatList } from 'react-native';
 import { Image } from 'expo-image';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { useNavigation, ParamListBase , useFocusEffect} from '@react-navigation/native';
+import {
+	useNavigation,
+	ParamListBase,
+	useFocusEffect,
+} from '@react-navigation/native';
 import { FontSize, Color, Border, FontFamily } from '../GlobalStyles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView } from 'react-native';
@@ -23,25 +27,24 @@ const General = () => {
 		console.log('createFarm');
 		navigation.navigate('AddNewFarm');
 	};
-  useFocusEffect(
-	React.useCallback(() => {
-		const fetchData = async () => {
-			try {
-				const response = await fetch(`${config.baseURL}/farm`);
-				const data = await response.json();
+	useFocusEffect(
+		React.useCallback(() => {
+			const fetchData = async () => {
+				try {
+					const response = await fetch(`${config.baseURL}/farm`);
+					const data = await response.json();
 
-				if (data.status === 'success') {
-          setFarms(data.data);
+					if (data.status === 'success') {
+						setFarms(data.data);
+					}
+				} catch (error) {
+					console.log('Fetch Farm Error');
+					console.error(error);
 				}
-			} catch (error) {
-        console.log("Fetch Farm Error");
-				console.error(error);
-			}
-		};
-    fetchData();
-
-	}, [])
-  );
+			};
+			fetchData();
+		}, [])
+	);
 
 	return (
 		<SafeAreaView>
@@ -83,234 +86,21 @@ const General = () => {
 					/>
 				</View>
 
-				<Button onPress={createFarm}>Create Farm</Button>
-			</ScrollView>
-		</SafeAreaView>
-	);
-	// return (
-	//   <FlatList
-	//     data={data}
-	//     renderItem={renderItem}
-	//     keyExtractor={(item) => item.id.toString()}
-	//     numColumns={2}
-	//   />
-	// );
-	return (
-		<SafeAreaView>
-			<ScrollView>
-				<View style={styles.general}>
-					<Text style={[styles.general1, styles.smfTypo]}>General</Text>
-					<Text style={[styles.smf, styles.smfTypo]}>SMF</Text>
-					<Image
-						style={styles.iconLeaf}
-						resizeMode='stretch'
-						source={require('../assets/-icon-leaf.png')}
-					/>
-					<View style={[styles.rectangleParent, styles.rectangleLayout]}>
-						<View style={[styles.frameChild, styles.frameLayout]} />
-						<Text style={[styles.farm1, styles.mintTypo]}>Farm 1</Text>
-						<TouchableOpacity onPress={() => navigation.navigate('Farm')}>
-							<Image
-								style={styles.icon}
-								contentFit='cover'
-								source={require('../assets/redorganictomatoplantod4xey9600removebgpreview-1.png')}
-							/>
-						</TouchableOpacity>
-					</View>
-
-					<Pressable onPress={() => navigation.navigate('Account')}>
-						<Image
-							style={[styles.avatarIcon, styles.iconPosition]}
-							contentFit='cover'
-							source={require('../assets/avatar.png')}
-						/>
-					</Pressable>
-				</View>
-				{farms.map((farm: Farm) => (
-					<Text key={farm.id}>{farm.name}</Text>
-				))}
-
-				<Button onPress={createFarm}>Create Farm</Button>
-			</ScrollView>
-		</SafeAreaView>
-	);
-
-	return (
-		<SafeAreaView>
-			<ScrollView>
-				<View style={styles.general}>
-					<Text style={[styles.general1, styles.smfTypo]}>General</Text>
-					<Text style={[styles.smf, styles.smfTypo]}>SMF</Text>
-					<Image
-						style={styles.iconLeaf}
-						resizeMode='stretch'
-						source={require('../assets/-icon-leaf.png')}
-					/>
-					<View style={[styles.rectangleParent, styles.rectangleLayout]}>
-						<View style={[styles.frameChild, styles.frameLayout]} />
-						<View style={[styles.frameItem, styles.frameLayout]} />
-						<View style={[styles.frameInner, styles.frameLayout]} />
-						<View style={[styles.rectangleView, styles.frameLayout]} />
-						<Text style={[styles.farm1, styles.mintTypo]}>Farm 1</Text>
-						<TouchableOpacity onPress={() => navigation.navigate('Farm')}>
-							<Image
-								style={styles.icon}
-								contentFit='cover'
-								source={require('../assets/redorganictomatoplantod4xey9600removebgpreview-1.png')}
-							/>
-						</TouchableOpacity>
-						<Image
-							style={[styles.pngwing4Icon, styles.iconPosition]}
-							contentFit='cover'
-							source={require('../assets/pngwing-4.png')}
-						/>
-						<Image
-							style={styles.pngwing3Icon}
-							contentFit='cover'
-							source={require('../assets/pngwing-3.png')}
-						/>
-						<Image
-							style={[styles.pngwing2Icon, styles.iconPosition]}
-							contentFit='cover'
-							source={require('../assets/pngwing-2.png')}
-						/>
-					</View>
-					<View style={[styles.rectangleGroup, styles.rectangleLayout]}>
-						<Text style={[styles.farm1, styles.mintTypo]}>Farm 2</Text>
-						<Image
-							style={styles.redOrganicTomatoPlantOd4xe}
-							contentFit='cover'
-							source={require('../assets/redorganictomatoplantod4xey9600removebgpreview-1.png')}
-						/>
-						<Image
-							style={[styles.pngwing4Icon, styles.iconPosition]}
-							contentFit='cover'
-							source={require('../assets/pngwing-4.png')}
-						/>
-						<Image
-							style={styles.pngwing3Icon}
-							contentFit='cover'
-							source={require('../assets/pngwing-3.png')}
-						/>
-						<Image
-							style={[styles.pngwing2Icon, styles.iconPosition]}
-							contentFit='cover'
-							source={require('../assets/pngwing-2.png')}
-						/>
-					</View>
-					<View style={[styles.rectangleContainer, styles.rectanglePosition]}>
-						<View style={[styles.frameChild, styles.frameLayout]} />
-						<View style={[styles.frameItem, styles.frameLayout]} />
-						<View style={[styles.frameInner, styles.frameLayout]} />
-						<View style={[styles.rectangleView, styles.frameLayout]} />
-						<Text style={[styles.farm1, styles.mintTypo]}>Farm 3</Text>
-
-						<Image
-							style={styles.redOrganicTomatoPlantOd4xe}
-							contentFit='cover'
-							source={require('../assets/redorganictomatoplantod4xey9600removebgpreview-1.png')}
-						/>
-						<Image
-							style={[styles.pngwing4Icon, styles.iconPosition]}
-							contentFit='cover'
-							source={require('../assets/pngwing-4.png')}
-						/>
-						<Image
-							style={styles.pngwing3Icon}
-							contentFit='cover'
-							source={require('../assets/pngwing-3.png')}
-						/>
-						<Image
-							style={[styles.pngwing2Icon, styles.iconPosition]}
-							contentFit='cover'
-							source={require('../assets/pngwing-2.png')}
-						/>
-					</View>
-					<View style={[styles.frameView, styles.frameViewPosition]}>
-						<View style={[styles.frameChild, styles.frameLayout]} />
-						<View style={[styles.frameItem, styles.frameLayout]} />
-						<View style={[styles.frameInner, styles.frameLayout]} />
-						<View style={[styles.rectangleView, styles.frameLayout]} />
-						<Text style={[styles.farm1, styles.mintTypo]}>Farm 5</Text>
-						<Text style={[styles.onion, styles.mintTypo]}>Onion</Text>
-						<Text style={[styles.mint, styles.mintTypo]}>Mint</Text>
-						<Text style={[styles.ginger, styles.mintTypo]}>Ginger</Text>
-						<Image
-							style={styles.redOrganicTomatoPlantOd4xe}
-							contentFit='cover'
-							source={require('../assets/redorganictomatoplantod4xey9600removebgpreview-1.png')}
-						/>
-						<Image
-							style={[styles.pngwing4Icon, styles.iconPosition]}
-							contentFit='cover'
-							source={require('../assets/pngwing-4.png')}
-						/>
-						<Image
-							style={styles.pngwing3Icon}
-							contentFit='cover'
-							source={require('../assets/pngwing-3.png')}
-						/>
-						<Image
-							style={[styles.pngwing2Icon, styles.iconPosition]}
-							contentFit='cover'
-							source={require('../assets/pngwing-2.png')}
-						/>
-					</View>
-					<View style={[styles.rectangleParent1, styles.frameViewPosition]}>
-						<Text style={[styles.farm1, styles.mintTypo]}>Farm 6</Text>
-						<Image
-							style={styles.redOrganicTomatoPlantOd4xe}
-							contentFit='cover'
-							source={require('../assets/redorganictomatoplantod4xey9600removebgpreview-1.png')}
-						/>
-						<Image
-							style={[styles.pngwing4Icon, styles.iconPosition]}
-							contentFit='cover'
-							source={require('../assets/pngwing-4.png')}
-						/>
-						<Image
-							style={styles.pngwing3Icon}
-							contentFit='cover'
-							source={require('../assets/pngwing-3.png')}
-						/>
-						<Image
-							style={[styles.pngwing2Icon, styles.iconPosition]}
-							contentFit='cover'
-							source={require('../assets/pngwing-2.png')}
-						/>
-					</View>
-					<View style={[styles.rectangleParent2, styles.rectanglePosition]}>
-						<Text style={[styles.farm1, styles.mintTypo]}>Farm 4</Text>
-						<Image
-							style={styles.redOrganicTomatoPlantOd4xe}
-							contentFit='cover'
-							source={require('../assets/redorganictomatoplantod4xey9600removebgpreview-1.png')}
-						/>
-						<Image
-							style={[styles.pngwing4Icon, styles.iconPosition]}
-							contentFit='cover'
-							source={require('../assets/pngwing-4.png')}
-						/>
-						<Image
-							style={styles.pngwing3Icon}
-							contentFit='cover'
-							source={require('../assets/pngwing-3.png')}
-						/>
-						<Image
-							style={[styles.pngwing2Icon, styles.iconPosition]}
-							contentFit='cover'
-							source={require('../assets/pngwing-2.png')}
-						/>
-					</View>
-
-					<Pressable onPress={() => navigation.navigate('Account')}>
-						<Image
-							style={[styles.avatarIcon, styles.iconPosition]}
-							contentFit='cover'
-							source={require('../assets/avatar.png')}
-						/>
-					</Pressable>
-				</View>
+				{/* <Button onPress={createFarm}>Create Farm</Button>
+				 */}
+				<Button
+					onPress={createFarm}
+					style={{
+						borderColor: '#FFFFFF', // Change the border color
+						borderWidth: 1, // Set border width
+						borderRadius: 5, // Add border radius to make the button rounder
+						alignItems: 'center', // Center the text
+						// color:'#FFFFFF' // Change the text color
+						backgroundColor: 'lightgray', //
+					}}
+				>
+					Create Farm
+				</Button>
 			</ScrollView>
 		</SafeAreaView>
 	);

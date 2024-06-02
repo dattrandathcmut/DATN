@@ -345,7 +345,7 @@ const styles = StyleSheet.create({
   smf: {
     marginLeft: -38,
     top: 46,
-    left: "50%",
+    left: "54%",
     fontSize: FontSize.size_5xl,
     color: Color.colorGray_500,
     width: 91,

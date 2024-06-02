@@ -22,7 +22,7 @@ const AddNewFarm = () => {
 	const createFarm = () => {
 		console.log(name);
 		const requestBody = JSON.stringify({
-			farm_name: name,
+			name: name,
 			user_id: 5,
 		});
 		console.log('Request Body:', requestBody);
@@ -37,10 +37,12 @@ const AddNewFarm = () => {
 			.then((response) => response.json())
 			.then((data) => {
 				if (data.status === 'success') {
-					alert('Farm created: ' + JSON.stringify(data));
+					alert('Farm created');3
+					navigation.navigate('General');
 				} else {
-					alert('Failed to create farm: ' + JSON.stringify(data));
+					alert('Failed to create farm');
 				}
+
 			})
 			.catch((error) => console.error('Error:', error));
 	};

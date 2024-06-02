@@ -34,6 +34,8 @@ const history = () => {
 					const data = await response.json();
 
 					if (data.status === 'success') {
+						// let date = new Date(item.ts);
+						// let formattedDate = `${date.getHours()}:${date.getMinutes()} ${date.getDate()}/${date.getMonth() + 1}`;
 						setMaxPage(Math.ceil(data.result / itemsPerPage) - 1);
 						const newData = data.data.map(
 							(item: {
@@ -42,12 +44,24 @@ const history = () => {
 								temperature: number;
 								humidity: number;
 								ts: string;
-							}) => [
-								item.id.toString(),
+							}, index: Number) => [
+								index.toString(),
 								item.soilMoisture.toString(),
 								item.temperature.toString(),
 								item.humidity.toString(),
-								new Date(item.ts).toLocaleTimeString(),
+								<Text style={styles.timestamp}>
+									<Text>
+										{new Date(item.ts).getHours() +
+											':' +
+											new Date(item.ts).getMinutes()}
+									</Text>
+									<Text style={styles.dateTimestamp}>
+										{'  ' + new Date(item.ts).getDate() +
+											'/' +
+											(new Date(item.ts).getMonth() + 1)}
+									</Text>
+								</Text>,
+								// new Date(item.ts).getHours() + ':' + new Date(item.ts).getMinutes() + ' ' + new Date(item.ts).getDate() + '/' + (new Date(item.ts).getMonth() + 1),
 							]
 						);
 
@@ -108,14 +122,6 @@ const history = () => {
 								widthArr={widthArr}
 							/>
 						</Table>
-						{/* <TouchableOpacity
-							style={styles.showMoreButton}
-							onPress={() => setShowMore(!showMore)}
-						>
-							<Text style={styles.showMoreText}>
-								{showMore ? 'Show Less' : 'Show More'}
-							</Text>
-						</TouchableOpacity> */}
 						<View style={styles.paginationContainer}>
 							<TouchableOpacity
 								style={[
@@ -294,6 +300,13 @@ const styles = StyleSheet.create({
 	},
 	disabledText: {
 		backgroundColor: 'gray',
+	},
+	timestamp: {
+		marginLeft: 5,
+	},
+	dateTimestamp: {
+		fontWeight: 'bold',
+		color: Color.colorGray_200,
 	},
 });
 

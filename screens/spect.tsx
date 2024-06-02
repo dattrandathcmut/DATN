@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
 import { Image } from 'expo-image';
 import { Button } from 'react-native-paper';
-import { RNCamera } from 'react-native-camera';
+// import { RNCamera } from 'react-native-camera';
 import { Color, FontFamily, Border, FontSize } from '../GlobalStyles';
 import { ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -45,10 +45,22 @@ const spect = () => {
 								id: number;
 								disease_type: string;
 								capture_date: string;
-							}) => [
-								item.id.toString(),
+							}, index: Number) => [
+								index.toString(),
 								item.disease_type,
-								new Date(item.capture_date).toLocaleTimeString(),
+								<Text style={styles.timestamp}>
+									<Text>
+										{new Date(item.capture_date).getHours() +
+											':' +
+											new Date(item.capture_date).getMinutes()}
+									</Text>
+									<Text style={styles.dateTimestamp}>
+										{'  ' + new Date(item.capture_date).getDate() +
+											'/' +
+											(new Date(item.capture_date).getMonth() + 1)}
+									</Text>
+								</Text>,
+								// new Date(item.capture_date).toLocaleTimeString(),
 							]
 						);
 
@@ -298,6 +310,13 @@ const styles = StyleSheet.create({
 	},
 	disabledText: {
 		backgroundColor: 'gray',
+	},
+	timestamp: {
+		marginLeft: 5,
+	},
+	dateTimestamp: {
+		fontWeight: 'bold',
+		color: Color.colorGray_200,
 	},
 });
 

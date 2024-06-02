@@ -3,13 +3,18 @@ import { Text, StyleSheet, View, Pressable, Dimensions } from 'react-native';
 import { Image } from 'expo-image';
 import { Button } from 'react-native-paper';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { useNavigation, ParamListBase } from '@react-navigation/native';
+import {
+	useNavigation,
+	ParamListBase,
+	useFocusEffect,
+} from '@react-navigation/native';
 import { FontFamily, Color, Border, FontSize } from '../GlobalStyles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView } from 'react-native';
 import { useState } from 'react';
 import { Switch } from 'react-native';
-import {config} from '../components/config';
+import { config } from '../components/config';
+
 const WaterPump = () => {
 	const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 	const [isEnabled, setIsEnabled] = useState(false);
@@ -18,22 +23,43 @@ const WaterPump = () => {
 	const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 	const toggleSwitch1 = () => setIsEnabled1((previousState) => !previousState);
 	const toggleSwitch2 = () => setIsEnabled2((previousState) => !previousState);
-	
+	const [pumps, setPumps] = useState([]);
+
+	useFocusEffect(
+		React.useCallback(() => {
+			fetch(`${config.baseURL}/pump`)
+				.then((response) => response.json())
+				.then((data) => {
+					console.log(data);
+					setPumps(data.data);
+				})
+				.catch((error) => console.error('Error:', error));
+		}, [])
+	);
+
 	const postMessage = (isEnabled: boolean) => {
-		console.log("postMessage called pump")
+		const requestBody = JSON.stringify({
+			message: `Farm 1 - Pump turned ${isEnabled ? 'on' : 'off'}`,
+		});
+		console.log('Request Body:', requestBody);
+
 		fetch(`${config.baseURL}/nof`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({
-				message: `Pump turned ${isEnabled ? 'on' : 'off'}`,
-			}),
+			body: requestBody,
 		})
 			.then((response) => response.json())
 			.then((data) => console.log(data))
 			.catch((error) => console.error('Error:', error));
 	};
+	// const toggleSwitch = (pumpName: string) => {
+	// 	if (pumpName === 'P.1') {
+	// 		setIsEnabled((previousState) => !previousState);
+	// 	}
+	// };
+
 	React.useEffect(() => {
 		if (isEnabled) {
 			fetch(
@@ -53,7 +79,7 @@ const WaterPump = () => {
 				.catch((error) => {
 					console.error('Error:', error);
 				});
-				postMessage(isEnabled);
+			postMessage(isEnabled);
 		} else {
 			fetch(
 				'https://demo.thingsboard.io/api/plugins/telemetry/DEVICE/4c2fe410-cd78-11ed-9b15-dd2dac50548f/SHARED_SCOPE',
@@ -72,10 +98,8 @@ const WaterPump = () => {
 				.catch((error) => {
 					console.error('Error:', error);
 				});
-				postMessage(isEnabled);
-
+			postMessage(isEnabled);
 		}
-		
 	}, [isEnabled]);
 
 	return (
@@ -93,7 +117,49 @@ const WaterPump = () => {
 				<Pressable onPress={() => navigation.navigate('Farm')}>
 					<Text style={[styles.back, styles.smfTypo]}>BACK</Text>
 				</Pressable>
-				<View style={[styles.waterPumpChild, styles.waterPosition]} />
+
+				{pumps.map((pump, index) => (
+					<>
+						<View
+							style={[
+								styles.waterPumpItem,
+								styles.waterPosition,
+								{ marginTop: index * 50 },
+							]}
+						>
+							<Text style={styles.p2}>{pump.name}</Text>
+						</View>
+						<View
+							style={[
+								styles.dSwitch,
+								styles.switchLayout,
+								{ marginTop: index * 50 },
+							]}
+						>
+							{index === 0 && (
+								<View style={styles.switchBody1}>
+									<View style={styles.switchPosition1}>
+										<Switch
+											style={[
+												styles.switchBody2,
+												styles.switchPosition,
+												{
+													backgroundColor: isEnabled ? Color.s : Color.s,
+													borderRadius: 50,
+												},
+												{ transform: [{ scaleX: 1 }, { scaleY: 1 }] },
+											]}
+											onValueChange={toggleSwitch}
+											value={isEnabled}
+										/>
+									</View>
+								</View>
+							)}
+						</View>
+					</>
+				))}
+
+				{/* <View style={[styles.waterPumpChild, styles.waterPosition]} />
 				<View style={[styles.waterPumpItem, styles.waterPosition]}>
 					<Text style={styles.p2}>P.1</Text>
 				</View>
@@ -115,9 +181,8 @@ const WaterPump = () => {
 							/>
 						</View>
 					</View>
-				</View>
-				{/* <Text style={[styles.p1, styles.p1Typo]}>P.1</Text> */}
-				<View style={[styles.waterPumpInner, styles.rectangleViewPosition]} />
+				</View> */}
+				{/* <View style={[styles.waterPumpInner, styles.rectangleViewPosition]} />
 				<View style={[styles.rectangleView, styles.rectangleViewPosition]}>
 					<Text style={styles.p2}>P.2</Text>
 				</View>
@@ -139,9 +204,9 @@ const WaterPump = () => {
 							/>
 						</View>
 					</View>
-				</View>
+				</View> */}
 
-				<View style={[styles.waterPumpChild1, styles.waterChildPosition]} />
+				{/* <View style={[styles.waterPumpChild1, styles.waterChildPosition]} />
 				<View style={[styles.waterPumpChild2, styles.waterChildPosition]}>
 					<Text style={styles.p2}>P.3</Text>
 				</View>
@@ -163,7 +228,7 @@ const WaterPump = () => {
 							/>
 						</View>
 					</View>
-				</View>
+				</View> */}
 				<Button
 					style={styles.rectangleButton}
 					mode='outlined'
@@ -272,13 +337,13 @@ const styles = StyleSheet.create({
 	// 	position: 'absolute',
 	// },
 	rectangleViewPosition: {
-		top: 259,
+		// top: 259,
 		height: 41,
 		backgroundColor: Color.colorGray_500,
 		borderRadius: Border.br_11xl,
 		marginLeft: -165,
 		left: '50%',
-		position: 'absolute',
+		// position: 'absolute',
 	},
 	waterChildPosition: {
 		top: 314,
