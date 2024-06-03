@@ -17,13 +17,38 @@ import { config } from '../components/config';
 
 const WaterPump = () => {
 	const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
-	const [isEnabled, setIsEnabled] = useState(false);
+	// const [isEnabled, setIsEnabled] = useState(false);
 	const [isEnabled1, setIsEnabled1] = useState(false);
 	const [isEnabled2, setIsEnabled2] = useState(false);
-	const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
+	// const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 	const toggleSwitch1 = () => setIsEnabled1((previousState) => !previousState);
 	const toggleSwitch2 = () => setIsEnabled2((previousState) => !previousState);
 	const [pumps, setPumps] = useState([]);
+
+	// const toggleSwitch = (index: Number) => {
+	// 	console.log(index);
+	// 	if (index === 0) {
+	// 	  setIsEnabled((previousState) => !previousState);
+	// 	}
+	// };
+
+	const [isEnabled, setIsEnabled] = useState(pumps.map(() => false)); // Update the type of isEnabled to be an array of booleans
+	const toggleSwitch = (index: number) => {
+		setIsEnabled(
+			isEnabled.map((value, i) => {
+				// console.log('This is i');
+				// console.log(i);
+				// console.log('This is index');
+				// console.log(index);
+				if (index === i) {
+					return !value;
+				} else {
+					return value;
+				}
+			})
+		);
+		// console.log('HIHIHI');
+	};
 
 	useFocusEffect(
 		React.useCallback(() => {
@@ -32,12 +57,17 @@ const WaterPump = () => {
 				.then((data) => {
 					console.log(data);
 					setPumps(data.data);
+					setIsEnabled(pumps.map(() => false));
+					console.log('In forcus effet');
+					console.log(isEnabled);
 				})
 				.catch((error) => console.error('Error:', error));
 		}, [])
 	);
 
 	const postMessage = (isEnabled: boolean) => {
+		// console.log('Is Enabled:', isEnabled[0]);
+
 		const requestBody = JSON.stringify({
 			message: `Farm 1 - Pump turned ${isEnabled ? 'on' : 'off'}`,
 		});
@@ -52,16 +82,11 @@ const WaterPump = () => {
 		})
 			.then((response) => response.json())
 			.then((data) => console.log(data))
-			.catch((error) => console.error('Error:', error));
+			.catch((error) => console.error('Error when send message:', error));
 	};
-	// const toggleSwitch = (pumpName: string) => {
-	// 	if (pumpName === 'P.1') {
-	// 		setIsEnabled((previousState) => !previousState);
-	// 	}
-	// };
 
 	React.useEffect(() => {
-		if (isEnabled) {
+		if (isEnabled[0]) {
 			fetch(
 				'https://demo.thingsboard.io/api/plugins/telemetry/DEVICE/4c2fe410-cd78-11ed-9b15-dd2dac50548f/SHARED_SCOPE',
 				{
@@ -74,12 +99,16 @@ const WaterPump = () => {
 					body: JSON.stringify({ PUMP: 'ON' }),
 				}
 			)
-				.then((response) => response.json())
-				.then((data) => console.log(data))
+				.then((response) => {
+					if (!response.ok) {
+						throw new Error(`HTTP error! status: ${response.status}`);
+					}
+					return response.text();
+				})
 				.catch((error) => {
-					console.error('Error:', error);
+					console.error('Error when turn on:', error);
 				});
-			postMessage(isEnabled);
+			postMessage(isEnabled[0]);
 		} else {
 			fetch(
 				'https://demo.thingsboard.io/api/plugins/telemetry/DEVICE/4c2fe410-cd78-11ed-9b15-dd2dac50548f/SHARED_SCOPE',
@@ -93,12 +122,17 @@ const WaterPump = () => {
 					body: JSON.stringify({ PUMP: 'OFF' }),
 				}
 			)
-				.then((response) => response.json())
-				.then((data) => console.log(data))
+				.then((response) => {
+					if (!response.ok) {
+						throw new Error(`HTTP error! status: ${response.status}`);
+					}
+					return response.text();
+				})
+				// .then((data) => console.log(data))
 				.catch((error) => {
-					console.error('Error:', error);
+					console.error('Error when turn off:', error);
 				});
-			postMessage(isEnabled);
+			postMessage(isEnabled[0]);
 		}
 	}, [isEnabled]);
 
@@ -126,6 +160,7 @@ const WaterPump = () => {
 								styles.waterPosition,
 								{ marginTop: index * 50 },
 							]}
+							key={index}
 						>
 							<Text style={styles.p2}>{pump.name}</Text>
 						</View>
@@ -136,99 +171,29 @@ const WaterPump = () => {
 								{ marginTop: index * 50 },
 							]}
 						>
-							{index === 0 && (
-								<View style={styles.switchBody1}>
-									<View style={styles.switchPosition1}>
-										<Switch
-											style={[
-												styles.switchBody2,
-												styles.switchPosition,
-												{
-													backgroundColor: isEnabled ? Color.s : Color.s,
-													borderRadius: 50,
-												},
-												{ transform: [{ scaleX: 1 }, { scaleY: 1 }] },
-											]}
-											onValueChange={toggleSwitch}
-											value={isEnabled}
-										/>
-									</View>
+							{/* {index === 0 && ( */}
+							<View style={styles.switchBody1}>
+								<View style={styles.switchPosition1}>
+									<Switch
+										style={[
+											styles.switchBody2,
+											styles.switchPosition,
+											{
+												backgroundColor: isEnabled[index] ? Color.s : Color.s,
+												borderRadius: 50,
+											},
+											{ transform: [{ scaleX: 1 }, { scaleY: 1 }] },
+										]}
+										onValueChange={() => toggleSwitch(index)}
+										value={isEnabled[index]}
+									/>
 								</View>
-							)}
+							</View>
+							{/* )} */}
 						</View>
 					</>
 				))}
 
-				{/* <View style={[styles.waterPumpChild, styles.waterPosition]} />
-				<View style={[styles.waterPumpItem, styles.waterPosition]}>
-					<Text style={styles.p2}>P.1</Text>
-				</View>
-				<View style={[styles.dSwitch, styles.switchLayout]}>
-					<View style={styles.switchBody1}>
-						<View style={[styles.switchPosition1]}>
-							<Switch
-								style={[
-									styles.switchBody2,
-									styles.switchPosition,
-									{
-										backgroundColor: isEnabled ? Color.s : Color.s,
-										borderRadius: 50,
-									},
-									{ transform: [{ scaleX: 1 }, { scaleY: 1 }] },
-								]}
-								onValueChange={toggleSwitch}
-								value={isEnabled}
-							/>
-						</View>
-					</View>
-				</View> */}
-				{/* <View style={[styles.waterPumpInner, styles.rectangleViewPosition]} />
-				<View style={[styles.rectangleView, styles.rectangleViewPosition]}>
-					<Text style={styles.p2}>P.2</Text>
-				</View>
-				<View style={[styles.dSwitch1, styles.switchLayout]}>
-					<View style={styles.switchBody1}>
-						<View style={[styles.switchPosition1]}>
-							<Switch
-								style={[
-									styles.switchBody2,
-									styles.switchPosition,
-									{
-										backgroundColor: isEnabled1 ? Color.s : Color.s,
-										borderRadius: 20,
-									},
-									{ transform: [{ scaleX: 1 }, { scaleY: 1 }] },
-								]}
-								onValueChange={toggleSwitch1}
-								value={isEnabled1}
-							/>
-						</View>
-					</View>
-				</View> */}
-
-				{/* <View style={[styles.waterPumpChild1, styles.waterChildPosition]} />
-				<View style={[styles.waterPumpChild2, styles.waterChildPosition]}>
-					<Text style={styles.p2}>P.3</Text>
-				</View>
-				<View style={[styles.dSwitch2, styles.switchLayout]}>
-					<View style={styles.switchBody1}>
-						<View style={[styles.switchPosition1]}>
-							<Switch
-								style={[
-									styles.switchBody2,
-									styles.switchPosition,
-									{
-										backgroundColor: isEnabled2 ? Color.s : Color.s,
-										borderRadius: 20,
-									},
-									{ transform: [{ scaleX: 1 }, { scaleY: 1 }] },
-								]}
-								onValueChange={toggleSwitch2}
-								value={isEnabled2}
-							/>
-						</View>
-					</View>
-				</View> */}
 				<Button
 					style={styles.rectangleButton}
 					mode='outlined'

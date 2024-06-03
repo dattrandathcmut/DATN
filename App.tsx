@@ -15,6 +15,7 @@ import SMF from './screens/SMF';
 import ForgotPassword1 from './screens/ForgotPassword1';
 import Notification from './screens/Notification';
 import AddNewFarm from './screens/AddNewFarm';
+import InfoDisease from './screens/InfoDisease';
 import spect from './screens/spect';
 import { LogBox } from 'react-native';
 import history from './screens/historyHud';
@@ -108,6 +109,11 @@ const App = () => {
 						<Stack.Screen
 							name='history'
 							component={history}
+							options={{ headerShown: false }}
+						/>
+						<Stack.Screen
+							name='InfoDisease'
+							component={InfoDisease}
 							options={{ headerShown: false }}
 						/>
 					</Stack.Navigator>

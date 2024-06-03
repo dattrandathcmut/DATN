@@ -16,6 +16,7 @@ import { ScrollView } from "react-native";
 import { TouchableOpacity } from 'react-native';
 import { TextInput } from "react-native";
 import { useEffect, useState } from "react";
+import { config } from '../components/config';
 
 const Account = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
@@ -23,6 +24,8 @@ const Account = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [buttonColor, setButtonColor] = useState('#939896');
+  const [notifications, setNotifications] = React.useState([]);
+	const [size, setSize] = React.useState(0);
   useEffect(() => {
     setIsButtonDisabled(!password || !confirmPassword);
     if (password && confirmPassword) {
@@ -31,9 +34,7 @@ const Account = () => {
       setButtonColor('#939896'); // Trở lại màu mặc định nếu một trong hai ô password còn trống
     }
   }, [password, confirmPassword]);
-  useEffect(() => {
-    console.log("Hello");
-  }, []);
+  
 
   const handlePasswordChange = (text: string) => {
     setPassword(text);
@@ -55,6 +56,16 @@ const Account = () => {
     console.log('Password:', password);
     console.log('Confirm Password:', confirmPassword);
   };
+
+  React.useEffect(() => {
+		fetch(`${config.baseURL}/nof`)
+			.then((response) => response.json())
+			.then((data) => {
+				setSize(data.result);
+				setNotifications(data.data);
+			})
+			.catch((error) => console.error('Error:', error));
+	}, []);
   return (
     <SafeAreaView style={styles.account}>
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -111,7 +122,7 @@ const Account = () => {
                 </View>
                 <View style={styles.counterLayout}>
                   <View style={[styles.round, styles.textFlexBox]}>
-                    <Text style={[styles.text, styles.textFlexBox]}>12</Text>
+                    <Text style={[styles.text, styles.textFlexBox]}>{size}</Text>
                   </View>
                 </View>
                 <Image
@@ -142,11 +153,11 @@ const Account = () => {
                   <Text style={[styles.label5, styles.labelTypo]}>Label</Text>
                 </View>
               </View>
-              <View style={[styles.counter1, styles.counterLayout]}>
+              {/* <View style={[styles.counter1, styles.counterLayout]}>
                 <View style={[styles.round, styles.textFlexBox]}>
-                  <Text style={[styles.text, styles.textFlexBox]}>12</Text>
+                  <Text style={[styles.text, styles.textFlexBox]}></Text>
                 </View>
-              </View>
+              </View> */}
             </View>
             <View style={styles.frameInner1}>
               <View style={styles.frameParentLayout}>

@@ -19,6 +19,7 @@ import { config } from '../components/config';
 const Notification = () => {
 	const [notifications, setNotifications] = React.useState([]);
 	const [size, setSize] = React.useState(0);
+
 	const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 	React.useEffect(() => {
 		fetch(`${config.baseURL}/nof`)
