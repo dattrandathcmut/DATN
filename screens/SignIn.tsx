@@ -37,7 +37,7 @@ const SignIn = () => {
 			// Add your own validation logic here
 			try {
 				const requestBody = {
-					email: username,
+					username: username,
 					password: password,
 				};
 				const response = await fetch(`${config.baseURL}/login`, {
