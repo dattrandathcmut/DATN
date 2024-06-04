@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, StyleSheet, View, Pressable, Dimensions } from 'react-native';
+import { Text, StyleSheet, View, Pressable, Dimensions, TextInput } from 'react-native';
 import { Image } from 'expo-image';
 import { Button } from 'react-native-paper';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -193,6 +193,39 @@ const WaterPump = () => {
 						</View>
 					</>
 				))}
+				<View style={styles.rectangleButton1}>
+					<Text style={{ marginTop: 28, marginLeft: 10, fontSize: 24, }}>Auto</Text>
+					<Switch
+						style={styles.switchBody8}
+						onValueChange={toggleSwitch1}
+						value={isEnabled1}
+					/>
+				</View>
+				<View style={styles.rectangleButton2}>
+					<View style={styles.inputContainer}>
+						<TextInput
+							placeholder="Start Time"
+							style={styles.input}
+						/>
+					</View>
+					<View style={styles.inputContainer}>
+						<TextInput
+							placeholder="Duration (HH:MM)"
+							style={styles.input}
+						/>
+					</View>
+					<View style={styles.startButtonContainer}>
+						<Button
+							title="Start"
+							onPress={() => console.log('Start button pressed')}
+							background={Color.colorLimegreen_100}
+						>
+							Start
+						</Button>
+					</View>
+
+				</View>
+
 
 				<Button
 					style={styles.rectangleButton}
@@ -309,6 +342,21 @@ const styles = StyleSheet.create({
 		marginLeft: -165,
 		left: '50%',
 		// position: 'absolute',
+	},
+	startButtonContainer: {
+		position: 'absolute',
+		bottom: -1,
+		right: -1, // Position at the bottom right
+		width: 57, // Adjust width as needed
+		height: 56, // Adjust height as needed
+		borderWidth: 6,
+		borderColor: 'limegreen',
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: 'limegreen',
+		borderTopRightRadius : 15,
+		borderBottomRightRadius : 15,
+
 	},
 	waterChildPosition: {
 		top: 314,
@@ -427,7 +475,10 @@ const styles = StyleSheet.create({
 		left: 30,
 	},
 	switchBody8: {
-		backgroundColor: Color.switchGreen,
+		// backgroundColor: Color.switchGreen,
+		left: (Dimensions.get('window').width + 150) / 2,
+		bottom: 28,
+
 	},
 	switchIcon2: {
 		left: 38,
@@ -460,6 +511,43 @@ const styles = StyleSheet.create({
 		borderColor: Color.colorLimegreen_100,
 		borderWidth: 3,
 		justifyContent: 'center',
+	},
+	rectangleButton1: {
+		position: 'absolute',
+		bottom: 300, // Đặt nút ở phía dưới cùng màn hình, với khoảng cách 20px từ bottom
+		left: (Dimensions.get('window').width - 360) / 2, // Căn giữa nút
+		width: 360, // Độ rộng của nút
+		height: 60, // Độ cao của nút
+		borderStyle: 'solid',
+		borderColor: Color.colorLimegreen_200,
+		borderWidth: 3,
+		justifyContent: 'center',
+		borderRadius: 15,
+	},
+	rectangleButton2: {
+		position: 'absolute',
+		bottom: 200, // Đặt nút ở phía dưới cùng màn hình, với khoảng cách 20px từ bottom
+		left: (Dimensions.get('window').width - 360) / 2, // Căn giữa nút
+		width: 360, // Độ rộng của nút
+		height: 60, // Độ cao của nút
+		borderStyle: 'solid',
+		borderColor: Color.colorLimegreen_200,
+		borderWidth: 3,
+		justifyContent: 'center',
+		borderRadius: 15,
+	},
+	inputContainer: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+		paddingRight: 40,
+	},
+	input: {
+		fontSize: 18,
+		borderWidth: 1,
+		borderColor: 'gray',
+		padding: 10,
+		width: '90%',
 	},
 	addNewWater: {
 		top: 585,
