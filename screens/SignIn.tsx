@@ -6,29 +6,76 @@ import {
 	Pressable,
 	View,
 	ImageBackground,
+	ActivityIndicator,
 } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation, ParamListBase } from '@react-navigation/native';
 import { Color, Border, FontFamily, FontSize } from '../GlobalStyles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScrollView, TextInput } from 'react-native';
+import { config } from '../components/config';
 
 const SignIn = () => {
 	const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
 	const [username, setUsername] = React.useState('');
 	const [password, setPassword] = React.useState('');
+	const [isLoading, setIsLoading] = React.useState(false);
 
-	const handlePress = () => {
+	// const handlePress = () => {
+	// 	if (username !== '' && password !== '') {
+	// 		// Add your own validation logic here
+	// 		navigation.navigate('General');
+	// 	} else {
+	// 		// Handle the case when the username or password doesn't meet your requirements
+	// 		alert('Please enter a valid username and password');
+	// 	}
+	// };
+	const handlePress = async () => {
+		setIsLoading(true);
 		if (username !== '' && password !== '') {
 			// Add your own validation logic here
-			navigation.navigate('General');
+			try {
+				const requestBody = {
+					email: username,
+					password: password,
+				};
+				const response = await fetch(`${config.baseURL}/login`, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(requestBody),
+				});
+
+				if (!response.ok) {
+					throw new Error('Response was not ok');
+				}
+
+				const data = await response.json();
+
+				// Save the token (you might want to use something like AsyncStorage for this)
+				const token = data.token;
+
+				// Navigate to the next screen
+				navigation.navigate('General');
+			} catch (error) {
+				// Handle the error
+				alert('Failed to log in');
+			}
 		} else {
 			// Handle the case when the username or password doesn't meet your requirements
 			alert('Please enter a valid username and password');
 		}
+		setIsLoading(false); // Hide loading screen
 	};
-
+	if (isLoading) {
+		return (
+			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+				<ActivityIndicator size='large' color='#0000ff' />
+			</View>
+		);
+	}
 	return (
 		<ScrollView>
 			<ImageBackground
@@ -67,6 +114,7 @@ const SignIn = () => {
 				<TextInput
 					style={[styles.rectangleView, styles.signInInnerLayout]}
 					onChangeText={setPassword}
+					secureTextEntry
 				/>
 				<Text style={[styles.US, styles.logInTypo]}>User name</Text>
 				<Text style={[styles.PS, styles.logInTypo]}>Password</Text>

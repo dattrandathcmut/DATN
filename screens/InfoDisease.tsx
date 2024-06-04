@@ -1,5 +1,18 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList, ScrollView } from 'react-native';
+import {
+	View,
+	Text,
+	StyleSheet,
+	FlatList,
+	ScrollView,
+	ActivityIndicator,
+    TouchableOpacity,
+} from 'react-native';
+import { Color, FontFamily, Border, FontSize } from '../GlobalStyles';
+import { Image } from 'expo-image';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { ParamListBase } from '@react-navigation/native';
 import { config } from '../components/config';
 
 // const jsonData = {
@@ -21,16 +34,16 @@ const parseContent = (content) => {
 
 const fetchDiseaseInfo = async (diseaseName) => {
 	const requests = [
+		// {
+		// 	bot_id: '7376211399645036562',
+		// 	user: '29032201862555',
+		// 	query: `Cây cà chua tôi bị bệnh ${diseaseName}, liệt kê cho tôi nhiều cách nhất có thể(nhiều hơn 3 cách) để chữa bệnh?`,
+		// 	stream: false,
+		// },
 		{
 			bot_id: '7376211399645036562',
 			user: '29032201862555',
-			query: `Cây cà chua tôi bị bệnh ${diseaseName}, liệt kê cho tôi nhiều cách nhất có thể(nhiều hơn 3 cách) để chữa bệnh?`,
-			stream: false,
-		},
-		{
-			bot_id: '7376211399645036562',
-			user: '29032201862555',
-			query: `Cây cà chua tôi bị bệnh ${diseaseName}, giới thiệu bệnh đó cho tôi?`,
+			query: `Cây cà chua tôi bị bệnh ${diseaseName}, giới thiệu bệnh đó và liệt kê nhiều cách nhất có thể(nhiều hơn 3 cách) để chữa bệnh cho tôi?`,
 			stream: false,
 		},
 		// {
@@ -72,35 +85,91 @@ const fetchDiseaseInfo = async (diseaseName) => {
 };
 const InfoDisease = ({ route }: { route: any }) => {
 	const [contentData, setContentData] = React.useState([]);
+	// const [introData, setIntroData] = React.useState([]);
+	const [isLoading, setIsLoading] = React.useState(true);
+	const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
 	const { resultClass } = route.params;
 	console.log(resultClass);
 
+	// React.useEffect(() => {
+	// 	console.log('Bat dau chay');
+	// 	fetchDiseaseInfo(resultClass).then((data) =>
+	// 		setContentData(data.map(parseContent)[0])
+	// 	);
+	// 	console.log('Ket qua');
+	// 	console.log(contentData);
+	// }, [resultClass]);
+
 	React.useEffect(() => {
-        console.log('Bat dau chay');
-		fetchDiseaseInfo(resultClass).then((data) =>
-			setContentData(data.map(parseContent)[0])
-		);
-		console.log('Ket qua');
-		console.log(contentData);
+		fetchDiseaseInfo(resultClass)
+			.then((data) => {
+				console.log(data);
+				setContentData(data.map(parseContent)[0]);
+				// setIntroData(data.map(parseContent)[1]);
+				setIsLoading(false);
+			})
+			.catch((error) => {
+				console.error(error);
+				setIsLoading(false);
+			});
 	}, [resultClass]);
+
+	if (isLoading) {
+		return (
+			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+				<ActivityIndicator size='large' color='#0000ff' />
+			</View>
+		);
+	}
+
 	return (
 		<ScrollView style={styles.container}>
+			<Text style={[styles.his, styles.farm2FlexBox]}>{resultClass}</Text>
+			<Text style={[styles.smf, styles.smfTypo1]}>SMF</Text>
+			<Image
+				style={styles.iconLeaf}
+				resizeMode='stretch'
+				source={require('../assets/-icon-leaf.png')}
+			/>
+			<TouchableOpacity style={styles.back} onPress={() => navigation.goBack()}>
+				<Text style={styles.back1}>BACK</Text>
+			</TouchableOpacity>
+
 			<Text style={styles.itemText}>
 				Giới thiệu về {resultClass} trong cà chua
 			</Text>
-
-			
-			{/* <Text style={styles.itemText}>Nguyên nhân gây ra {resultClass}</Text> */}
-			<Text style={styles.itemText}>Cách điều trị {resultClass}</Text>
-            <FlatList
-				data={contentData}
+			{/* <Text style={styles.itemText}>
+				Giới thiệu về {resultClass} trong cà chua
+			</Text>
+			<FlatList
+				data={introData}
 				renderItem={({ item }) => (
 					<Text style={styles.itemText}>
 						{item.text.includes('**')
 							? item.text.split('**').map((part, index) =>
 									index % 2 === 1 ? (
 										<Text key={index} style={styles.bold}>
+											{part.split('\n')[0]}
+										</Text>
+									) : (
+										part.split('\n')[0]
+									)
+								)
+							: item.text.split('\n')[0]}
+					</Text>
+				)}
+			/>
+			<Text style={styles.itemText}>Cách điều trị {resultClass}</Text> */}
+
+			<FlatList
+				data={contentData}
+				renderItem={({ item }) => (
+					<Text style={[styles.itemText]}>
+						{item.text.includes('**')
+							? item.text.split('**').map((part, index) =>
+									index % 2 === 1 ? (
+										<Text key={index} style={[styles.bold]}>
 											{part}
 										</Text>
 									) : (
@@ -120,14 +189,60 @@ const styles = StyleSheet.create({
 		flex: 1,
 		marginTop: 20,
 		padding: 5,
+        marginBottom: 20,
+		height: 4000,
 		backgroundColor: '#fff',
 	},
 	itemText: {
 		fontSize: 16,
-		// marginBottom: 8,
+		top: 150,
+		marginBottom: 8,
 	},
 	bold: {
 		fontWeight: 'bold',
+	},
+	his: {
+		top: 115,
+		left: '35%',
+		fontFamily: FontFamily.kronaOne,
+		width: 171,
+		fontSize: FontSize.size_5xl,
+		textAlign: 'left',
+		position: 'absolute',
+		textDecorationColor: Color.colorLimegreen_100,
+	},
+	smf: {
+		alignItems: 'center',
+		justifyContent: 'center',
+		top: 70,
+		left: '46%',
+		fontFamily: FontFamily.michroma,
+		color: Color.colorGray_500,
+		width: 91,
+		height: 37,
+	},
+	farm2FlexBox: {
+		textAlign: 'left',
+		color: Color.colorSeagreen,
+		textTransform: 'uppercase',
+	},
+	smfTypo1: {
+		textAlign: 'left',
+		fontSize: FontSize.size_5xl,
+		position: 'absolute',
+	},
+    back1: {
+		letterSpacing: 4.1,
+		width: 68,
+		height: 16,
+		fontSize: FontSize.size_xs,
+		textAlign: 'left',
+		fontFamily: FontFamily.michroma,
+	},
+    back: {
+		left: 17,
+		top: 14,
+		position: 'absolute',
 	},
 });
 

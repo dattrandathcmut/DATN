@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     fontSize: FontSize.size_xs,
     letterSpacing: 4.1,
     color: Color.colorWhite,
-    width: 119,
+    // width: 119,
     height: 16,
     // marginLeft: -36, // Adjusted half of the width
     left: "45%", // Add this line

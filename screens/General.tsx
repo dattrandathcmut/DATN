@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, StyleSheet, View, Pressable, FlatList } from 'react-native';
+import { Text, StyleSheet, View, Pressable, FlatList, ActivityIndicator } from 'react-native';
 import { Image } from 'expo-image';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
@@ -22,6 +22,7 @@ import { config } from '../components/config';
 const General = () => {
 	const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 	const [farms, setFarms] = React.useState([]);
+	const [isLoading, setIsLoading] = React.useState(true);
 
 	const createFarm = () => {
 		console.log('createFarm');
@@ -36,6 +37,7 @@ const General = () => {
 
 					if (data.status === 'success') {
 						setFarms(data.data);
+						setIsLoading(false);
 					}
 				} catch (error) {
 					console.log('Fetch Farm Error');
@@ -46,6 +48,13 @@ const General = () => {
 		}, [])
 	);
 
+	if (isLoading) {
+		return (
+			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+				<ActivityIndicator size='large' color='#0000ff' />
+			</View>
+		);
+	}
 	return (
 		<SafeAreaView>
 			<ScrollView>

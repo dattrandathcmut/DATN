@@ -78,12 +78,10 @@ const Camera = () => {
 				}
 				const result = await response.json();
 				// Show a more beautiful alert with the prediction result
-				// Alert.alert('Prediction Result', `Class: ${result.class}, Confidence: ${result.confidence}`);
-				// const resultClass = result.class.replace('Tomato ', '');
-				const resultClass = 'Early Blight';
+				const resultClass = result.class.replace('Tomato ', '');
+				// const resultClass = 'Early Blight';
 				navigation.navigate('InfoDisease', { resultClass });
 				// Handle prediction result here
-				// <CustomAlert visible={true} title="Prediction Result" message={`Class: ${result.class}, Confidence: ${result.confidence}`} />
 			} catch (error) {
 				console.error('Error saving image and/or sending to API:', error);
 			}
@@ -133,19 +131,6 @@ const Camera = () => {
 			console.log('No image to save');
 		}
 	};
-
-	// const testApi = async () => {
-	//   try {
-	//     const response = await fetch('http://192.168.1.11:5001/');
-	//     if (!response.ok) {
-	//       throw new Error('HTTP status ' + response.status);
-	//     }
-	//     const data = await response.json();
-	//     console.log(data); // {"message": "Hello"}
-	//   } catch (error) {
-	//     console.error('Failed to fetch from this API:', error);
-	//   }
-	// };
 
 	function toggleCameraFacing() {
 		setFacing((current) => (current === 'back' ? 'front' : 'back'));
