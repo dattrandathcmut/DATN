@@ -15,13 +15,13 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { ParamListBase } from '@react-navigation/native';
 import { config } from '../components/config';
 
-// const jsonData = {
-// 	role: 'assistant',
-// 	type: 'answer',
-// 	content:
-// 		'Early Blight là một bệnh nấm phổ biến ảnh hưởng đến cây cà chua và cả cây khoai tây. Đây là bệnh bắt đầu từ đất, nên việc đầu tiên bạn cần làm là thay đất bị nhiễm bệnh trước khi trồng cây mới nếu bạn nghi ngờ cây của mình bị Early Blight. Dưới đây là một số cách để điều trị bệnh Early Blight:\n\n1. **Sử dụng các loại thuốc fungicide**: Có thể sử dụng các loại thuốc fungicide chứa các hoạt chất có khả năng kiểm soát bệnh nấm để phun lên cây.\n   \n2. **Thay đổi vị trí trồng**: Tránh trồng cà chua ở cùng một chỗ mỗi năm để giảm nguy cơ tái nhiễm bệnh từ đất.\n\n3. **Cải thiện lưu thông không khí**: Tỉa bớt lá để tăng cường lưu thông không khí xung quanh cây, giúp lá khô nhanh hơn sau mưa hoặc tưới nước, từ đó giảm nguy cơ nấm phát triển.\n\n4. **Trồng các giống cà chua kháng bệnh**: Một số giống cà chua đã được phát triển để có khả năng chống chịu với bệnh Early Blight.\n\n5. **Quản lý nước tưới**: Hạn chế tưới nước trực tiếp lên lá và thân cây, tưới nước vào gốc để giữ cho phần trên của cây khô ráo.\n\n6. **Vệ sinh vườn**: Loại bỏ và tiêu hủy các bộ phận cây bị nhiễm bệnh để ngăn chặn sự lây lan của bệnh.\n\n7. **Luân phiên cây trồng**: Trồng các loại cây khác nhau trong vòng xoay vụ để giảm bớt áp lực bệnh từ đất.\n\nNhớ rằng việc phát hiện sớm và xử lý kịp thời là chìa khóa để kiểm soát bệnh Early Blight hiệu quả.',
-// 	content_type: 'text',
-// };
+const jsonData = {
+	role: 'assistant',
+	type: 'answer',
+	content:
+		'Cây cà chua của bạn đang gặp tình trạng vàng lá, có thể do nhiều nguyên nhân khác nhau. Với điều kiện nhiệt độ 32°C, độ ẩm không khí 85% và độ ẩm đất 80%, dưới đây là một số lời khuyên giúp bạn khắc phục tình trạng này: \n \n 1. **Kiểm tra hệ thống tưới nước**: - Độ ẩm đất 80% là khá cao, có thể dẫn đến tình trạng úng nước làm rễ cây thiếu oxy và gây vàng lá. Hãy điều chỉnh hệ thống tưới nước để giảm bớt độ ẩm đất. Bạn có thể tưới nước ít hơn hoặc tăng khoảng cách giữa các lần tưới. \n\n 2. **Cải thiện thoát nước**: - Đảm bảo đất có hệ thống thoát nước tốt. Nếu cần, bạn có thể thêm vật liệu thoát nước như cát hoặc phân trộn vào đất để cải thiện khả năng thoát nước. \n\n 3. **Giảm độ ẩm không khí**: - Độ ẩm không khí 85% là khá cao, dễ dẫn đến các bệnh nấm. Hãy cải thiện thông gió cho khu vực trồng cà chua bằng cách tạo khoảng cách giữa các cây hoặc sử dụng quạt để lưu thông không khí. \n\n 4. **Kiểm tra bệnh tật và sâu bệnh**: - Vàng lá có thể do các loại bệnh như bệnh héo rũ Fusarium, bệnh đốm vi khuẩn, hoặc bệnh do nấm. Hãy kiểm tra lá và thân cây để phát hiện dấu hiệu của bệnh hoặc sâu bệnh. Sử dụng các biện pháp phòng trừ như thuốc bảo vệ thực vật nếu cần thiết. 5. *Bón phân hợp lý*: - Đảm bảo cây cà chua được cung cấp đầy đủ dinh dưỡng, đặc biệt là các nguyên tố vi lượng như sắt, magie, và mangan. Thiếu hụt dinh dưỡng cũng có thể gây vàng lá. Sử dụng phân bón lá hoặc phân bón chuyên dùng cho cây cà chua để bổ sung dinh dưỡng. 6. *Điều chỉnh nhiệt độ*: - Nhiệt độ 32°C có thể là cao đối với cây cà chua, đặc biệt nếu cây bị căng thẳng nhiệt. Nếu có thể, hãy tạo bóng mát cho cây vào giờ cao điểm của nhiệt độ hoặc sử dụng các biện pháp che chắn để giảm nhiệt độ xung quanh cây. 7. *Xử lý rễ cây*: - Kiểm tra rễ cây xem có dấu hiệu của bệnh thối rễ hoặc bị tổn thương không. Nếu phát hiện vấn đề, có thể cân nhắc việc thay đất hoặc trồng cây vào chậu mới với đất sạch. 8. *Theo dõi và chăm sóc*: - Luôn theo dõi tình trạng cây và điều chỉnh các biện pháp chăm sóc theo phản ứng của cây. Đôi khi, việc thay đổi nhỏ trong cách chăm sóc cũng có thể cải thiện tình trạng của cây một cách đáng kể. Hãy thử áp dụng những biện pháp trên và theo dõi sự thay đổi của cây cà chua. Nếu tình trạng vàng lá vẫn tiếp diễn, bạn có thể cần tìm đến sự tư vấn của chuyên gia nông nghiệp để có giải pháp cụ thể hơn.',
+	content_type: 'text',
+};
 
 const parseContent = (content) => {
 	return content.split('\n').map((line, index) => ({
@@ -30,61 +30,61 @@ const parseContent = (content) => {
 	}));
 };
 
-// const contentData = parseContent(jsonData.content);
+const contentData = parseContent(jsonData.content);
 
-const fetchDiseaseInfo = async (diseaseName) => {
-	const requests = [
-		// {
-		// 	bot_id: '7376211399645036562',
-		// 	user: '29032201862555',
-		// 	query: `Cây cà chua tôi bị bệnh ${diseaseName}, liệt kê cho tôi nhiều cách nhất có thể(nhiều hơn 3 cách) để chữa bệnh?`,
-		// 	stream: false,
-		// },
-		{
-			bot_id: '7376211399645036562',
-			user: '29032201862555',
-			query: `Cây cà chua tôi bị bệnh ${diseaseName}, giới thiệu bệnh đó và liệt kê nhiều cách nhất có thể(nhiều hơn 3 cách) để chữa bệnh cho tôi?`,
-			stream: false,
-		},
-		// {
-		// 	bot_id: '7376211399645036562',
-		// 	user: '29032201862555',
-		// 	query: `Cây cà chua tôi bị bệnh ${diseaseName}, nguyên nhân gây ra bệnh đó là gì?`,
-		// 	stream: false,
-		// },
-	];
+// const fetchDiseaseInfo = async (diseaseName) => {
+// 	const requests = [
+// 		// {
+// 		// 	bot_id: '7376211399645036562',
+// 		// 	user: '29032201862555',
+// 		// 	query: `Cây cà chua tôi bị bệnh ${diseaseName}, liệt kê cho tôi nhiều cách nhất có thể(nhiều hơn 3 cách) để chữa bệnh?`,
+// 		// 	stream: false,
+// 		// },
+// 		{
+// 			bot_id: '7376211399645036562',
+// 			user: '29032201862555',
+// 			query: `Cây cà chua tôi bị bệnh ${diseaseName}, giới thiệu bệnh đó và liệt kê nhiều cách nhất có thể(nhiều hơn 3 cách) để chữa bệnh cho tôi?`,
+// 			stream: false,
+// 		},
+// 		// {
+// 		// 	bot_id: '7376211399645036562',
+// 		// 	user: '29032201862555',
+// 		// 	query: `Cây cà chua tôi bị bệnh ${diseaseName}, nguyên nhân gây ra bệnh đó là gì?`,
+// 		// 	stream: false,
+// 		// },
+// 	];
 
-	const responses = await Promise.all(
-		requests.map((request) =>
-			fetch('https://api.coze.com/open_api/v2/chat', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					Authorization: 'Bearer ' + config.chatToken,
-				},
-				body: JSON.stringify(request),
-			})
-				.then((response) => {
-					if (!response.ok) {
-						throw new Error(`HTTP error! status: ${response.status}`);
-					}
-					return response.json();
-				})
-				.catch((error) => {
-					console.error('Error during fetch:', error);
-				})
-		)
-	);
+// 	const responses = await Promise.all(
+// 		requests.map((request) =>
+// 			fetch('https://api.coze.com/open_api/v2/chat', {
+// 				method: 'POST',
+// 				headers: {
+// 					'Content-Type': 'application/json',
+// 					Authorization: 'Bearer ' + config.chatToken,
+// 				},
+// 				body: JSON.stringify(request),
+// 			})
+// 				.then((response) => {
+// 					if (!response.ok) {
+// 						throw new Error(`HTTP error! status: ${response.status}`);
+// 					}
+// 					return response.json();
+// 				})
+// 				.catch((error) => {
+// 					console.error('Error during fetch:', error);
+// 				})
+// 		)
+// 	);
 
-	const result = await responses.map(
-		(response) =>
-			response.messages.find((message) => message.type === 'answer').content
-	);
-	console.log(result);
-	return result;
-};
+// 	const result = await responses.map(
+// 		(response) =>
+// 			response.messages.find((message) => message.type === 'answer').content
+// 	);
+// 	console.log(result);
+// 	return result;
+// };
 const InfoDisease = ({ route }: { route: any }) => {
-	const [contentData, setContentData] = React.useState([]);
+	// const [contentData, setContentData] = React.useState([]);
 	// const [introData, setIntroData] = React.useState([]);
 	const [isLoading, setIsLoading] = React.useState(true);
 	const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
@@ -101,19 +101,19 @@ const InfoDisease = ({ route }: { route: any }) => {
 	// 	console.log(contentData);
 	// }, [resultClass]);
 
-	React.useEffect(() => {
-		fetchDiseaseInfo(resultClass)
-			.then((data) => {
-				console.log(data);
-				setContentData(data.map(parseContent)[0]);
-				// setIntroData(data.map(parseContent)[1]);
-				setIsLoading(false);
-			})
-			.catch((error) => {
-				console.error(error);
-				setIsLoading(false);
-			});
-	}, [resultClass]);
+	// React.useEffect(() => {
+	// 	fetchDiseaseInfo(resultClass)
+	// 		.then((data) => {
+	// 			console.log(data);
+	// 			setContentData(data.map(parseContent)[0]);
+	// 			// setIntroData(data.map(parseContent)[1]);
+	// 			setIsLoading(false);
+	// 		})
+	// 		.catch((error) => {
+	// 			console.error(error);
+	// 			setIsLoading(false);
+	// 		});
+	// }, [resultClass]);
 
 	if (isLoading) {
 		return (
